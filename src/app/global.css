@@ -1,0 +1,88 @@
+:root {
+  --bg: #E4E6EB;
+  --lightBg: white;
+  --textColor: #050505;
+  --softBg: #1f273a;
+  --softTextColor: #ddd;
+  --blueColor: #1B75D0;
+  --orangeColor: #E7700D;
+}
+
+.dark {
+  --bg: #0f172a;
+  --textColor: #ddd;
+  --lightBg: #1f273a;
+  --softTextColor: #ddd;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI Adjusted",
+    "Segoe UI",
+    "Liberation Sans",
+    sans-serif;
+  ;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--textColor);
+}
+
+.wrapper {
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+@media screen and (max-width: 1536px) {
+  .wrapper {
+    max-width: 1366px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .wrapper {
+    max-width: 1024px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    max-width: 768px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    max-width: 640px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

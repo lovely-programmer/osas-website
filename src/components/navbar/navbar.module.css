@@ -1,0 +1,108 @@
+.navbar {
+  background-color: var(--lightBg);
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.logo {
+  display: flex;
+  font-size: 26px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.logo span:last-child {
+  font-weight: 700;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1.5;
+}
+
+.messageLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.messageLink span,
+.giveLink {
+  font-size: 15px;
+}
+
+.messageLink svg,
+.giveaway svg {
+  font-size: 25px;
+}
+
+.giveaway {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+@media screen and (max-width: 1300px) {
+  .logo {
+    font-size: 26px;
+  }
+
+  .links {
+    font-size: 16px;
+    gap: 15px;
+  }
+
+}
+
+@media screen and (max-width: 1280px) {
+  .logo {
+    margin-right: 20px;
+  }
+
+  .links {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1026px) {
+  .logo {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .logo {
+    flex: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .logo {
+    font-size: 14px;
+  }
+}
