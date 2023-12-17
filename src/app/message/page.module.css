@@ -1,0 +1,33 @@
+.container {
+  padding-top: 80px;
+  display: flex;
+}
+
+.profileImg {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile div {
+  display: flex;
+}
+
+.person {
+  padding-top: 10px;
+}
+
+.personContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.left {
+  flex: 1;
+  background-color: var(--lightBg);
+  overflow-y: hidden;
+}
+
+.right {
+  flex: 3;
+}

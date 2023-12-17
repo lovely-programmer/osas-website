@@ -44,7 +44,7 @@ export default function AuthLinks() {
               <RiMessengerLine />
               <span>Message</span>
             </Link>
-            <Link className={styles.messageLink} href="/message">
+            <Link className={styles.messageLink} href="/connect">
               <VscDebugDisconnect />
               <span>Connect</span>
             </Link>

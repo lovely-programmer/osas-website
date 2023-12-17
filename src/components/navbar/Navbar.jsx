@@ -19,9 +19,10 @@ export default function Navbar() {
           <div className={styles.links}>
             <Link className={styles.messageLink} href="/message">
               <RiMessengerLine />
+              <div className={styles.ball}>6</div>
               <span>Message</span>
             </Link>
-            <Link className={styles.messageLink} href="/message">
+            <Link className={styles.messageLink} href="/connect">
               <VscDebugDisconnect />
               <span>Connect</span>
             </Link>
@@ -31,6 +32,7 @@ export default function Navbar() {
             </div>
             <Link className={styles.messageLink} href="/freeuseditem">
               <MdOutlineShoppingBag />
+              <div className={styles.ball}>2</div>
               <span>Free used item</span>
             </Link>
           </div>

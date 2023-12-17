@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./footer.module.css";
 import { IoChatbubblesOutline, IoNewspaperOutline } from "react-icons/io5";
 import { MdOutlineSchool, MdOutlineWorkOutline } from "react-icons/md";
+import { RiShoppingBasketLine } from "react-icons/ri";
 
 export default function Footer() {
   return (
@@ -18,17 +19,24 @@ export default function Footer() {
               <MdOutlineWorkOutline />
               <Link href="">Skill or Service</Link>
             </div>
-            <div>
+            <div className={styles.ballDiv}>
               <IoNewspaperOutline />
-              <Link href="">News</Link>
+              <Link className={styles.news} href="">
+                News
+              </Link>
+              <div className={styles.ball}>10</div>
             </div>
-            <div>
+            <div className={styles.ballDiv}>
               <MdOutlineSchool />
-              <Link href="">School Materials</Link>
+              <Link href="" className={styles.materials}>
+                School Materials
+              </Link>
+              <div className={styles.ball}>20</div>
             </div>
-            <div>
-              <MdOutlineSchool />
+            <div className={styles.ballDiv}>
+              <RiShoppingBasketLine />
               <Link href="">Students Market</Link>
+              <div className={styles.ball}>50</div>
             </div>
           </div>
         </div>

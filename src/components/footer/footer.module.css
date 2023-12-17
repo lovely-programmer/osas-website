@@ -39,6 +39,36 @@
   height: 100px;
 }
 
+.ballDiv {
+  position: relative;
+}
+
+.ball {
+  position: absolute;
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: var(--softTextColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+
+
+.ballDiv .news+.ball {
+  right: -3px;
+  top: -4px;
+}
+
+.ballDiv .materials+.ball,
+.ballDiv:last-child .ball {
+  margin-left: 22px;
+  top: -4px;
+}
+
 @media screen and (max-width: 780px) {
   .footerContainer {
     font-size: 16px;
@@ -50,13 +80,51 @@
     font-size: 14px;
     justify-content: space-between;
   }
+
+  /* .ball {
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .ballDiv .materials+.ball {
+    right: 37px;
+  }
+
+  .ballDiv:last-child .ball {
+    right: 37px;
+  } */
 }
 
 @media screen and (max-width: 450px) {
   .footerContainer div a {
     font-size: 12px;
   }
+
+  /* .ballDiv .materials+.ball {
+    right: 21px;
+  }
+
+  .ballDiv:last-child .ball {
+    right: 21px;
+  } */
 }
+
+/* @media screen and (max-width: 400px) {
+  .ballDiv .materials+.ball {
+    right: 16px;
+  }
+
+  .ballDiv:last-child .ball {
+    right: 16px;
+  }
+
+  .ball {
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+  }
+} */
 
 @media screen and (max-width: 320px) {
   .footerContainer div a {
