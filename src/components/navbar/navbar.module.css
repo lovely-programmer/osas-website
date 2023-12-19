@@ -59,12 +59,12 @@
 }
 
 .messageLink:first-child .ball {
-  right: 5px;
+  margin-left: 22px;
   top: -4px;
 }
 
 .messageLink:last-child .ball {
-  right: 27px;
+  margin-left: 22px;
   top: -4px;
 }
 
@@ -105,7 +105,7 @@
   }
 
   .links {
-    display: none;
+    flex: none;
   }
 }
 
@@ -118,19 +118,33 @@
 @media screen and (max-width: 840px) {
   .logo {
     flex: none;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .logo {
-    font-size: 16px;
-    display: flex;
     flex-direction: column;
   }
 }
 
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 545px) {
+  .logo {
+    font-size: 15px;
+  }
+
+  .messageLink span,
+  .giveLink {
+    font-size: 12px;
+  }
+
+  .links {
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 440px) {
   .logo {
     font-size: 14px;
+    margin-right: 10px;
+  }
+
+  .messageLink span,
+  .giveLink {
+    font-size: 9px;
   }
 }

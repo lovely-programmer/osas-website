@@ -7,6 +7,8 @@ import { RiMessengerLine } from "react-icons/ri";
 import { VscDebugDisconnect } from "react-icons/vsc";
 import { LiaHandsHelpingSolid } from "react-icons/lia";
 import { MdOutlineShoppingBag } from "react-icons/md";
+import Searchbar from "../searchbar/Searchbar";
+import { IoIosSearch } from "react-icons/io";
 
 export default function AuthLinks() {
   const { theme, toggle } = useContext(ThemeContext);
@@ -38,9 +40,9 @@ export default function AuthLinks() {
       </div>
 
       {open && (
-        <div className={styles.responsiveMenu} onClick={() => setOpen(!open)}>
+        <div className={styles.responsiveMenu}>
           <div className={`wrapper ${styles.menu}`}>
-            <Link className={styles.messageLink} href="/message">
+            {/* <Link className={styles.messageLink} href="/message">
               <RiMessengerLine />
               <span>Message</span>
             </Link>
@@ -55,12 +57,20 @@ export default function AuthLinks() {
             <Link className={styles.messageLink} href="/freeuseditem">
               <MdOutlineShoppingBag />
               <span>Free used item</span>
-            </Link>
+            </Link> */}
+            <div className={styles.searchContainer}>
+              <IoIosSearch />
+              <input type="text" placeholder="Search" />
+            </div>
             {status !== "unauthorized" && (
               <>
                 <div className={styles.menuContainer}>
-                  <Link href="/message">Subscribe</Link>
-                  <Link href="/post">Post</Link>
+                  <Link href="/message" onClick={() => setOpen(!open)}>
+                    Subscribe
+                  </Link>
+                  <Link href="/post" onClick={() => setOpen(!open)}>
+                    Post
+                  </Link>
                   <div onClick={toggle}>Logout</div>
                 </div>
               </>

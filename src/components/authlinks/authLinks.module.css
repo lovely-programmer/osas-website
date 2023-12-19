@@ -137,6 +137,28 @@
   display: flex !important;
 }
 
+.searchContainer {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  border: 1px solid #1b75d0;
+  padding: 7px 9px;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.searchContainer svg {
+  font-size: 20px;
+}
+
+.searchContainer input {
+  border: none;
+  outline: none;
+  background-color: var(--bg);
+  color: var(--textColor);
+  width: 100%;
+}
+
 @media screen and (max-width: 1300px) {
   .container {
     font-size: 16px;
@@ -168,7 +190,7 @@
     display: none;
   }
 
-  .burgerContainer {
+  /* .burgerContainer {
     flex: 1;
-  }
+  } */
 }
