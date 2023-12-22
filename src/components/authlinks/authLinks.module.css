@@ -47,9 +47,9 @@
   position: absolute;
   top: 80px;
   right: 0;
-  width: 100%;
+  width: 500px;
   background-color: var(--bg);
-  height: calc(100vh - 70px);
+  height: calc(100vh - 80px);
 }
 
 .menu {
@@ -137,26 +137,8 @@
   display: flex !important;
 }
 
-.searchContainer {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  border: 1px solid #1b75d0;
-  padding: 7px 9px;
-  border-radius: 5px;
-  flex: 1;
-}
-
-.searchContainer svg {
-  font-size: 20px;
-}
-
-.searchContainer input {
-  border: none;
-  outline: none;
-  background-color: var(--bg);
-  color: var(--textColor);
-  width: 100%;
+.burgerContainer {
+  display: none;
 }
 
 @media screen and (max-width: 1300px) {
@@ -173,7 +155,18 @@
 
   .burger {
     display: flex;
-    margin-left: 15px;
+    margin-left: 40px;
+  }
+
+  .burgerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .burgerContainer svg {
+    font-size: 25px;
+    cursor: pointer;
   }
 
   .menu {
@@ -185,12 +178,34 @@
   }
 }
 
+
 @media screen and (max-width: 840px) {
   .link {
     display: none;
   }
+}
 
-  /* .burgerContainer {
-    flex: 1;
-  } */
+@media screen and (max-width: 600px) {
+  .burger {
+    margin-left: 25px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+
+  .responsiveMenu {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .burger {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .burgerContainer svg {
+    font-size: 20px;
+  }
 }

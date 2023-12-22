@@ -3,17 +3,15 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import styles from "./authLinks.module.css";
 import { ThemeContext } from "../../context/ThemeContext";
-import { RiMessengerLine } from "react-icons/ri";
-import { VscDebugDisconnect } from "react-icons/vsc";
-import { LiaHandsHelpingSolid } from "react-icons/lia";
-import { MdOutlineShoppingBag } from "react-icons/md";
-import Searchbar from "../searchbar/Searchbar";
 import { IoIosSearch } from "react-icons/io";
+import Searchbar from "../searchbar/Searchbar";
 
 export default function AuthLinks() {
   const { theme, toggle } = useContext(ThemeContext);
 
   const [open, setOpen] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+
   const status = "authorized";
   return (
     <>
@@ -32,6 +30,7 @@ export default function AuthLinks() {
       )}
 
       <div className={styles.burgerContainer}>
+        <IoIosSearch onClick={() => setShowSearchBar(!showSearchBar)} />
         <div className={styles.burger} onClick={() => setOpen(!open)}>
           <div className={styles.line}></div>
           <div className={styles.line}></div>
@@ -39,29 +38,11 @@ export default function AuthLinks() {
         </div>
       </div>
 
+      {showSearchBar && <Searchbar />}
+
       {open && (
         <div className={styles.responsiveMenu}>
           <div className={`wrapper ${styles.menu}`}>
-            {/* <Link className={styles.messageLink} href="/message">
-              <RiMessengerLine />
-              <span>Message</span>
-            </Link>
-            <Link className={styles.messageLink} href="/connect">
-              <VscDebugDisconnect />
-              <span>Connect</span>
-            </Link>
-            <div className={styles.giveaway}>
-              <LiaHandsHelpingSolid />
-              <div className={styles.giveLink}>Giveaway</div>
-            </div>
-            <Link className={styles.messageLink} href="/freeuseditem">
-              <MdOutlineShoppingBag />
-              <span>Free used item</span>
-            </Link> */}
-            <div className={styles.searchContainer}>
-              <IoIosSearch />
-              <input type="text" placeholder="Search" />
-            </div>
             {status !== "unauthorized" && (
               <>
                 <div className={styles.menuContainer}>

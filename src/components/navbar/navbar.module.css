@@ -131,15 +131,11 @@
   .giveLink {
     font-size: 12px;
   }
-
-  .links {
-    gap: 10px;
-  }
 }
 
 @media screen and (max-width: 440px) {
   .logo {
-    font-size: 14px;
+    font-size: 12px;
     margin-right: 10px;
   }
 

@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./navbar.module.css";
 import AuthLinks from "../authlinks/AuthLinks";
 import { RiMessengerLine } from "react-icons/ri";
-import Searchbar from "../searchbar/Searchbar";
+import Searchbox from "../searchbox/Searchbox";
 import { VscDebugDisconnect } from "react-icons/vsc";
 import { LiaHandsHelpingSolid } from "react-icons/lia";
 import { MdOutlineShoppingBag } from "react-icons/md";
@@ -36,7 +36,7 @@ export default function Navbar() {
               <span>Free used item</span>
             </Link>
           </div>
-          <Searchbar />
+          <Searchbox />
           <AuthLinks />
         </div>
       </div>

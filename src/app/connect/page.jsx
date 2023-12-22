@@ -24,7 +24,7 @@ export default function Connect() {
                   Course of study: Agricultural Science
                 </div>
                 <div className={styles.school}>
-                  University of Study: University of Benin
+                  School of Study: University of Benin
                 </div>
               </div>
               <button className={styles.button}>
@@ -48,7 +48,7 @@ export default function Connect() {
                   Course of study: Agricultural Science
                 </div>
                 <div className={styles.school}>
-                  University of Study: University of Benin
+                  School of Study: University of Benin
                 </div>
               </div>
               <button className={styles.button}>
@@ -72,7 +72,7 @@ export default function Connect() {
                   Course of study: Agricultural Science
                 </div>
                 <div className={styles.school}>
-                  University of Study: University of Benin
+                  School of Study: University of Benin
                 </div>
               </div>
               <button className={styles.button}>
@@ -96,7 +96,7 @@ export default function Connect() {
                   Course of study: Agricultural Science
                 </div>
                 <div className={styles.school}>
-                  University of Study: University of Benin
+                  School of Study: University of Benin
                 </div>
               </div>
               <button className={styles.button}>
@@ -120,7 +120,7 @@ export default function Connect() {
                   Course of study: Agricultural Science
                 </div>
                 <div className={styles.school}>
-                  University of Study: University of Benin
+                  School of Study: University of Benin
                 </div>
               </div>
               <button className={styles.button}>
@@ -144,7 +144,7 @@ export default function Connect() {
                   Course of study: Agricultural Science
                 </div>
                 <div className={styles.school}>
-                  University of Study: University of Benin
+                  School of Study: University of Benin
                 </div>
               </div>
               <button className={styles.button}>
@@ -168,7 +168,7 @@ export default function Connect() {
                   Course of study: Agricultural Science
                 </div>
                 <div className={styles.school}>
-                  University of Study: University of Benin
+                  School of Study: University of Benin
                 </div>
               </div>
               <button className={styles.button}>

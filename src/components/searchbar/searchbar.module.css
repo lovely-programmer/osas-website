@@ -1,43 +1,36 @@
 .container {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  width: 500px;
+  background-color: var(--bg);
+  height: calc(100vh - 70px);
+}
+
+.searchContainer {
   display: flex;
   align-items: center;
   gap: 3px;
   border: 1px solid #1b75d0;
   padding: 7px 9px;
   border-radius: 5px;
-  flex: 1;
+  margin: 10px 20px;
 }
 
-.container svg {
+.searchContainer svg {
   font-size: 20px;
 }
 
-.container input {
+.searchContainer input {
   border: none;
   outline: none;
-  background-color: var(--lightBg);
+  background-color: var(--bg);
   color: var(--textColor);
   width: 100%;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 530px) {
   .container {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .container {
-    padding: 2px 5px;
-  }
-}
-
-@media screen and (max-width: 370px) {
-  .container {
-    width: 53%;
-  }
-
-  .container input {
-    width: inherit;
+    width: 100%;
   }
 }
