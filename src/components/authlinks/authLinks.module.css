@@ -47,9 +47,9 @@
   position: absolute;
   top: 80px;
   right: 0;
-  width: 500px;
   background-color: var(--bg);
   height: calc(100vh - 80px);
+  width: 100%;
 }
 
 .menu {
@@ -188,13 +188,6 @@
 @media screen and (max-width: 600px) {
   .burger {
     margin-left: 25px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-
-  .responsiveMenu {
-    width: 100%;
   }
 }
 

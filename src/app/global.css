@@ -1,19 +1,25 @@
 :root {
-  --bg: #E4E6EB;
-  --lightBg: white;
-  --textColor: #050505;
+  /* --bg: #E4E6EB; */
+  /* --lightBg: white; */
+  /* --textColor: #050505; */
+  /* --softTextColor: #ddd; */
+
   --softBg: #1f273a;
-  --softTextColor: #ddd;
   --blueColor: #1B75D0;
   --orangeColor: #E7700D;
-}
 
-.dark {
   --bg: #0f172a;
   --textColor: #ddd;
   --lightBg: #1f273a;
   --softTextColor: #ddd;
 }
+
+/* .dark {
+  --bg: #0f172a;
+  --textColor: #ddd;
+  --lightBg: #1f273a;
+  --softTextColor: #ddd;
+} */
 
 * {
   padding: 0;

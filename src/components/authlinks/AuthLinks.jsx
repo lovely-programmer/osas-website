@@ -5,14 +5,30 @@ import styles from "./authLinks.module.css";
 import { ThemeContext } from "../../context/ThemeContext";
 import { IoIosSearch } from "react-icons/io";
 import Searchbar from "../searchbar/Searchbar";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function AuthLinks() {
   const { theme, toggle } = useContext(ThemeContext);
+  const router = useRouter();
+  const { status } = useSession();
 
   const [open, setOpen] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
 
-  const status = "authorized";
+  const logOut = () => {
+    router.push("/signin");
+    signOut();
+    setShowSearchBar(!showSearchBar);
+    localStorage.setItem("currentIndex", 0);
+  };
+
+  if (status === "unauthenticated") {
+    router.push("/signin");
+  }
+
+  console.log(status);
+
   return (
     <>
       {status !== "unauthorized" && (
@@ -24,7 +40,7 @@ export default function AuthLinks() {
             <Link className={styles.link} href="/post">
               Post
             </Link>
-            <div onClick={toggle}>Logout</div>
+            <div onClick={logOut}>Logout</div>
           </div>
         </>
       )}
@@ -52,7 +68,7 @@ export default function AuthLinks() {
                   <Link href="/post" onClick={() => setOpen(!open)}>
                     Post
                   </Link>
-                  <div onClick={toggle}>Logout</div>
+                  <div onClick={logOut}>Logout</div>
                 </div>
               </>
             )}

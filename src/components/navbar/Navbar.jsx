@@ -26,14 +26,15 @@ export default function Navbar() {
               <VscDebugDisconnect />
               <span>Connect</span>
             </Link>
-            <div className={styles.giveaway}>
+            {/* <div className={styles.giveaway}>
               <LiaHandsHelpingSolid />
+              <Link href="/posts/"></Link>
               <div className={styles.giveLink}>Giveaway</div>
-            </div>
-            <Link className={styles.messageLink} href="/freeuseditem">
+            </div> */}
+            <Link className={styles.messageLink} href="/posts/freeuseditems">
               <MdOutlineShoppingBag />
               <div className={styles.ball}>2</div>
-              <span>Free used item</span>
+              <span>Giveaway</span>
             </Link>
           </div>
           <Searchbox />

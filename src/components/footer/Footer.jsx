@@ -16,8 +16,10 @@ export default function Footer() {
               <Link href="">Customer Care</Link>
             </div>
             <div>
-              <MdOutlineWorkOutline />
-              <Link href="">Skill or Service</Link>
+              <Link href="/posts/skills">
+                <MdOutlineWorkOutline />
+              </Link>
+              <Link href="/posts/skills">Skill or Service</Link>
             </div>
             <div className={styles.ballDiv}>
               <IoNewspaperOutline />
@@ -34,8 +36,10 @@ export default function Footer() {
               <div className={styles.ball}>20</div>
             </div>
             <div className={styles.ballDiv}>
-              <RiShoppingBasketLine />
-              <Link href="">Students Market</Link>
+              <Link href="/posts/studentmarket">
+                <RiShoppingBasketLine />
+              </Link>
+              <Link href="/posts/studentmarket">Students Market</Link>
               <div className={styles.ball}>50</div>
             </div>
           </div>
