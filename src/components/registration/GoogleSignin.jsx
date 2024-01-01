@@ -7,14 +7,14 @@ import { useEffect, useState } from "react";
 import Spinner from "../spinner/Spinner";
 
 export default function GoogleSignin({ next }) {
-  const router = useRouter();
-  const { data, status } = useSession();
+  // const router = useRouter();
+  // const { data, status } = useSession();
 
-  const email = data?.user?.email;
+  // const email = data?.user?.email;
 
-  const { user, isLoading } = getData(email);
+  // const { user, isLoading } = getData(email);
 
-  const [statusLoading, setStatusLoading] = useState(false);
+  // const [statusLoading, setStatusLoading] = useState(false);
 
   // useEffect(() => {
   //   if (status === "loading") {
@@ -33,9 +33,9 @@ export default function GoogleSignin({ next }) {
     signIn("google");
   };
 
-  if (status === "authenticated") {
-    return <Spinner />;
-  }
+  // if (status === "authenticated") {
+  //   return <Spinner />;
+  // }
 
   return (
     <div className={styles.googleContainer}>
