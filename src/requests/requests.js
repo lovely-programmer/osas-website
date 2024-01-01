@@ -9,7 +9,10 @@ const url = "https://studenthelpers.netlify.app";
 // http://localhost:3000
 
 export const getData = (email) => {
-  const { data, error, isLoading } = useSWR(`${url}api/user/${email}`, fetcher);
+  const { data, error, isLoading } = useSWR(
+    `${url}/api/user/${email}`,
+    fetcher
+  );
 
   return {
     user: data?.user?.createdSuccessfully,
