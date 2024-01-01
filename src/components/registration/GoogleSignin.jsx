@@ -16,18 +16,18 @@ export default function GoogleSignin({ next }) {
 
   const [statusLoading, setStatusLoading] = useState(false);
 
-  useEffect(() => {
-    if (status === "loading") {
-      setStatusLoading(true);
-    } else {
-      setStatusLoading(false);
-    }
+  // useEffect(() => {
+  //   if (status === "loading") {
+  //     setStatusLoading(true);
+  //   } else {
+  //     setStatusLoading(false);
+  //   }
 
-    if (status === "authenticated") {
-      if (user == false) next();
-      if (user == true) router.push("/");
-    }
-  }, [status, user]);
+  //   if (status === "authenticated") {
+  //     if (user == false) next();
+  //     if (user == true) router.push("/");
+  //   }
+  // }, [status, user]);
 
   const handleSubmit = () => {
     signIn("google");
