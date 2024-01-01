@@ -7,37 +7,35 @@ import { useEffect, useState } from "react";
 import Spinner from "../spinner/Spinner";
 
 export default function GoogleSignin({ next }) {
-  // const router = useRouter();
-  // const { data, status } = useSession();
+  const router = useRouter();
+  const { data, status } = useSession();
 
-  // const email = data?.user?.email;
+  const email = data?.user?.email;
 
-  // const { user, isLoading } = getData(email);
+  const { user, isLoading } = getData(email);
 
   const [statusLoading, setStatusLoading] = useState(false);
 
-  console.log(process.env.NEXTAUTH_URL);
+  useEffect(() => {
+    if (status === "loading") {
+      setStatusLoading(true);
+    } else {
+      setStatusLoading(false);
+    }
 
-  // useEffect(() => {
-  //   if (status === "loading") {
-  //     setStatusLoading(true);
-  //   } else {
-  //     setStatusLoading(false);
-  //   }
-
-  //   if (status === "authenticated") {
-  //     if (user == false) next();
-  //     if (user == true) router.push("/");
-  //   }
-  // }, [status, user]);
+    if (status === "authenticated") {
+      if (user == false) next();
+      if (user == true) router.push("/");
+    }
+  }, [status, user]);
 
   const handleSubmit = () => {
     signIn("google");
   };
 
-  // if (status === "authenticated") {
-  //   return <Spinner />;
-  // }
+  if (status === "authenticated") {
+    return <Spinner />;
+  }
 
   return (
     <div className={styles.googleContainer}>
