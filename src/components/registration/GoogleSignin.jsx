@@ -16,6 +16,8 @@ export default function GoogleSignin({ next }) {
 
   const [statusLoading, setStatusLoading] = useState(false);
 
+  console.log(process.env.NEXTAUTH_URL);
+
   // useEffect(() => {
   //   if (status === "loading") {
   //     setStatusLoading(true);
