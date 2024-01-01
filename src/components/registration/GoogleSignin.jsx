@@ -14,7 +14,7 @@ export default function GoogleSignin({ next }) {
 
   // const { user, isLoading } = getData(email);
 
-  // const [statusLoading, setStatusLoading] = useState(false);
+  const [statusLoading, setStatusLoading] = useState(false);
 
   // useEffect(() => {
   //   if (status === "loading") {
