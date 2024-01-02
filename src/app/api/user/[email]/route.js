@@ -10,7 +10,7 @@ export const GET = async (req, { params }) => {
         email,
       },
     });
-    return new NextResponse(JSON.stringify({ user }), { status: 200 });
+    return new NextResponse(JSON.stringify(user), { status: 200 });
   } catch (err) {
     return new NextResponse(
       JSON.stringify({ message: "Something went wrong" }, { status: 500 })

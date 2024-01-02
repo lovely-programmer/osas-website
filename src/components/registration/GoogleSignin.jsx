@@ -2,34 +2,36 @@
 import { useRouter } from "next/navigation";
 import styles from "./registration.module.css";
 import { signIn, useSession } from "next-auth/react";
-import { getData } from "../../requests/requests";
+import { getUser } from "../../requests/requests";
 import { useEffect, useState } from "react";
 import Spinner from "../spinner/Spinner";
 
 export default function GoogleSignin({ next }) {
   const router = useRouter();
   const { data, status } = useSession();
-
   const email = data?.user?.email;
-
-  const { user, isLoading } = getData(email);
-
+  const { user, isLoading } = getUser(email);
   const [statusLoading, setStatusLoading] = useState(false);
 
   useEffect(() => {
+    if (status === "authenticated" && user) {
+      if (isLoading) {
+        setStatusLoading(true);
+        return <Spinner />;
+      }
+      if (user.createdSuccessfully == false) next();
+      if (user.createdSuccessfully == true) router.push("/");
+    }
+
     if (status === "loading") {
       setStatusLoading(true);
     } else {
       setStatusLoading(false);
     }
-
-    if (status === "authenticated") {
-      if (user == false) next();
-      if (user == true) router.push("/");
-    }
   }, [status, user]);
 
   const handleSubmit = () => {
+    setStatusLoading(true);
     signIn("google");
   };
 

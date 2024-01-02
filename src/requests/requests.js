@@ -9,14 +9,14 @@ const url = "https://osas-website.vercel.app";
 // http://localhost:3000
 // https://osas-website.vercel.app
 
-export const getData = (email) => {
+export const getUser = (email) => {
   const { data, error, isLoading } = useSWR(
     `${url}/api/user/${email}`,
     fetcher
   );
 
   return {
-    user: data?.user?.createdSuccessfully,
+    user: data,
     isLoading,
   };
 };

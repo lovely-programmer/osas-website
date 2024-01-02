@@ -6,6 +6,7 @@ import AuthenticationProvider from "../providers/AuthenticationProvider";
 import ThemeProvider from "../providers/ThemeProvider";
 import "react-toastify/dist/ReactToastify.css";
 import "./global.css";
+import NextAuth from "../utils/NextAuth";
 
 export const metadata = {
   title: "Student Support",
@@ -19,11 +20,13 @@ export default function RootLayout({ children }) {
         <AuthenticationProvider>
           <ThemeContextProvider>
             <ThemeProvider>
-              <div className="container">
-                <Navbar />
-                {children}
-                <Footer />
-              </div>
+              <NextAuth>
+                <div className="container">
+                  <Navbar />
+                  {children}
+                  <Footer />
+                </div>
+              </NextAuth>
               <ToastContainer />
             </ThemeProvider>
           </ThemeContextProvider>
