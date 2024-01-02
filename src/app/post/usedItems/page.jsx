@@ -21,6 +21,7 @@ export default function UsedItems() {
   const [usedItem, setUsedItem] = useState("");
   const [aboutItem, setAboutItem] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
 
   const handleChange = (e) => {
     setMedia(e.target.files[0]);
@@ -42,6 +43,7 @@ export default function UsedItems() {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
+          if (progress == "100") setImageUploading(false);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -62,7 +64,10 @@ export default function UsedItems() {
       );
     };
 
-    media && upload();
+    if (media) {
+      setImageUploading(true);
+      upload();
+    }
   }, [media]);
 
   const slug = "usedItem";
@@ -161,7 +166,9 @@ export default function UsedItems() {
               onChange={handleChange}
             />
           </div>
-          <button className={styles.button}>Submit</button>
+          <button disabled={imageUploading} className={styles.button}>
+            {imageUploading ? "uploading image in progress" : "Submit"}
+          </button>
         </form>
       </div>
     </div>

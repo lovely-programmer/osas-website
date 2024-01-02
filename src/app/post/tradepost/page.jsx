@@ -21,6 +21,7 @@ export default function TradePost() {
   const [myTrade, setMyTrade] = useState("");
   const [myNeed, setMyNeed] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
 
   const handleChange = (e) => {
     setMedia(e.target.files[0]);
@@ -42,6 +43,7 @@ export default function TradePost() {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
+          if (progress == "100") setImageUploading(false);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -62,15 +64,16 @@ export default function TradePost() {
       );
     };
 
-    media && upload();
+    if (media) {
+      setImageUploading(true);
+      upload();
+    }
   }, [media]);
-
-  const slug = "need";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    const res = await fetch(`/api/posts/${slug}`, {
+    const res = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify({
         image,
@@ -157,7 +160,9 @@ export default function TradePost() {
               onChange={handleChange}
             />
           </div>
-          <button className={styles.button}>Submit</button>
+          <button disabled={imageUploading} className={styles.button}>
+            {imageUploading ? "uploading image in progress" : "Submit"}
+          </button>
         </form>
       </div>
     </div>

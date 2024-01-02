@@ -132,6 +132,11 @@
   border-radius: 5px;
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  background-color: #1876f277;
+}
+
 @media screen and (max-width: 460px) {
   .formgroup {
     flex-direction: column;

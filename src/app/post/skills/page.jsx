@@ -22,6 +22,7 @@ export default function Skills() {
   const [aboutSkill, setAboutSkill] = useState("");
   const [location, setLocation] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
 
   const handleChange = (e) => {
     setMedia(e.target.files[0]);
@@ -43,6 +44,7 @@ export default function Skills() {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
+          if (progress == "100") setImageUploading(false);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -63,7 +65,10 @@ export default function Skills() {
       );
     };
 
-    media && upload();
+    if (media) {
+      setImageUploading(true);
+      upload();
+    }
   }, [media]);
 
   const slug = "skills";
@@ -71,6 +76,7 @@ export default function Skills() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+
     const res = await fetch(`/api/posts/${slug}`, {
       method: "POST",
       body: JSON.stringify({
@@ -174,7 +180,9 @@ export default function Skills() {
               onChange={handleChange}
             />
           </div>
-          <button className={styles.button}>Submit</button>
+          <button disabled={imageUploading} className={styles.button}>
+            {imageUploading ? "uploading image in progress" : "Submit"}
+          </button>
         </form>
       </div>
     </div>
