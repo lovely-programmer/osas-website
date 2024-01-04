@@ -12,10 +12,10 @@ export default function Footer() {
   const { user } = getAUser();
   return (
     <>
-      {status === "authenticated" && user.createdSuccessfully == true && (
+      {status === "authenticated" && user?.createdSuccessfully == true && (
         <div className={styles.top}></div>
       )}
-      {status === "authenticated" && user.createdSuccessfully == true && (
+      {status === "authenticated" && user?.createdSuccessfully == true && (
         <div className={styles.footer}>
           <div className="wrapper">
             <div className={styles.footerContainer}>

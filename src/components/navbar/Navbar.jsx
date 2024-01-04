@@ -17,7 +17,7 @@ export default function Navbar() {
     <div className={styles.navbar}>
       <div className="wrapper">
         <div className={styles.container}>
-          {status === "authenticated" && user.createdSuccessfully ? (
+          {status === "authenticated" && user?.createdSuccessfully ? (
             <Link className={styles.logo} href="/">
               <span>Student</span>
               <span>Support</span>
@@ -29,7 +29,7 @@ export default function Navbar() {
             </Link>
           )}
 
-          {status === "authenticated" && user.createdSuccessfully == true && (
+          {status === "authenticated" && user?.createdSuccessfully == true && (
             <div className={styles.links}>
               <Link className={styles.messageLink} href="/message">
                 <RiMessengerLine />

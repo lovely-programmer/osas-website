@@ -8,7 +8,7 @@ export default function NextAuth({ children }) {
   const { user } = getAUser();
   const router = useRouter();
 
-  if (status === "unauthenticated" && user.createdSuccessfully !== true) {
+  if (status === "unauthenticated" && user?.createdSuccessfully !== true) {
     router.push("/signin");
   }
 
