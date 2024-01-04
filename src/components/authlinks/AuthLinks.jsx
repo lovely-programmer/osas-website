@@ -6,9 +6,11 @@ import { IoIosSearch } from "react-icons/io";
 import Searchbar from "../searchbar/Searchbar";
 import { signOut, useSession } from "next-auth/react";
 import Spinner from "../spinner/Spinner";
+import { getAUser } from "../../requests/requests";
 
 export default function AuthLinks() {
   const { status } = useSession();
+  const { user } = getAUser();
 
   const [open, setOpen] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -27,7 +29,7 @@ export default function AuthLinks() {
 
   return (
     <>
-      {status === "authenticated" && (
+      {status === "authenticated" && user?.createdSuccessfully == true && (
         <>
           <div className={styles.container}>
             <Link className={styles.link} href="/subscribe">
@@ -41,7 +43,7 @@ export default function AuthLinks() {
         </>
       )}
 
-      {status === "authenticated" && (
+      {status === "authenticated" && user?.createdSuccessfully == true && (
         <div className={styles.burgerContainer}>
           <IoIosSearch onClick={() => setShowSearchBar(!showSearchBar)} />
           <div className={styles.burger} onClick={() => setOpen(!open)}>

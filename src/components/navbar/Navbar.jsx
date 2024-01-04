@@ -17,7 +17,7 @@ export default function Navbar() {
     <div className={styles.navbar}>
       <div className="wrapper">
         <div className={styles.container}>
-          {status === "authenticated" && user?.createdSuccessfully ? (
+          {status === "authenticated" && user?.createdSuccessfully == true ? (
             <Link className={styles.logo} href="/">
               <span>Student</span>
               <span>Support</span>
