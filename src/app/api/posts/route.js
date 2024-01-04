@@ -12,3 +12,28 @@ export const GET = async (req) => {
     );
   }
 };
+
+export const POST = async (req) => {
+  try {
+    const session = await getAuthSession();
+
+    if (!session) {
+      return new NextResponse(
+        JSON.stringify({ message: "Not Authenticated!" }, { status: 401 })
+      );
+    }
+
+    const body = await req.json();
+
+    const post = await prisma.post.create({
+      data: { ...body, userEmail: session.user.email },
+    });
+
+    return new NextResponse(JSON.stringify(post), { status: 201 });
+  } catch (error) {
+    console.log(error);
+    return new NextResponse(
+      JSON.stringify({ message: "Something went wrong" }, { status: 500 })
+    );
+  }
+};
