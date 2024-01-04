@@ -1,13 +1,16 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Spinner from "../components/spinner/Spinner";
+import { getUser } from "../requests/requests";
 
 export default function NextAuth({ children }) {
-  const { status } = useSession();
+  const { data, status } = useSession();
+  const email = data?.user?.email;
   const router = useRouter();
 
-  if (status === "unauthenticated") {
+  const { user } = getUser(email);
+
+  if (status === "unauthenticated" && user !== true) {
     router.push("/signin");
   }
 

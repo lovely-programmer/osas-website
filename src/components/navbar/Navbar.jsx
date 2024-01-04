@@ -7,9 +7,12 @@ import Searchbox from "../searchbox/Searchbox";
 import { VscDebugDisconnect } from "react-icons/vsc";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { useSession } from "next-auth/react";
+import { getUser } from "../../requests/requests";
 
 export default function Navbar() {
-  const { status } = useSession();
+  const { data, status } = useSession();
+  const email = data?.user?.email;
+  const { user } = getUser(email);
 
   return (
     <div className={styles.navbar}>
@@ -27,7 +30,7 @@ export default function Navbar() {
             </Link>
           )}
 
-          {status === "authenticated" && (
+          {status === "authenticated" && user == true && (
             <div className={styles.links}>
               <Link className={styles.messageLink} href="/message">
                 <RiMessengerLine />
