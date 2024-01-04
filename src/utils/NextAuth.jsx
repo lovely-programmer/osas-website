@@ -1,16 +1,14 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { getUser } from "../requests/requests";
+import { getAUser } from "../requests/requests";
 
 export default function NextAuth({ children }) {
-  const { data, status } = useSession();
-  const email = data?.user?.email;
+  const { status } = useSession();
+  const { user } = getAUser();
   const router = useRouter();
 
-  const { user } = getUser(email);
-
-  if (status === "unauthenticated" && user !== true) {
+  if (status === "unauthenticated" && user.createdSuccessfully !== true) {
     router.push("/signin");
   }
 

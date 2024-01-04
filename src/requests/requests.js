@@ -21,6 +21,15 @@ export const getUser = (email) => {
   };
 };
 
+export const getAUser = (email) => {
+  const { data, error, isLoading } = useSWR(`${url}/api/user`, fetcher);
+
+  return {
+    user: data,
+    isLoading,
+  };
+};
+
 export const getPosts = () => {
   const { data, error, isLoading } = useSWR(`${url}/api/posts`, fetcher);
   return {

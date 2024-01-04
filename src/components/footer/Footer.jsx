@@ -5,18 +5,17 @@ import { IoChatbubblesOutline, IoNewspaperOutline } from "react-icons/io5";
 import { MdOutlineSchool, MdOutlineWorkOutline } from "react-icons/md";
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { useSession } from "next-auth/react";
-import { getUser } from "../../requests/requests";
+import { getAUser } from "../../requests/requests";
 
 export default function Footer() {
-  const { data, status } = useSession();
-  const email = data?.user?.email;
-  const { user } = getUser(email);
+  const { status } = useSession();
+  const { user } = getAUser();
   return (
     <>
-      {status === "authenticated" && user == true && (
+      {status === "authenticated" && user.createdSuccessfully == true && (
         <div className={styles.top}></div>
       )}
-      {status === "authenticated" && user == true && (
+      {status === "authenticated" && user.createdSuccessfully == true && (
         <div className={styles.footer}>
           <div className="wrapper">
             <div className={styles.footerContainer}>

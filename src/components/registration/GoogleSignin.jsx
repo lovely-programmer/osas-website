@@ -2,15 +2,14 @@
 import { useRouter } from "next/navigation";
 import styles from "./registration.module.css";
 import { signIn, useSession } from "next-auth/react";
-import { getUser } from "../../requests/requests";
+import { getAUser } from "../../requests/requests";
 import { useEffect, useState } from "react";
 import Spinner from "../spinner/Spinner";
 
 export default function GoogleSignin({ next }) {
   const router = useRouter();
-  const { data, status } = useSession();
-  const email = data?.user?.email;
-  const { user, isLoading } = getUser(email);
+  const { status } = useSession();
+  const { user, isLoading } = getAUser();
   const [statusLoading, setStatusLoading] = useState(false);
 
   useEffect(() => {

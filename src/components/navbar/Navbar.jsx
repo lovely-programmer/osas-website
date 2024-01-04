@@ -7,18 +7,17 @@ import Searchbox from "../searchbox/Searchbox";
 import { VscDebugDisconnect } from "react-icons/vsc";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { useSession } from "next-auth/react";
-import { getUser } from "../../requests/requests";
+import { getAUser } from "../../requests/requests";
 
 export default function Navbar() {
-  const { data, status } = useSession();
-  const email = data?.user?.email;
-  const { user } = getUser(email);
+  const { status } = useSession();
+  const { user } = getAUser();
 
   return (
     <div className={styles.navbar}>
       <div className="wrapper">
         <div className={styles.container}>
-          {status === "authenticated" ? (
+          {status === "authenticated" && user.createdSuccessfully ? (
             <Link className={styles.logo} href="/">
               <span>Student</span>
               <span>Support</span>
@@ -30,7 +29,7 @@ export default function Navbar() {
             </Link>
           )}
 
-          {status === "authenticated" && user == true && (
+          {status === "authenticated" && user.createdSuccessfully == true && (
             <div className={styles.links}>
               <Link className={styles.messageLink} href="/message">
                 <RiMessengerLine />
