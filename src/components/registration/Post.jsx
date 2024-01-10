@@ -89,7 +89,6 @@ export default function Post() {
 
     if (res.status == 201) {
       router.push("/");
-      localStorage.setItem("currentIndex", 0);
     } else {
       setIsLoading(false);
       console.log("Something went wrong");
@@ -101,64 +100,71 @@ export default function Post() {
   }
 
   return (
-    <div className={styles.postContainer}>
-      <div className={styles.header}>Create your first trade post</div>
-      <div className={styles.listContainer}>
-        <ul className={styles.questionList}>
-          <li>Are you in need of anything?</li>
-          <li>What are you in need of?</li>
-          <li>
-            Which trade, goods, skills or services, do you have that can be
-            Exchange for
-          </li>
-        </ul>
+    <div className={styles.container}>
+      <div className={styles.postContainer}>
+        <div className={styles.header}>Create your first trade post</div>
+        <div className={styles.listContainer}>
+          <ul className={styles.questionList}>
+            <li>Are you in need of anything?</li>
+            <li>What are you in need of?</li>
+            <li>
+              Which trade, goods, skills or services, do you have that can be
+              Exchange for
+            </li>
+          </ul>
+        </div>
+        <div className={styles.note}>
+          <span>Note:</span>
+          <ul>
+            <li>
+              Students Support is a Godly foundation, raised to help Students in
+              all time
+            </li>
+            <li>
+              Student Support helps you connect to people of similar needs by
+              Exchanging goods, skills or services
+            </li>
+          </ul>
+        </div>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.previewImage}>
+            Preview Image
+            <img src={file} alt="" />
+          </div>
+          <div className={styles.formgroup}>
+            <label htmlFor="yourTrade">What's your Trade?</label>
+            <input
+              type="text"
+              id="yourTrade"
+              placeholder="What's your trade, goods, skills, services"
+              required
+              onChange={(e) => setMyTrade(e.target.value)}
+            />
+          </div>
+          <div className={styles.formgroup}>
+            <label htmlFor="yourNeed">What's your Need?</label>
+            <input
+              type="text"
+              id="yourNeed"
+              placeholder="What's your needs?"
+              required
+              onChange={(e) => setMyNeed(e.target.value)}
+            />
+          </div>
+          <div className={styles.formgroup}>
+            <label htmlFor="tradeImage">Trade Image</label>
+            <input
+              type="file"
+              id="tradeImage"
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <button disabled={imageUploading} className={styles.button}>
+            {imageUploading ? "uploading image in progress" : "Submit"}
+          </button>
+        </form>
       </div>
-      <div className={styles.note}>
-        <span>Note:</span>
-        <ul>
-          <li>
-            Students Support is a Godly foundation, raised to help Students in
-            all time
-          </li>
-          <li>
-            Student Support helps you connect to people of similar needs by
-            Exchanging goods, skills or services
-          </li>
-        </ul>
-      </div>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.previewImage}>
-          Preview Image
-          <img src={file} alt="" />
-        </div>
-        <div className={styles.formgroup}>
-          <label htmlFor="yourTrade">What's your Trade?</label>
-          <input
-            type="text"
-            id="yourTrade"
-            placeholder="What's your trade, goods, skills, services"
-            required
-            onChange={(e) => setMyTrade(e.target.value)}
-          />
-        </div>
-        <div className={styles.formgroup}>
-          <label htmlFor="yourNeed">What's your Need?</label>
-          <input
-            type="text"
-            id="yourNeed"
-            placeholder="What's your needs?"
-            required
-            onChange={(e) => setMyNeed(e.target.value)}
-          />
-        </div>
-        <div className={styles.formgroup}>
-          <label htmlFor="tradeImage">Trade Image</label>
-          <input type="file" id="tradeImage" required onChange={handleChange} />
-        </div>
-        <button disabled={imageUploading} className={styles.button}>
-          {imageUploading ? "uploading image in progress" : "Submit"}
-        </button>
-      </form>
     </div>
   );
 }

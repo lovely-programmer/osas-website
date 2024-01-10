@@ -55,6 +55,7 @@ export const GET = async (req, { params }) => {
   try {
     if (slug == "usedItem") {
       const posts = await prisma.usedItemPost.findMany({
+        orderBy: [{ createdAt: "desc" }],
         include: { user: true },
       });
       return new NextResponse(JSON.stringify(posts), { status: 200 });
@@ -62,6 +63,7 @@ export const GET = async (req, { params }) => {
 
     if (slug == "skills") {
       const posts = await prisma.skillPost.findMany({
+        orderBy: [{ createdAt: "desc" }],
         include: { user: true },
       });
       return new NextResponse(JSON.stringify(posts), { status: 200 });
@@ -69,6 +71,7 @@ export const GET = async (req, { params }) => {
 
     if (slug == "market") {
       const posts = await prisma.studentMarketPost.findMany({
+        orderBy: [{ createdAt: "desc" }],
         include: { user: true },
       });
       return new NextResponse(JSON.stringify(posts), { status: 200 });

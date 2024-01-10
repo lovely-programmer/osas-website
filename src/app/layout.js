@@ -1,5 +1,4 @@
 import { ToastContainer } from "react-toastify";
-import Footer from "../components/footer/Footer";
 import Navbar from "../components/navbar/Navbar";
 import { ThemeContextProvider } from "../context/ThemeContext";
 import AuthenticationProvider from "../providers/AuthenticationProvider";
@@ -7,6 +6,7 @@ import ThemeProvider from "../providers/ThemeProvider";
 import "react-toastify/dist/ReactToastify.css";
 import "./global.css";
 import NextAuth from "../utils/NextAuth";
+import ShowFooter from "../utils/Footer";
 
 export const metadata = {
   title: "Student Support",
@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
                 <div className="container">
                   <Navbar />
                   {children}
-                  <Footer />
+                  <ShowFooter />
                 </div>
               </NextAuth>
               <ToastContainer />

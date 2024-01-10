@@ -12,22 +12,22 @@ export default function GoogleSignin({ next }) {
   const { user, isLoading } = getAUser();
   const [statusLoading, setStatusLoading] = useState(false);
 
-  useEffect(() => {
-    if (status === "authenticated" && user) {
-      if (isLoading) {
-        setStatusLoading(true);
-        return <Spinner />;
-      }
-      if (user.createdSuccessfully == false) next();
-      if (user.createdSuccessfully == true) router.push("/");
-    }
-
-    if (status === "loading") {
+  if (user) {
+    if (isLoading) {
       setStatusLoading(true);
-    } else {
-      setStatusLoading(false);
+      return <Spinner />;
     }
-  }, [status, user]);
+  }
+
+  if (status === "authenticated" && user) {
+    if (isLoading) {
+      setStatusLoading(true);
+      return <Spinner />;
+    }
+    if (user?.country == null && user.createdSuccessfully == false)
+      router.push("/signup/welcome");
+    if (user.createdSuccessfully) router.push("/");
+  }
 
   const handleSubmit = () => {
     setStatusLoading(true);

@@ -48,7 +48,7 @@ export default function Navbar() {
               <Link className={styles.messageLink} href="/posts/freeuseditems">
                 <MdOutlineShoppingBag />
                 <div className={styles.ball}>2</div>
-                <span>Giveaway</span>
+                <span>Free used item</span>
               </Link>
             </div>
           )}

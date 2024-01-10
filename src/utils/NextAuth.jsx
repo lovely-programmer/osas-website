@@ -13,10 +13,6 @@ export default function NextAuth({ children }) {
     return <Spinner />;
   }
 
-  if (user?.createdSuccessfully == false) {
-    router.push("/signin");
-  }
-
   if (status === "unauthenticated") {
     router.push("/signin");
   }
