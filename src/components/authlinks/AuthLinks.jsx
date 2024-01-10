@@ -39,6 +39,9 @@ export default function AuthLinks() {
               Post
             </Link>
             <div onClick={logOut}>Logout</div>
+            <Link href="/profile" className={styles.profileImg}>
+              <img src={user?.image} alt="" />
+            </Link>
           </div>
         </>
       )}
@@ -67,6 +70,9 @@ export default function AuthLinks() {
                   </Link>
                   <Link href="/post" onClick={() => setOpen(!open)}>
                     Post
+                  </Link>
+                  <Link href="/profile" onClick={() => setOpen(!open)}>
+                    Profile
                   </Link>
                   <div onClick={logOut}>Logout</div>
                 </div>

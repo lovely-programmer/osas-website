@@ -5,6 +5,18 @@
   justify-content: flex-end;
   align-items: center;
   font-size: 15px;
+  margin-left: 20px;
+}
+
+.container .profileImg {
+  width: 50px;
+  height: 50px;
+}
+
+.container .profileImg img {
+  border-radius: 50%;
+  width: inherit;
+  height: inherit;
 }
 
 .container a:first-child {
@@ -77,6 +89,14 @@
 
 .menuContainer a:nth-child(2) {
   background-color: #1b75d0;
+  border-radius: 6px;
+  color: var(--softTextColor);
+  padding: 8px 10.4px;
+  text-align: center;
+}
+
+.menuContainer a:nth-child(3) {
+  background-color: var(--lightBg);
   border-radius: 6px;
   color: var(--softTextColor);
   padding: 8px 10.4px;
