@@ -44,6 +44,13 @@
   padding-top: 10px;
 }
 
+.person p {
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .personContainer_1 {
   overflow-x: scroll;
 }

@@ -143,9 +143,11 @@ export default function Message() {
                       <div className={styles.personContainer_1}>
                         <span>{chat[1].userInfo.name}</span>
                         <div className={styles.person}>
-                          {chat[1].lastMessage?.text
-                            ? chat[1].lastMessage?.text
-                            : "Click to start a conversation"}
+                          <p>
+                            {chat[1].lastMessage?.text
+                              ? chat[1].lastMessage?.text
+                              : "Click to start a conversation"}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -247,9 +249,11 @@ export default function Message() {
                       >
                         <span>{chat[1].userInfo.name}</span>
                         <div className={styles.person}>
-                          {chat[1].lastMessage?.text
-                            ? chat[1].lastMessage?.text
-                            : "Click to start a conversation"}
+                          <p>
+                            {chat[1].lastMessage?.text
+                              ? chat[1].lastMessage?.text
+                              : "Click to start a conversation"}
+                          </p>
                         </div>
                       </div>
                     </div>

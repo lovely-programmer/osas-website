@@ -1,0 +1,150 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.imgContainer {
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
+
+.imgContainer img {
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.profileWrapper {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.postProfile {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.postProfileImg {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.postProfile div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.postProfile div svg {
+  fill: #DC3545;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.trade {
+  padding-top: 10px;
+}
+
+.tradeImgContainer {
+  position: relative;
+  padding-top: 10px;
+  max-width: 500px;
+  height: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.tradeImg {
+  object-fit: cover;
+}
+
+.formgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.formgroup input {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+
+.formgroup span {
+  font-size: 14px;
+}
+
+.button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #1877f2;
+  outline: none;
+  color: var(--softTextColor);
+  width: 100%;
+}
+
+.editButton {
+  padding: 10px 20px;
+  background: #111;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.postsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.posts {
+  margin-top: 50px;
+  border: 3px solid var(--lightBg);
+  padding: 20px;
+  border-radius: 5px;
+  background: var(--lightBg);
+  width: 500px;
+}
+
+.postsContainer select {
+  outline: none;
+  border-radius: 5px;
+  width: 400px;
+  padding: 5px 10px;
+}
+
+@media screen and (max-width: 550px) {
+  .profileWrapper {
+    width: 100%;
+  }
+
+  .formgroup {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .buttonContainer {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+}
