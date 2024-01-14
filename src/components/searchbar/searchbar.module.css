@@ -29,6 +29,20 @@
   width: 100%;
 }
 
+.close {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.close svg {
+  font-size: 25px;
+  background: #ff000052;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 530px) {
   .container {
     width: 100%;

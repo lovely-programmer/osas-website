@@ -10,11 +10,22 @@ import {
 } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import { getAUser } from "../../requests/requests";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import { useContext, useState } from "react";
+import { ImageContext } from "../../context/ImageContext";
 
 export default function Posts({ post }) {
   const { user } = getAUser();
+  const { dispatch } = useContext(ImageContext);
   const router = useRouter();
+  const pathname = usePathname();
+
+  const showImagePage = (image) => {
+    dispatch({ type: "VIEW_IMAGE", payload: [image, pathname] });
+    localStorage.setItem("pathname", pathname);
+    router.push("/post/1234567");
+  };
+
   const handleSelect = async (messageUser) => {
     // check whether the group(chats in firestore) exits, if not create
     const combinedId =
@@ -54,6 +65,7 @@ export default function Posts({ post }) {
   };
   return (
     <div className="wrapper">
+      <div className={styles.fullImageContainer}></div>
       <div className={styles.postsContainer}>
         <div className={styles.posts}>
           <div className={styles.profile}>
@@ -69,7 +81,13 @@ export default function Posts({ post }) {
             <div className={styles.trade}>My Trade: {post.myTrade}</div>
           </div>
           <div className={styles.tradeImgContainer}>
-            <Image src={post.image} alt="" fill className={styles.tradeImg} />
+            <Image
+              onClick={() => showImagePage(post.image)}
+              src={post.image}
+              alt=""
+              fill
+              className={styles.tradeImg}
+            />
           </div>
           <div className={styles.needs}>
             <span>MY NEEDS </span>

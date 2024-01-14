@@ -80,6 +80,11 @@
   margin-bottom: 10px;
 }
 
+.formgroup input[type=file] {
+  border: 1px solid var(--softTextColor);
+  cursor: pointer;
+}
+
 .formgroup input {
   padding: 10px;
   border-radius: 5px;
@@ -135,6 +140,10 @@
 
 @media screen and (max-width: 550px) {
   .profileWrapper {
+    width: 100%;
+  }
+
+  .posts {
     width: 100%;
   }
 

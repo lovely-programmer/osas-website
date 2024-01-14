@@ -41,10 +41,16 @@
   height: 200px;
   margin-top: 20px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .tradeImg {
   object-fit: cover;
+}
+
+.fullImageContainer img {
+  height: calc(100vh - 80px);
+  width: 100%;
 }
 
 .needs {

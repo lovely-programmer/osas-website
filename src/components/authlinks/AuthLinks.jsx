@@ -57,7 +57,12 @@ export default function AuthLinks() {
         </div>
       )}
 
-      {showSearchBar && <Searchbar />}
+      {showSearchBar && (
+        <Searchbar
+          showSearchBar={showSearchBar}
+          setShowSearchBar={setShowSearchBar}
+        />
+      )}
 
       {open && (
         <div className={styles.responsiveMenu}>
