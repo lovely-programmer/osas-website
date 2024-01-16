@@ -2,15 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 100px;
 }
 
 .post {
   border: 3px solid var(--lightBg);
-  padding: 20px;
   border-radius: 5px;
   background: var(--lightBg);
   width: 500px;
+  margin-top: 50px;
 }
 
 .profile {
@@ -30,6 +29,7 @@
   align-items: center;
   font-weight: bold;
   font-size: 14px;
+  padding-left: 10px;
 }
 
 .box_1 {
@@ -46,16 +46,13 @@
   position: relative;
   padding-top: 10px;
   max-width: 500px;
-  height: 200px;
+  height: 300px;
   margin-bottom: 20px;
-}
-
-.img {
-  object-fit: cover;
 }
 
 .about {
   margin-bottom: 10px;
+  padding-left: 10px;
 }
 
 .button {

@@ -81,13 +81,13 @@ export default function Posts({ post }) {
             <div className={styles.trade}>My Trade: {post.myTrade}</div>
           </div>
           <div className={styles.tradeImgContainer}>
-            <Image
-              onClick={() => showImagePage(post.image)}
-              src={post.image}
-              alt=""
-              fill
-              className={styles.tradeImg}
-            />
+            <div className={styles.imgContainer}>
+              <img
+                onClick={() => showImagePage(post.image)}
+                src={post.image}
+                alt=""
+              />
+            </div>
           </div>
           <div className={styles.needs}>
             <span>MY NEEDS </span>
