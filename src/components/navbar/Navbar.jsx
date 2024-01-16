@@ -8,6 +8,7 @@ import { VscDebugDisconnect } from "react-icons/vsc";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { useSession } from "next-auth/react";
 import { getAUser } from "../../requests/requests";
+import { IoNewspaperOutline } from "react-icons/io5";
 
 export default function Navbar() {
   const { status } = useSession();
@@ -40,11 +41,11 @@ export default function Navbar() {
                 <VscDebugDisconnect />
                 <span>Connect</span>
               </Link>
-              {/* <div className={styles.giveaway}>
-              <LiaHandsHelpingSolid />
-              <Link href="/posts/"></Link>
-              <div className={styles.giveLink}>Giveaway</div>
-            </div> */}
+              <Link className={styles.messageLink} href="news">
+                <IoNewspaperOutline />
+                <div className={styles.ballNews}>7</div>
+                <span>News</span>
+              </Link>
               <Link className={styles.messageLink} href="/posts/freeuseditems">
                 <MdOutlineShoppingBag />
                 <div className={styles.ball}>2</div>

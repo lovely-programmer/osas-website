@@ -48,7 +48,8 @@
   position: relative;
 }
 
-.messageLink .ball {
+.messageLink .ball,
+.messageLink .ballNews {
   position: absolute;
   background-color: red;
   width: 20px;
@@ -62,6 +63,11 @@
 }
 
 .messageLink:first-child .ball {
+  margin-left: 22px;
+  top: -4px;
+}
+
+.messageLink .ballNews {
   margin-left: 22px;
   top: -4px;
 }

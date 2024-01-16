@@ -57,9 +57,18 @@
   font-size: 12px;
 }
 
-.ballDiv .news+.ball {
+.ballDiv .rent+.ball {
   margin-left: 22px;
   top: -4px;
+}
+
+.ballDiv img {
+  width: 25px;
+  height: 25px;
+}
+
+.ballDiv img svg {
+  fill: #fff;
 }
 
 .ballDiv .materials+.ball,

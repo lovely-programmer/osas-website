@@ -30,9 +30,9 @@ export default function Footer() {
                 <Link href="/posts/skills">Skill or Service</Link>
               </div>
               <div className={styles.ballDiv}>
-                <IoNewspaperOutline />
-                <Link className={styles.news} href="">
-                  News
+                <img src="/lease.svg" alt="" />
+                <Link className={styles.rent} href="">
+                  Rent
                 </Link>
                 <div className={styles.ball}>10</div>
               </div>
