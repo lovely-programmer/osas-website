@@ -156,6 +156,7 @@ export default function TradePost() {
             <input
               type="file"
               id="tradeImage"
+              accept="image/png, image/gif, image/jpeg"
               required
               onChange={handleChange}
             />

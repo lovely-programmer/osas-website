@@ -2,10 +2,19 @@
 import styles from "./page.module.css";
 import { getAUser, getAllOtherPosts, getPosts } from "../../requests/requests";
 import Spinner from "../../components/spinner/Spinner";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { FaDeleteLeft } from "react-icons/fa6";
+import { FaCamera } from "react-icons/fa";
 import { toast } from "react-toastify";
+import Post from "../../components/profilePost/Post";
+import { app } from "../../utils/firebase";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 
 export default function Profile() {
   const { user, isLoading } = getAUser();
@@ -14,6 +23,7 @@ export default function Profile() {
   const { data } = getPosts();
   const myPosts = data?.filter((p) => p.user.id == user.id);
   const [loading, setLoading] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
 
   const [username, setUsername] = useState(user.name);
   const [institution, setInstitution] = useState(user.institution);
@@ -24,6 +34,7 @@ export default function Profile() {
   const [age, setAge] = useState(user.age);
   const [country, setCountry] = useState(user.country);
   const [state, setState] = useState(user.state);
+  const storage = getStorage(app);
 
   const handleRequest = () => {
     let slug =
@@ -45,15 +56,48 @@ export default function Profile() {
     setShowProfile(!showProfile);
   };
 
-  const handleDelete = async (id) => {
-    if (confirm("Are you sure you want to delete this post!")) {
-      await fetch(`/api/posts/${option}/${id}`, {
-        method: "DELETE",
-      }).then((response) => {
-        console.log(response.status);
-      });
-    } else {
-      console.log("Canceled");
+  const handleChange = (e) => {
+    setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    setImage(e.target.files[0]);
+
+    const upload = () => {
+      const name = new Date().getTime() + image.name;
+      const storageRef = ref(storage, name);
+
+      const uploadTask = uploadBytesResumable(storageRef, image);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await fetch("/api/user/image", {
+              method: "PUT",
+              body: JSON.stringify(downloadURL),
+            });
+          });
+        }
+      );
+    };
+
+    if (image) {
+      upload();
+      toast.success("Image Updated Successfully");
     }
   };
 
@@ -87,7 +131,17 @@ export default function Profile() {
     <div className={styles.container}>
       <div className={styles.profile}>
         <div className={styles.imgContainer}>
-          <img src={user.image} alt="" />
+          <label htmlFor="profileImg">
+            <FaCamera />
+          </label>
+          <input
+            accept="image/png, image/gif, image/jpeg"
+            onChange={handleChange}
+            className={styles.profileFile}
+            type="file"
+            id="profileImg"
+          />
+          <img src={previewImage || user.image} alt="" />
         </div>
         <span>{user.name}</span>
         <button className={styles.editButton} onClick={handleShowProfile}>
@@ -112,10 +166,6 @@ export default function Profile() {
               value={institution}
               onChange={(e) => setInstitution(e.target.value)}
             />
-          </div>
-          <div className={styles.formgroup}>
-            <span>Profile image</span>
-            <input type="file" onChange={(e) => setImage(e.target.files[0])} />
           </div>
           <div className={styles.formgroup}>
             <span>Date of Birth</span>
@@ -184,43 +234,12 @@ export default function Profile() {
           </select>
           {isLoading && "Loading..."}
           {posts?.map((post) => (
-            <div className={styles.posts}>
-              <div className={styles.postProfile}>
-                <div className={styles.addDelete}>
-                  <div>
-                    <Image
-                      src={post.user.image}
-                      width={50}
-                      height={50}
-                      className={styles.postProfileImg}
-                    />
-                    {post.user.name}
-                  </div>
-                  <FaDeleteLeft onClick={() => handleDelete(post.id)} />
-                </div>
-                <div className={styles.trade}>My Trade: {post.myTrade}</div>
-              </div>
-              <div className={styles.tradeImgContainer}>
-                <Image
-                  src={post.image}
-                  alt=""
-                  fill
-                  className={styles.tradeImg}
-                />
-              </div>
-              <div className={styles.needs}>
-                <span>MY NEEDS </span>
-                <div>{post.myNeed}</div>
-              </div>
-              {user.id !== post.user.id && (
-                <button
-                  onClick={() => handleSelect(post.user)}
-                  className={styles.button}
-                >
-                  Message
-                </button>
-              )}
-            </div>
+            <Post
+              key={post.id}
+              previewImage={previewImage}
+              post={post}
+              option={option}
+            />
           ))}
         </div>
       )}

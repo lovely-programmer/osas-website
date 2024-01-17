@@ -6,8 +6,19 @@
 }
 
 .imgContainer {
+  position: relative;
   width: 200px;
   height: 200px;
+  cursor: pointer;
+}
+
+.imgContainer svg {
+  position: absolute;
+  right: 0;
+  top: 13px;
+  font-size: 50px;
+  margin-right: -7px;
+  fill: #6a7285;
   cursor: pointer;
 }
 
@@ -15,6 +26,11 @@
   width: inherit;
   height: inherit;
   border-radius: 50%;
+  border: 2px solid var(--lightBg);
+}
+
+.profileFile {
+  display: none;
 }
 
 .profile {
@@ -30,47 +46,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.postProfile {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.postProfileImg {
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.postProfile div {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.postProfile div svg {
-  fill: #DC3545;
-  font-size: 25px;
-  cursor: pointer;
-}
-
-.trade {
-  padding-top: 10px;
-}
-
-.tradeImgContainer {
-  position: relative;
-  padding-top: 10px;
-  max-width: 500px;
-  height: 200px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.tradeImg {
-  object-fit: cover;
 }
 
 .formgroup {
@@ -96,18 +71,6 @@
   font-size: 14px;
 }
 
-.button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #1877f2;
-  outline: none;
-  color: var(--softTextColor);
-  width: 100%;
-}
-
 .editButton {
   padding: 10px 20px;
   background: #111;
@@ -122,20 +85,24 @@
   align-items: center;
 }
 
-.posts {
-  margin-top: 50px;
-  border: 3px solid var(--lightBg);
-  padding: 20px;
-  border-radius: 5px;
-  background: var(--lightBg);
-  width: 500px;
-}
-
 .postsContainer select {
   outline: none;
   border-radius: 5px;
   width: 400px;
   padding: 5px 10px;
+}
+
+.buttonContainer button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1;
+  background-color: var(--blueColor);
+  color: var(--softTextColor);
+  border-color: var(--blueColor);
+  border: none;
+  width: 100%;
 }
 
 @media screen and (max-width: 550px) {

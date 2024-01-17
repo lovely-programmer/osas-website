@@ -176,6 +176,7 @@ export default function Skills() {
             <input
               type="file"
               id="skillImage"
+              accept="image/png, image/gif, image/jpeg"
               required
               onChange={handleChange}
             />

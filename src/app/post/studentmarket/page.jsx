@@ -156,7 +156,13 @@ export default function StudentMarket() {
           </div>
           <div className={styles.formgroup}>
             <label htmlFor="market">Market Image</label>
-            <input type="file" id="market" required onChange={handleChange} />
+            <input
+              type="file"
+              accept="image/png, image/gif, image/jpeg"
+              id="market"
+              required
+              onChange={handleChange}
+            />
           </div>
           <button disabled={imageUploading} className={styles.button}>
             {imageUploading ? "uploading image in progress" : "Submit"}

@@ -162,6 +162,7 @@ export default function UsedItems() {
             <input
               type="file"
               id="useditemimage"
+              accept="image/png, image/gif, image/jpeg"
               required
               onChange={handleChange}
             />
