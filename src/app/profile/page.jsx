@@ -59,7 +59,9 @@ export default function Profile() {
   const handleChange = (e) => {
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
     setImage(e.target.files[0]);
+  };
 
+  useEffect(() => {
     const upload = () => {
       const name = new Date().getTime() + image.name;
       const storageRef = ref(storage, name);
@@ -95,11 +97,11 @@ export default function Profile() {
       );
     };
 
-    if (image) {
+    if (previewImage) {
       upload();
       toast.success("Image Updated Successfully");
     }
-  };
+  }, [previewImage]);
 
   const userData = {
     name: username,
