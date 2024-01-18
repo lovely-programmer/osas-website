@@ -47,7 +47,7 @@ export default function Registration() {
     setIsLoading(true);
     const res = await fetch(`/api/user/${email}`, {
       method: "PUT",
-      body: JSON.stringify({ userData }),
+      body: JSON.stringify(userData),
     });
 
     if (res.status == 201) {
