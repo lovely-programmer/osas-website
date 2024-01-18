@@ -31,10 +31,29 @@ export const PUT = async (req, { params }) => {
 
   try {
     const body = await req.json();
-    const { user } = body;
+    const {
+      name,
+      institution,
+      dob,
+      phoneNumber,
+      whatsappNumber,
+      age,
+      country,
+      state,
+    } = body;
+
     await prisma.user.update({
       where: { email },
-      data: { ...user },
+      data: {
+        name,
+        institution,
+        dob,
+        phoneNumber,
+        whatsappNumber,
+        age,
+        country,
+        state,
+      },
     });
     return new NextResponse(JSON.stringify({ message: "account updated" }), {
       status: 201,

@@ -106,7 +106,6 @@ export default function Profile() {
   const userData = {
     name: username,
     institution,
-    image,
     dob,
     phoneNumber,
     whatsappNumber,
@@ -119,11 +118,15 @@ export default function Profile() {
     setLoading(true);
     const res = await fetch(`/api/user/${user.email}`, {
       method: "PUT",
-      body: JSON.stringify({ userData }),
+      body: JSON.stringify(userData),
     });
 
     if (res.status == 201) {
       toast.success("Profile updated successfully");
+      setLoading(false);
+    }
+
+    if (res.ok) {
       setLoading(false);
     }
   };
