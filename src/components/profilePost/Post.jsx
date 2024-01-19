@@ -32,9 +32,9 @@ export default function Post({ previewImage, post, option }) {
 
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this post!")) {
-      const res = await fetch(`/api/posts/${option}`, {
+      const res = await fetch(`/api/posts/${option}/${id}`, {
         method: "DELETE",
-        body: JSON.stringify(id),
+        body: JSON.stringify(),
       });
       if (res.ok) toast.success("Post deleted successfully");
     } else {
