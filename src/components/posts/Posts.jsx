@@ -20,10 +20,14 @@ export default function Posts({ post }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const showImagePage = (image) => {
-    dispatch({ type: "VIEW_IMAGE", payload: [image, pathname] });
+  const showImagePage = () => {
+    const data = { id: post.id, image: post.image, pathname };
+    dispatch({
+      type: "VIEW_IMAGE",
+      payload: data,
+    });
     localStorage.setItem("pathname", pathname);
-    router.push("/post/1234567");
+    router.push(`/post/${post.id}`);
   };
 
   const handleSelect = async (messageUser) => {
@@ -82,11 +86,7 @@ export default function Posts({ post }) {
           </div>
           <div className={styles.tradeImgContainer}>
             <div className={styles.imgContainer}>
-              <img
-                onClick={() => showImagePage(post.image)}
-                src={post.image}
-                alt=""
-              />
+              <img onClick={() => showImagePage()} src={post.image} alt="" />
             </div>
           </div>
           <div className={styles.needs}>

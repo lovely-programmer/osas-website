@@ -10,8 +10,6 @@ export default function page() {
 
   data.imageUrl == "" && router.push(`${data.pathname}`);
 
-  console.log(data);
-
   return (
     <div className={styles.container}>
       <img src={data.imageUrl} alt="" />

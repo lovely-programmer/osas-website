@@ -7,6 +7,10 @@
   width: 500px;
 }
 
+.posts:last-child {
+  margin-bottom: 20px;
+}
+
 .postsContainer {
   display: flex;
   flex-direction: column;

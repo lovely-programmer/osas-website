@@ -16,6 +16,7 @@ const getFromLocalStorage = () => {
 
 export const ImageContextProvider = ({ children }) => {
   const INITIAL_STATE = {
+    id: "",
     imageUrl: "",
     pathname: getFromLocalStorage(),
   };
@@ -24,8 +25,9 @@ export const ImageContextProvider = ({ children }) => {
     switch (action.type) {
       case "VIEW_IMAGE":
         return {
-          imageUrl: action.payload,
-          pathname: action.payload,
+          id: action.payload.id,
+          imageUrl: action.payload.image,
+          pathname: action.payload.pathname,
         };
       default:
         return state;
