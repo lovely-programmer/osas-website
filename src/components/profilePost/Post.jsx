@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./Post.module.css";
+import { toast } from "react-toastify";
 
 export default function Post({ previewImage, post, option }) {
   const heading =
@@ -35,6 +36,7 @@ export default function Post({ previewImage, post, option }) {
         method: "DELETE",
       }).then((response) => {
         console.log(response.status);
+        toast.success("Post deleted successfully");
       });
     } else {
       console.log("Canceled");
