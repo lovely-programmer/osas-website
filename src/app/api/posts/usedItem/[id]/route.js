@@ -18,7 +18,7 @@ export const DELETE = async (req, { params }) => {
     });
     return new NextResponse(
       JSON.stringify({ message: "Post deleted successfully" }),
-      { status: 204 }
+      { status: 200 }
     );
   } catch (error) {
     console.log(error);
