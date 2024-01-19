@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 
-export const DELETE = async (req, { params }) => {
-  const { id } = params;
+export const DELETE = async (req) => {
+  const body = await req.body();
 
-  await prisma.studentMarketPost.delete({
+  await prisma.skillPost.delete({
     where: {
-      id: id,
+      id: body,
     },
   });
   return new NextResponse(
