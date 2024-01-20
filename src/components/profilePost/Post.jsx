@@ -33,15 +33,17 @@ export default function Post({ previewImage, post, option }) {
       : post.myNeed;
 
   const handleDelete = async (id) => {
-    const confirm = confirm("Are you sure you want to delete this post!");
-    if (confirm) {
+    if (confirm("Are you sure you want to delete this post!")) {
       const res = await fetch(`/api/posts/${option}/post?id=${id}`, {
         method: "DELETE",
       });
       if (res.ok) toast.success("Post deleted successfully");
       router.refresh();
+    } else {
+      console.log("Canceled");
     }
   };
+
   return (
     <div className={styles.posts}>
       <div className={styles.postProfile}>
