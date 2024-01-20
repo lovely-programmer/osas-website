@@ -1,8 +1,10 @@
 import Image from "next/image";
 import styles from "./Post.module.css";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function Post({ previewImage, post, option }) {
+  const router = useRouter();
   const heading =
     option == "useditem"
       ? "My free used item"
@@ -31,14 +33,13 @@ export default function Post({ previewImage, post, option }) {
       : post.myNeed;
 
   const handleDelete = async (id) => {
-    if (confirm("Are you sure you want to delete this post!")) {
-      const res = await fetch(`/api/posts/${option}/${id}`, {
+    const confirm = confirm("Are you sure you want to delete this post!");
+    if (confirm) {
+      const res = await fetch(`/api/posts/${option}/post?id=${id}`, {
         method: "DELETE",
-        body: JSON.stringify(),
       });
       if (res.ok) toast.success("Post deleted successfully");
-    } else {
-      console.log("Canceled");
+      router.refresh();
     }
   };
   return (
