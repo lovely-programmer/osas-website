@@ -88,7 +88,7 @@ export default function Profile() {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await fetch("/api/user/image", {
+            await fetch("https://osas-website.vercel.app/api/user/image", {
               method: "PUT",
               body: JSON.stringify(downloadURL),
             });
