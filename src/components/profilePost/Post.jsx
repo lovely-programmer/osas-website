@@ -35,7 +35,7 @@ export default function Post({ previewImage, post, option }) {
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this post!")) {
       const res = await fetch(
-        `https://osas-website.vercel.app/api/posts/${option}/${id}`,
+        `https://osas-website.vercel.app/api/posts/skill/${id}`,
         {
           method: "DELETE",
         }
