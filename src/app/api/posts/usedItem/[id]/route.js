@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 
-export const DELETE = async (req) => {
-  const id = req.nextUrl.searchParams.get("id");
+export const DELETE = async (req, { params }) => {
+  const { id } = params;
 
   try {
-    await prisma.skillPost.delete({
+    await prisma.usedItemPost.delete({
       where: {
         id: id,
       },
