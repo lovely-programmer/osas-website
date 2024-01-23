@@ -36,16 +36,8 @@ export default function Post({ previewImage, post, option }) {
     if (confirm("Are you sure you want to delete this post!")) {
       await fetch(`/api/posts/${option}/${id}`, {
         method: "DELETE",
-      })
-        .then((response) => {
-          if (!response.ok) throw new Error("Something went wrong");
-          router.refresh();
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    } else {
-      console.log("Canceled");
+      });
+      router.refresh();
     }
   };
 
