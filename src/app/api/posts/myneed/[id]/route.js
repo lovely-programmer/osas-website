@@ -12,14 +12,16 @@ export const DELETE = async (req, { params }) => {
     );
   }
 
-  try {
-    await prisma.post.delete({
-      where: {
-        id: id,
-      },
-    });
-    return new NextResponse(204);
-  } catch (error) {
-    console.log(error);
-  }
+  return new NextResponse(JSON.stringify({ message: id }));
+
+  // try {
+  //   await prisma.post.delete({
+  //     where: {
+  //       id: id,
+  //     },
+  //   });
+  //   return new NextResponse(204);
+  // } catch (error) {
+  //   console.log(error);
+  // }
 };
