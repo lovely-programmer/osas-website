@@ -3,11 +3,12 @@ import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const url = "https://osas-website.vercel.app";
+const url = "https://www.studentcentral.online";
 
 // "https://studenthelpers.netlify.app"
 // http://localhost:3000
 // https://osas-website.vercel.app
+// https://www.studentcentral.online
 
 export const getUser = (email) => {
   const { data, error, isLoading } = useSWR(
