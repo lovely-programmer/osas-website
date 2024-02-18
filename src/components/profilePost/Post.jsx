@@ -37,7 +37,7 @@ export default function Post({ previewImage, post, option }) {
       const res = await fetch(`/api/posts/${option}/${id}`, {
         method: "DELETE",
       });
-      router.refresh();
+      // router.refresh();
       const data = await res.json();
       console.log(data);
     }
