@@ -53,7 +53,9 @@ export default function Navbar() {
               </Link>
             </div>
           )}
-          <Searchbox />
+          {status === "authenticated" && user?.createdSuccessfully == true && (
+            <Searchbox />
+          )}
           <AuthLinks />
         </div>
       </div>
