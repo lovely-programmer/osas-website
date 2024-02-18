@@ -24,8 +24,8 @@ import { getAuthSession } from "../../../../../utils/auth";
 //   }
 // };
 
-export default async function handler(req, res) {
-  const { id } = req.query;
+export async function DELETE(req, { params }) {
+  const { id } = params;
 
   const session = await getAuthSession();
 
@@ -37,15 +37,13 @@ export default async function handler(req, res) {
 
   if (req.method === "DELETE") {
     try {
-      await prisma.post.delete({
-        where: {
-          id: id,
-        },
-      });
-      return new NextResponse.stringify(
-        { message: "Post deleted successfully" },
-        { status: 200 }
-      );
+      // await prisma.post.delete({
+      //   where: {
+      //     id: id,
+      //   },
+      // });
+
+      return new NextResponse(JSON.stringify({ message: id }), { status: 200 });
     } catch (error) {
       console.log(error);
     }
