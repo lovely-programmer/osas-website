@@ -37,12 +37,11 @@ export async function DELETE(req, { params }) {
 
   if (req.method === "DELETE") {
     try {
-      // await prisma.post.delete({
-      //   where: {
-      //     id: id,
-      //   },
-      // });
-
+      await prisma.post.delete({
+        where: {
+          id: id,
+        },
+      });
       return new NextResponse(JSON.stringify({ message: id }), { status: 200 });
     } catch (error) {
       console.log(error);
