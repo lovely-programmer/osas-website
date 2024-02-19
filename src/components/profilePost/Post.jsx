@@ -34,21 +34,11 @@ export default function Post({ previewImage, post, option }) {
 
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this post!")) {
-      // const res = await fetch(`/api/posts/${option}/${id}`, {
-      //   method: "DELETE",
-      // });
-      // const data = await res.json();
-      // console.log(data);
-
-      // if(res.ok) {
-      //   router.refresh();
-      // }
-
-      const res = await fetch(`api/posts/${option}?id=${id}`, {
+      const res = await fetch(`/api/posts/${option}/${id}`, {
         method: "DELETE",
       });
-
-      if (res.ok) {
+      console.log(res.status);
+      if (res.status == 200) {
         router.refresh();
       }
     }
