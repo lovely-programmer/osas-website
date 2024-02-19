@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { getAuthSession } from "../../../../../utils/auth";
 import prisma from "../../../../../utils/connect";
 
-export default async function handler(req, res) {
-  const { id } = req.query;
+export async function DELETE(req, { params }) {
+  const { id } = params;
 
   const session = await getAuthSession();
 
