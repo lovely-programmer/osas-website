@@ -37,7 +37,7 @@ export async function DELETE(req, { params }) {
 
   if (req.method === "DELETE") {
     try {
-      const deletedPost = await prisma.post.delete({
+      const deletedPost = await prisma.post.deleteOne({
         where: {
           id: id,
         },
