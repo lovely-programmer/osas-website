@@ -33,22 +33,27 @@ export const getAUser = (email) => {
 };
 
 export const getPosts = () => {
-  const { data, error, isLoading } = useSWR(`${url}/api/posts`, fetcher);
-  return {
-    data,
-    error,
-    isLoading,
-  };
-};
-
-export const getAllOtherPosts = (slug) => {
-  const { data, error, isLoading } = useSWR(
-    `${url}/api/posts/${slug}`,
+  const { data, mutate, error, isLoading } = useSWR(
+    `${url}/api/posts`,
     fetcher
   );
   return {
     data,
     error,
     isLoading,
+    postMutate: mutate,
+  };
+};
+
+export const getAllOtherPosts = (slug) => {
+  const { data, mutate, error, isLoading } = useSWR(
+    `${url}/api/posts/${slug || ""}`,
+    fetcher
+  );
+  return {
+    data,
+    error,
+    isLoading,
+    otherPostMutate: mutate,
   };
 };

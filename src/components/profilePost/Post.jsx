@@ -1,9 +1,8 @@
 import Image from "next/image";
 import styles from "./Post.module.css";
 import { useRouter } from "next/navigation";
-import { mutate } from "swr";
 
-export default function Post({ previewImage, post, option }) {
+export default function Post({ previewImage, post, option, otherPostMutate }) {
   const router = useRouter();
   const heading =
     option == "useditem"
@@ -37,7 +36,7 @@ export default function Post({ previewImage, post, option }) {
       await fetch(`/api/posts/${option}/${id}`, {
         method: "DELETE",
       });
-      mutate();
+      otherPostMutate();
     }
   };
 
