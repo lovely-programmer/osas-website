@@ -39,6 +39,7 @@ export default function Post({ previewImage, post, option }) {
       await fetch(`/api/posts/${option}/${id}`, {
         method: "DELETE",
       });
+      router.refresh();
       otherPostMutate();
       postMutate();
     }
