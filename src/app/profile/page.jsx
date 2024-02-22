@@ -18,8 +18,7 @@ export default function Profile() {
   const { user, isLoading } = getAUser();
   const [showProfile, setShowProfile] = useState(false);
   const [option, setOption] = useState("myneed");
-  const { data, postMutate } = getPosts();
-  const { otherPostMutate } = getAllOtherPosts();
+  const { data } = getPosts();
   const myPosts = data?.filter((p) => p.user.id == user.id);
   const [loading, setLoading] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
@@ -243,8 +242,6 @@ export default function Profile() {
               previewImage={previewImage}
               post={post}
               option={option}
-              otherPostMutate={otherPostMutate}
-              postMutate={postMutate}
             />
           ))}
         </div>
