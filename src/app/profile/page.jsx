@@ -2,9 +2,7 @@
 import styles from "./page.module.css";
 import { getAUser, getAllOtherPosts, getPosts } from "../../requests/requests";
 import Spinner from "../../components/spinner/Spinner";
-import { useEffect, useState, useCallback } from "react";
-import Image from "next/image";
-import { FaDeleteLeft } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 import { FaCamera } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Post from "../../components/profilePost/Post";

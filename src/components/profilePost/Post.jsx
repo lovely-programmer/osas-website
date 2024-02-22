@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./Post.module.css";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { mutate } from "swr";
 
 export default function Post({ previewImage, post, option }) {
   const router = useRouter();
@@ -34,13 +34,10 @@ export default function Post({ previewImage, post, option }) {
 
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this post!")) {
-      const res = await fetch(`/api/posts/${option}/${id}`, {
+      await fetch(`/api/posts/${option}/${id}`, {
         method: "DELETE",
       });
-      console.log(res.status);
-      if (res.status == 200) {
-        router.refresh();
-      }
+      mutate();
     }
   };
 
