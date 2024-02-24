@@ -28,9 +28,50 @@ export default function TradePost() {
     setFile(URL.createObjectURL(e.target.files[0]));
   };
 
-  const router = useRouter();
+  // useEffect(() => {
+  //   const upload = () => {
+  //     const name = new Date().getTime() + media.name;
+  //     const storageRef = ref(storage, name);
 
-  useEffect(() => {
+  //     const uploadTask = uploadBytesResumable(storageRef, media);
+
+  //     uploadTask.on(
+  //       "state_changed",
+  //       (snapshot) => {
+  //         const progress =
+  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //         console.log("Upload is " + progress + "% done");
+  //         if (progress == "100") setImageUploading(false);
+  //         switch (snapshot.state) {
+  //           case "paused":
+  //             console.log("Upload is paused");
+  //             break;
+  //           case "running":
+  //             console.log("Upload is running");
+  //             break;
+  //         }
+  //       },
+  //       (error) => {
+  //         console.log(error);
+  //       },
+  //       () => {
+  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //           setImage(downloadURL);
+  //         });
+  //       }
+  //     );
+  //   };
+
+  //   if (media) {
+  //     setImageUploading(true);
+  //     upload();
+  //   }
+  // }, [media]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
     const upload = () => {
       const name = new Date().getTime() + media.name;
       const storageRef = ref(storage, name);
@@ -68,11 +109,7 @@ export default function TradePost() {
       setImageUploading(true);
       upload();
     }
-  }, [media]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
     const res = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify({
