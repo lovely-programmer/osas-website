@@ -1,7 +1,6 @@
 "use client";
 import styles from "../post.module.css";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { app } from "../../../utils/firebase";
 import Spinner from "../../../components/spinner/Spinner";
 import { toast } from "react-toastify";
@@ -16,7 +15,6 @@ const storage = getStorage(app);
 
 export default function StudentMarket() {
   const [file, setFile] = useState(null);
-  const [image, setImage] = useState("");
   const [media, setMedia] = useState("");
   const [market, setMarket] = useState("");
   const [aboutMarket, setAboutMarket] = useState("");
@@ -28,9 +26,12 @@ export default function StudentMarket() {
     setFile(URL.createObjectURL(e.target.files[0]));
   };
 
-  const router = useRouter();
+  const slug = "market";
 
-  useEffect(() => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
     const upload = () => {
       const name = new Date().getTime() + media.name;
       const storageRef = ref(storage, name);
@@ -57,45 +58,33 @@ export default function StudentMarket() {
           console.log(error);
         },
         () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setImage(downloadURL);
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            const res = await fetch(`/api/posts/${slug}`, {
+              method: "POST",
+              body: JSON.stringify({
+                image: downloadURL,
+                market,
+                aboutMarket,
+              }),
+            });
+
+            if (res.status == 201) {
+              setMarket("");
+              setAboutMarket("");
+              setMedia("");
+              setFile(null);
+              setIsLoading(false);
+              toast.success("You have successfully posted");
+            } else {
+              setIsLoading(false);
+              toast.error("Something went wrong");
+            }
           });
         }
       );
     };
 
-    if (media) {
-      setImageUploading(true);
-      upload();
-    }
-  }, [media]);
-
-  const slug = "market";
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    const res = await fetch(`/api/posts/${slug}`, {
-      method: "POST",
-      body: JSON.stringify({
-        image,
-        market,
-        aboutMarket,
-      }),
-    });
-
-    if (res.status == 201) {
-      setMarket("");
-      setAboutMarket("");
-      setMedia("");
-      setFile(null);
-      setImage(null);
-      setIsLoading(false);
-      toast.success("You have successfully posted");
-    } else {
-      setIsLoading(false);
-      toast.error("Something went wrong");
-    }
+    upload();
   };
 
   if (isLoading) {

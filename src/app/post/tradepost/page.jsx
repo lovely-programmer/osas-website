@@ -15,7 +15,6 @@ const storage = getStorage(app);
 
 export default function TradePost() {
   const [file, setFile] = useState(null);
-  const [image, setImage] = useState("");
   const [media, setMedia] = useState("");
   const [myTrade, setMyTrade] = useState("");
   const [myNeed, setMyNeed] = useState("");
@@ -58,7 +57,7 @@ export default function TradePost() {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await fetch("/api/posts", {
+            const res = await fetch("/api/posts", {
               method: "POST",
               body: JSON.stringify({
                 image: downloadURL,
@@ -66,25 +65,24 @@ export default function TradePost() {
                 myTrade,
               }),
             });
+
+            if (res.status == "201") {
+              setMyNeed("");
+              setMyTrade("");
+              setMedia("");
+              setFile(null);
+              setIsLoading(false);
+              toast.success("You have successfully posted");
+            } else {
+              setIsLoading(false);
+              toast.error("Something went wrong");
+            }
           });
         }
       );
     };
 
     upload();
-
-    if (!imageUploading) {
-      setMyNeed("");
-      setMyTrade("");
-      setMedia("");
-      setFile(null);
-      // setImage(null);
-      setIsLoading(false);
-      toast.success("You have successfully posted");
-    } else {
-      setIsLoading(false);
-      toast.error("Something went wrong");
-    }
   };
 
   if (isLoading) {

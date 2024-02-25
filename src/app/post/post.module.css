@@ -138,6 +138,12 @@
   background-color: #1876f277;
 }
 
+@media screen and (max-width: 600px) {
+  .container {
+    margin-bottom: 40px;
+  }
+}
+
 @media screen and (max-width: 460px) {
   .formgroup {
     flex-direction: column;
