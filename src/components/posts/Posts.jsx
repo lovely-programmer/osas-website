@@ -90,7 +90,7 @@ export default function Posts({ post }) {
             </div>
           </div>
           <div className={styles.needs}>
-            <span>MY NEEDS </span>
+            <span>MY EXCHANGE NEEDS </span>
             <div>{post.myNeed}</div>
           </div>
           {user.id !== post.user.id && (
