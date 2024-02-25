@@ -27,46 +27,6 @@ export default function TradePost() {
     setFile(URL.createObjectURL(e.target.files[0]));
   };
 
-  // useEffect(() => {
-  //   const upload = () => {
-  //     const name = new Date().getTime() + media.name;
-  //     const storageRef = ref(storage, name);
-
-  //     const uploadTask = uploadBytesResumable(storageRef, media);
-
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         const progress =
-  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //         console.log("Upload is " + progress + "% done");
-  //         if (progress == "100") setImageUploading(false);
-  //         switch (snapshot.state) {
-  //           case "paused":
-  //             console.log("Upload is paused");
-  //             break;
-  //           case "running":
-  //             console.log("Upload is running");
-  //             break;
-  //         }
-  //       },
-  //       (error) => {
-  //         console.log(error);
-  //       },
-  //       () => {
-  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //           setImage(downloadURL);
-  //         });
-  //       }
-  //     );
-  //   };
-
-  //   if (media) {
-  //     setImageUploading(true);
-  //     upload();
-  //   }
-  // }, [media]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -106,18 +66,14 @@ export default function TradePost() {
                 myTrade,
               }),
             });
-            // setImage(downloadURL);
           });
         }
       );
     };
 
     upload();
-    // if (media) {
-    //   setImageUploading(true);
-    // }
 
-    if (res.status == 201) {
+    if (!imageUploading) {
       setMyNeed("");
       setMyTrade("");
       setMedia("");
@@ -130,8 +86,6 @@ export default function TradePost() {
       toast.error("Something went wrong");
     }
   };
-
-  console.log("image: ", image, "uploading", imageUploading);
 
   if (isLoading) {
     return <Spinner />;
