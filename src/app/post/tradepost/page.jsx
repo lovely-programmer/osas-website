@@ -1,7 +1,6 @@
 "use client";
 import styles from "../post.module.css";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { app } from "../../../utils/firebase";
 import Spinner from "../../../components/spinner/Spinner";
 import { toast } from "react-toastify";
@@ -110,28 +109,32 @@ export default function TradePost() {
       upload();
     }
 
-    const res = await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        image,
-        myNeed,
-        myTrade,
-      }),
-    });
+    if (!imageUploading) {
+      const res = await fetch("/api/posts", {
+        method: "POST",
+        body: JSON.stringify({
+          image,
+          myNeed,
+          myTrade,
+        }),
+      });
 
-    if (res.status == 201) {
-      setMyNeed("");
-      setMyTrade("");
-      setMedia("");
-      setFile(null);
-      setImage(null);
-      setIsLoading(false);
-      toast.success("You have successfully posted");
-    } else {
-      setIsLoading(false);
-      toast.error("Something went wrong");
+      if (res.status == 201) {
+        setMyNeed("");
+        setMyTrade("");
+        setMedia("");
+        setFile(null);
+        setImage(null);
+        setIsLoading(false);
+        toast.success("You have successfully posted");
+      } else {
+        setIsLoading(false);
+        toast.error("Something went wrong");
+      }
     }
   };
+
+  console.log("image: ", image, "uploading", imageUploading);
 
   if (isLoading) {
     return <Spinner />;
