@@ -124,7 +124,7 @@ export default function TradePost() {
         setMyTrade("");
         setMedia("");
         setFile(null);
-        setImage(null);
+        // setImage(null);
         setIsLoading(false);
         toast.success("You have successfully posted");
       } else {
