@@ -75,7 +75,7 @@
 
 .needs div {
   font-size: 14px;
-  columns: var(--orangeColor);
+  color: var(--orangeColor);
 }
 
 .button {
