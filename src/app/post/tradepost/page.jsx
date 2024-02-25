@@ -97,40 +97,37 @@ export default function TradePost() {
           console.log(error);
         },
         () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setImage(downloadURL);
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await fetch("/api/posts", {
+              method: "POST",
+              body: JSON.stringify({
+                image: downloadURL,
+                myNeed,
+                myTrade,
+              }),
+            });
+            // setImage(downloadURL);
           });
         }
       );
     };
 
-    if (media) {
-      setImageUploading(true);
-      upload();
-    }
+    upload();
+    // if (media) {
+    //   setImageUploading(true);
+    // }
 
-    if (!imageUploading) {
-      const res = await fetch("/api/posts", {
-        method: "POST",
-        body: JSON.stringify({
-          image,
-          myNeed,
-          myTrade,
-        }),
-      });
-
-      if (res.status == 201) {
-        setMyNeed("");
-        setMyTrade("");
-        setMedia("");
-        setFile(null);
-        // setImage(null);
-        setIsLoading(false);
-        toast.success("You have successfully posted");
-      } else {
-        setIsLoading(false);
-        toast.error("Something went wrong");
-      }
+    if (res.status == 201) {
+      setMyNeed("");
+      setMyTrade("");
+      setMedia("");
+      setFile(null);
+      // setImage(null);
+      setIsLoading(false);
+      toast.success("You have successfully posted");
+    } else {
+      setIsLoading(false);
+      toast.error("Something went wrong");
     }
   };
 
