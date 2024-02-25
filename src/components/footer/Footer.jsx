@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./footer.module.css";
 import { IoChatbubblesOutline, IoNewspaperOutline } from "react-icons/io5";
 import { MdOutlineSchool, MdOutlineWorkOutline } from "react-icons/md";
+import { LiaHandHoldingHeartSolid } from "react-icons/lia";
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { useSession } from "next-auth/react";
 import { getAUser } from "../../requests/requests";
@@ -37,9 +38,9 @@ export default function Footer() {
                 <div className={styles.ball}>10</div>
               </div>
               <div className={styles.ballDiv}>
-                <MdOutlineSchool />
+                <LiaHandHoldingHeartSolid />
                 <Link href="" className={styles.materials}>
-                  School Materials
+                  Giveaway
                 </Link>
                 <div className={styles.ball}>20</div>
               </div>
