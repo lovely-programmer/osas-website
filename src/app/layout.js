@@ -7,7 +7,7 @@ import "./global.css";
 import NextAuth from "../utils/NextAuth";
 import ShowFooter from "../utils/Footer";
 import { ImageContextProvider } from "../context/ImageContext";
-import ShowNavbar from "../utils/showNavbar";
+import ShowNavbar from "../utils/Navbar";
 
 export const metadata = {
   title: "Student Support",
