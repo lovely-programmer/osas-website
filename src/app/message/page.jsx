@@ -5,8 +5,10 @@ import styles from "./page.module.css";
 import { IoIosArrowRoundBack, IoIosSearch } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
 import { getAUser } from "../../requests/requests";
+import { MdDelete } from "react-icons/md";
 import {
   Timestamp,
+  arrayRemove,
   arrayUnion,
   doc,
   onSnapshot,
@@ -117,6 +119,16 @@ export default function Message() {
     setImg(null);
   };
 
+  const handleDelete = async (id) => {
+    if (confirm("you are about to delete this post")) {
+      await updateDoc(doc(db, "chats", combinedId), {
+        messages: arrayRemove({
+          id: id,
+        }),
+      });
+    }
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -180,7 +192,7 @@ export default function Message() {
 
           <div className={styles.chats}>
             <div>
-              {messages.map((m) => (
+              {messages.map((m, index) => (
                 <div
                   ref={ref}
                   className={`${
@@ -195,7 +207,14 @@ export default function Message() {
                         : styles.leftText
                     }`}
                   >
-                    <p>{m.text}</p>
+                    <p>
+                      <div className={styles.p_text}>{m.text} </div>
+                      <div className={styles.p_icon}>
+                        {m.senderId === user.id && (
+                          <MdDelete onClick={() => handleDelete(m.id)} />
+                        )}
+                      </div>
+                    </p>
                     {m.img && <Image src={m.img} alt="" fill />}
                   </div>
                 </div>
@@ -306,7 +325,12 @@ export default function Message() {
                           : styles.leftText
                       }`}
                     >
-                      <p>{m.text}</p>
+                      <p>
+                        <div className={styles.p_text}>{m.text} </div>
+                        <div className={styles.p_icon}>
+                          <MdDelete onClick={() => handleDelete(m.id)} />
+                        </div>
+                      </p>
                       {m.img && <Image src={m.img} alt="" fill />}
                     </div>
                   </div>

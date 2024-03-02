@@ -160,10 +160,31 @@
   display: flex;
   align-items: center;
   padding-left: 10px;
-  padding-right: 10px;
+  /* padding-right: 10px; */
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.right .chats .chatRight .rightText p,
+.right .chats .chatLeft .leftText p {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 3px;
+}
+
+.right .chats .chatRight .rightText p .p_icon,
+.right .chats .chatLeft .leftText p .p_icon {
+  display: flex;
+  align-items: center;
+}
+
+.right .chats .chatRight .rightText p .p_icon svg,
+.right .chats .chatLeft .leftText p .p_icon svg {
+  fill: #601463;
+  font-size: 20px;
 }
 
 .right .chats .chatLeft .leftText {
@@ -248,6 +269,7 @@
   .mobileContainer .right .container {
     display: block !important;
     position: fixed;
+    z-index: 1;
   }
 
   .mobileContainer .right .header {
@@ -271,6 +293,24 @@
   .mobileContainer .right .chats .chatTop {
     padding-top: 80px;
     padding-bottom: 70px;
+  }
+
+  .mobileContainer .right .chats .chatTop p {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    gap: 3px;
+  }
+
+  .mobileContainer .right .chats .chatTop p .p_icon svg {
+    fill: #601463;
+    font-size: 20px;
+  }
+
+  .mobileContainer .right .chats .chatTop p .p_icon {
+    display: flex;
+    align-items: center;
   }
 
   .mobileContainer .right .chats::-webkit-scrollbar {

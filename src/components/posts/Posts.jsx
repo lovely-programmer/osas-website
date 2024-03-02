@@ -82,7 +82,9 @@ export default function Posts({ post }) {
               />
               {post.user.name}
             </div>
-            <div className={styles.trade}>My Trade: {post.myTrade}</div>
+            <div className={styles.trade}>
+              <span>My Trade:</span> {post.myTrade}
+            </div>
           </div>
           <div className={styles.tradeImgContainer}>
             <div className={styles.imgContainer}>

@@ -39,6 +39,10 @@
   padding-top: 10px;
 }
 
+.trade span {
+  color: var(--orangeColor);
+}
+
 .tradeImgContainer {
   position: relative;
   padding-top: 10px;
@@ -73,9 +77,12 @@
   padding-left: 10px;
 }
 
+.needs span {
+  color: var(--orangeColor);
+}
+
 .needs div {
   font-size: 14px;
-  color: var(--orangeColor);
 }
 
 .button {
