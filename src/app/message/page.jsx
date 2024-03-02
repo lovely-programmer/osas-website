@@ -288,7 +288,7 @@ export default function Message() {
             </div>
 
             <div className={styles.chats}>
-              <div>
+              <div className={styles.chatTop}>
                 {messages.map((m) => (
                   <div
                     ref={ref}
