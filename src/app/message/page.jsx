@@ -12,6 +12,7 @@ import {
   arrayUnion,
   doc,
   onSnapshot,
+  query,
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
@@ -34,6 +35,7 @@ export default function Message() {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
   const ref = useRef();
+  const [checkDelete, setCheckDelete] = useState(0);
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
@@ -119,13 +121,41 @@ export default function Message() {
     setImg(null);
   };
 
-  const handleDelete = async (id) => {
+  const lastMessage = messages[messages.length - 1];
+
+  console.log(lastMessage);
+
+  const updateLastMessage = async () => {
+    await updateDoc(doc(db, "userChats", user?.email), {
+      [combinedId + ".lastMessage"]: {
+        text: lastMessage.text,
+      },
+      [combinedId + ".date"]: serverTimestamp(),
+    });
+
+    await updateDoc(doc(db, "userChats", navUser?.email), {
+      [combinedId + ".lastMessage"]: {
+        text: lastMessage.text,
+      },
+      [combinedId + ".date"]: serverTimestamp(),
+    });
+  };
+
+  useEffect(() => {
+    setTimeout(5000, updateLastMessage());
+  }, [checkDelete]);
+
+  const handleDelete = async (m) => {
     if (confirm("you are about to delete this post")) {
       await updateDoc(doc(db, "chats", combinedId), {
         messages: arrayRemove({
-          id: id,
+          id: m.id,
+          text: m.text,
+          senderId: m.senderId,
+          date: m.date,
         }),
       });
+      setCheckDelete((prev) => prev + 1);
     }
   };
 
@@ -211,7 +241,7 @@ export default function Message() {
                       <div className={styles.p_text}>{m.text} </div>
                       <div className={styles.p_icon}>
                         {m.senderId === user.id && (
-                          <MdDelete onClick={() => handleDelete(m.id)} />
+                          <MdDelete onClick={() => handleDelete(m)} />
                         )}
                       </div>
                     </p>
@@ -328,7 +358,7 @@ export default function Message() {
                       <p>
                         <div className={styles.p_text}>{m.text} </div>
                         <div className={styles.p_icon}>
-                          <MdDelete onClick={() => handleDelete(m.id)} />
+                          <MdDelete onClick={() => handleDelete(m)} />
                         </div>
                       </p>
                       {m.img && <Image src={m.img} alt="" fill />}
