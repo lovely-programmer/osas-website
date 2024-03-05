@@ -93,29 +93,31 @@ export default function Message() {
         }
       );
     } else {
-      await updateDoc(doc(db, "chats", combinedId), {
-        messages: arrayUnion({
-          id: uuid(),
+      if (text !== "") {
+        await updateDoc(doc(db, "chats", combinedId), {
+          messages: arrayUnion({
+            id: uuid(),
+            text,
+            senderId: user?.id,
+            date: Timestamp.now(),
+          }),
+        });
+      }
+
+      await updateDoc(doc(db, "userChats", user?.email), {
+        [combinedId + ".lastMessage"]: {
           text,
-          senderId: user?.id,
-          date: Timestamp.now(),
-        }),
+        },
+        [combinedId + ".date"]: serverTimestamp(),
+      });
+
+      await updateDoc(doc(db, "userChats", receiver?.email), {
+        [combinedId + ".lastMessage"]: {
+          text,
+        },
+        [combinedId + ".date"]: serverTimestamp(),
       });
     }
-
-    await updateDoc(doc(db, "userChats", user?.email), {
-      [combinedId + ".lastMessage"]: {
-        text,
-      },
-      [combinedId + ".date"]: serverTimestamp(),
-    });
-
-    await updateDoc(doc(db, "userChats", receiver?.email), {
-      [combinedId + ".lastMessage"]: {
-        text,
-      },
-      [combinedId + ".date"]: serverTimestamp(),
-    });
 
     setText("");
     setImg(null);

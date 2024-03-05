@@ -9,10 +9,12 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 import { useSession } from "next-auth/react";
 import { getAUser } from "../../requests/requests";
 import { IoNewspaperOutline } from "react-icons/io5";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const { status } = useSession();
   const { user } = getAUser();
+  const pathname = usePathname();
 
   return (
     <div className={styles.navbar}>
@@ -41,7 +43,7 @@ export default function Navbar() {
                 <VscDebugDisconnect />
                 <span>Connect</span>
               </Link>
-              <Link className={styles.messageLink} href="news">
+              <Link className={styles.messageLink} href="/news">
                 <IoNewspaperOutline />
                 <div className={styles.ballNews}>7</div>
                 <span>News</span>
@@ -57,6 +59,11 @@ export default function Navbar() {
             <Searchbox />
           )}
           <AuthLinks />
+          {status === "unauthenticated" && pathname === "/welcome" && (
+            <Link href="/signin" className={styles.login}>
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>

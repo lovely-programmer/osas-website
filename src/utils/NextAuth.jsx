@@ -14,7 +14,7 @@ export default function NextAuth({ children }) {
   }
 
   if (status === "unauthenticated") {
-    router.push("/signin");
+    router.push("/signin") || router.push("/welcome");
   }
 
   return <div>{children}</div>;

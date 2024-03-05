@@ -133,6 +133,14 @@
   border-radius: 5px;
 }
 
+.note {
+  font-size: 14px;
+}
+
+.note .p2 {
+  color: var(--orangeColor);
+}
+
 .button:disabled {
   cursor: not-allowed;
   background-color: #1876f277;

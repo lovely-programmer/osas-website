@@ -42,6 +42,13 @@ export const POST = async (req, { params }) => {
       });
       return new NextResponse(JSON.stringify(post), { status: 201 });
     }
+
+    if (slug == "rentItem") {
+      const post = await prisma.rentPost.create({
+        data: { ...body, userEmail: session.user.email },
+      });
+      return new NextResponse(JSON.stringify(post), { status: 201 });
+    }
   } catch (error) {
     console.log(error);
     return new NextResponse(

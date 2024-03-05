@@ -35,6 +35,14 @@
   flex: 1.5;
 }
 
+.login {
+  padding: 10px 15px;
+  background-color: var(--orangeColor);
+  color: var(--softTextColor);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .messageLink {
   position: relative;
   display: flex;
