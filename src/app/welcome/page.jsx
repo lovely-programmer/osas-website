@@ -1,3 +1,4 @@
+"use client";
 import { useSession } from "next-auth/react";
 import WelcomeNav from "../../components/navbar/welcomeNav";
 import styles from "./page.module.css";
