@@ -132,14 +132,13 @@
 .right .chats {
   padding-top: 20px;
   margin-left: 10px;
-  /* height: calc(100vh - 240px); */
-  height: 100%;
+  height: calc(100vh - 150px);
   overflow-y: scroll;
 }
 
-.right .chats .chatTop {
+/* .right .chats .chatTop {
   padding-bottom: 150px;
-}
+} */
 
 .right .chats::-webkit-scrollbar {
   width: 20px;
