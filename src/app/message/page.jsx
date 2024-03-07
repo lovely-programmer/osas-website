@@ -6,13 +6,13 @@ import { IoIosArrowRoundBack, IoIosSearch } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
 import { getAUser } from "../../requests/requests";
 import { MdDelete } from "react-icons/md";
+import { IoMdAttach } from "react-icons/io";
 import {
   Timestamp,
   arrayRemove,
   arrayUnion,
   doc,
   onSnapshot,
-  query,
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
@@ -21,6 +21,7 @@ import { v4 as uuid } from "uuid";
 import {
   getDownloadURL,
   getStorage,
+  ref as uploadRef,
   uploadBytesResumable,
 } from "firebase/storage";
 const storage = getStorage(app);
@@ -71,7 +72,7 @@ export default function Message() {
   const handleSubmit = async (receiver) => {
     // update array in firebase arrayUnion
     if (img) {
-      const storageRef = ref(storage, uuid());
+      const storageRef = uploadRef(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, img);
 
       uploadTask.on(
@@ -92,6 +93,9 @@ export default function Message() {
           });
         }
       );
+
+      setImg(null);
+      setText("");
     } else {
       if (text !== "") {
         await updateDoc(doc(db, "chats", combinedId), {
@@ -125,30 +129,35 @@ export default function Message() {
 
   const lastMessage = messages[messages.length - 1];
 
-  console.log(lastMessage);
-
   const updateLastMessage = async () => {
-    await updateDoc(doc(db, "userChats", user?.email), {
-      [combinedId + ".lastMessage"]: {
-        text: lastMessage.text,
-      },
-      [combinedId + ".date"]: serverTimestamp(),
-    });
+    if (lastMessage?.text) {
+      await updateDoc(doc(db, "userChats", user?.email), {
+        [combinedId + ".lastMessage"]: {
+          text: lastMessage?.text,
+        },
+      });
 
-    await updateDoc(doc(db, "userChats", navUser?.email), {
-      [combinedId + ".lastMessage"]: {
-        text: lastMessage.text,
-      },
-      [combinedId + ".date"]: serverTimestamp(),
-    });
+      await updateDoc(doc(db, "userChats", navUser?.email), {
+        [combinedId + ".lastMessage"]: {
+          text: lastMessage?.text,
+        },
+      });
+    }
   };
-
-  useEffect(() => {
-    setTimeout(5000, updateLastMessage());
-  }, [checkDelete]);
 
   const handleDelete = async (m) => {
     if (confirm("you are about to delete this post")) {
+      if (m.img) {
+        await updateDoc(doc(db, "chats", combinedId), {
+          messages: arrayRemove({
+            id: m.id,
+            text: m.text,
+            img: m.img,
+            senderId: m.senderId,
+            date: m.date,
+          }),
+        });
+      }
       await updateDoc(doc(db, "chats", combinedId), {
         messages: arrayRemove({
           id: m.id,
@@ -157,9 +166,14 @@ export default function Message() {
           date: m.date,
         }),
       });
+
       setCheckDelete((prev) => prev + 1);
     }
   };
+
+  useEffect(() => {
+    setTimeout(5000, updateLastMessage());
+  }, [handleDelete]);
 
   return (
     <>
@@ -223,8 +237,8 @@ export default function Message() {
           </div>
 
           <div className={styles.chats}>
-            <div>
-              {messages.map((m, index) => (
+            <div className={styles.chatTop}>
+              {messages.map((m) => (
                 <div
                   ref={ref}
                   className={`${
@@ -247,7 +261,23 @@ export default function Message() {
                         )}
                       </div>
                     </p>
-                    {m.img && <Image src={m.img} alt="" fill />}
+                    {m.img && (
+                      <div
+                        style={{
+                          display: "flex",
+                          marginRight: "10px",
+                          justifyContent: "flex-end",
+                        }}
+                      >
+                        <Image
+                          src={m.img}
+                          alt=""
+                          height={200}
+                          width={200}
+                          style={{ marginBottom: "5px", borderRadius: "5px" }}
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -262,6 +292,16 @@ export default function Message() {
                   type="text"
                   autoFocus
                   value={text}
+                />
+                <label htmlFor="photoImg">
+                  <IoMdAttach style={{ cursor: "pointer" }} />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  id="photoImg"
+                  accept="image/png, image/gif, image/jpeg"
+                  onChange={(e) => setImg(e.target.files[0])}
                 />
                 <button type="button" onClick={() => handleSubmit(navUser)}>
                   Submit
@@ -363,7 +403,23 @@ export default function Message() {
                           <MdDelete onClick={() => handleDelete(m)} />
                         </div>
                       </p>
-                      {m.img && <Image src={m.img} alt="" fill />}
+                      {m.img && (
+                        <div
+                          style={{
+                            display: "flex",
+                            marginRight: "10px",
+                            justifyContent: "flex-end",
+                          }}
+                        >
+                          <Image
+                            src={m.img}
+                            alt=""
+                            height={200}
+                            width={200}
+                            style={{ marginBottom: "5px", borderRadius: "5px" }}
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -377,6 +433,16 @@ export default function Message() {
                   type="text"
                   autoFocus
                   value={text}
+                />
+                <label htmlFor="photoImg">
+                  <IoMdAttach style={{ cursor: "pointer" }} />
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  id="photoImg"
+                  accept="image/png, image/gif, image/jpeg"
+                  onChange={(e) => setImg(e.target.files[0])}
                 />
                 <button type="button" onClick={() => handleSubmit(navUser)}>
                   Submit

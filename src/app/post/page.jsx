@@ -43,9 +43,8 @@ export default function Post() {
             want in accordance to your choice.
             <span>Note</span>
             <div className={styles.p2}>
-              Posting in the other section such as skill or services, free used
-              item, your market, rent; a one time monthly subscription of ₦1000
-              is needed.
+              Posting in the other section such as skill or services, your
+              market, rent; a one time monthly subscription of ₦1000 is needed.
             </div>
           </div>
         </div>

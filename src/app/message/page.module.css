@@ -132,8 +132,13 @@
 .right .chats {
   padding-top: 20px;
   margin-left: 10px;
-  height: calc(100vh - 240px);
+  /* height: calc(100vh - 240px); */
+  height: 100%;
   overflow-y: scroll;
+}
+
+.right .chats .chatTop {
+  padding-bottom: 150px;
 }
 
 .right .chats::-webkit-scrollbar {
@@ -158,13 +163,14 @@
   width: fit-content;
   border-radius: 5px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   padding-left: 10px;
   /* padding-right: 10px; */
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 20px;
   cursor: pointer;
+  flex-direction: column-reverse;
 }
 
 .right .chats .chatRight .rightText p,
@@ -208,7 +214,7 @@
 .messageBox form {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 2px;
   background-color: var(--lightBg);
 }
 
