@@ -9,12 +9,17 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 import { useSession } from "next-auth/react";
 import { getAUser } from "../../requests/requests";
 import { IoNewspaperOutline } from "react-icons/io5";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
   const { status } = useSession();
   const { user } = getAUser();
   const pathname = usePathname();
+  const router = useRouter();
+
+  if (status === "unauthenticated") {
+    router.push("/welcome");
+  }
 
   return (
     <div className={styles.navbar}>

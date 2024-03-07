@@ -13,9 +13,5 @@ export default function NextAuth({ children }) {
     return <Spinner />;
   }
 
-  if (status === "unauthenticated") {
-    router.push("/signin") || router.push("/welcome");
-  }
-
   return <div>{children}</div>;
 }
