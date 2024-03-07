@@ -6,17 +6,17 @@ import { useEffect, useState } from "react";
 
 export default function ShowNavbar() {
   const pathname = usePathname();
-  const [messagePage, setMessagePage] = useState(false);
+  const [showNav, setShowNav] = useState(true);
 
   useEffect(() => {
-    if (pathname === "/message") setMessagePage(true);
+    if (pathname === "/message" || pathname === "/welcome") setShowNav(false);
   }, [pathname]);
 
   if (pathname === "/welcome") {
     return <WelcomeNav />;
   }
 
-  if (!messagePage) {
+  if (showNav) {
     return <Navbar />;
   }
 }
