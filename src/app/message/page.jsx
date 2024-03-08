@@ -36,7 +36,6 @@ export default function Message() {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
   const ref = useRef();
-  const [checkDelete, setCheckDelete] = useState(0);
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
@@ -94,7 +93,7 @@ export default function Message() {
         }
       );
 
-      setImg(null);
+      // setImg(null);
       setText("");
     } else {
       if (text !== "") {

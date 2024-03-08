@@ -42,6 +42,8 @@ export default function Profile() {
         ? "usedItem"
         : option == "market"
         ? "market"
+        : option == "rent"
+        ? "rentItem"
         : "";
     const { data } = getAllOtherPosts(slug);
     if (slug == "" || option == "myneed") return myPosts;
@@ -234,6 +236,7 @@ export default function Profile() {
             <option value="skill">Skill or Service</option>
             <option value="useditem">Free Used Item</option>
             <option value="market">My Market</option>
+            <option value="rent">Rent</option>
           </select>
           {isLoading && "Loading..."}
           {posts?.map((post) => (
