@@ -4,13 +4,13 @@ import styles from "../post.module.css";
 import { getAUser, getAllOtherPosts } from "../../../requests/requests";
 import Spinner from "../../../components/spinner/Spinner";
 import Carousel from "../../../components/carousel/Carousel";
+import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
 import { ImageContext } from "../../../context/ImageContext";
-import { usePathname, useRouter } from "next/navigation";
 
-export default function StudentMarket() {
+export default function Rents() {
   const { user } = getAUser();
-  const slug = "market";
+  const slug = "rentItem";
   const { data, isLoading } = getAllOtherPosts(slug);
   // const posts = data?.filter((p) => p.user.id !== user.id);
 
@@ -74,7 +74,7 @@ export default function StudentMarket() {
         <div className={styles.container}>
           {data &&
             data?.map((post) => (
-              <div className={styles.post}>
+              <div className={styles.post} key={post._id}>
                 <div className={styles.profile}>
                   <div>
                     <Image
@@ -82,11 +82,11 @@ export default function StudentMarket() {
                       width={50}
                       height={50}
                       className={styles.profileImg}
-                    />
+                    />{" "}
                     {post.user.name}
                   </div>
                   <div className={styles.box_1}>
-                    <span>Market:</span> {post.market}
+                    <span>rent item:</span> {post.rentItem}
                   </div>
                 </div>
                 <div className={styles.imgContainer}>
@@ -98,7 +98,7 @@ export default function StudentMarket() {
                     className={styles.img}
                   />
                 </div>
-                <div className={styles.about}>{post.aboutMarket}</div>
+                <div className={styles.about}>{post.aboutItem}</div>
                 {user.id !== post.user.id && (
                   <button
                     onClick={() => handleSelect(post.user)}

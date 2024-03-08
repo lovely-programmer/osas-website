@@ -12,7 +12,7 @@ export default function Skills() {
   const { user } = getAUser();
   const slug = "skills";
   const { data, isLoading } = getAllOtherPosts(slug);
-  const posts = data?.filter((p) => p.user.id !== user.id);
+  // const posts = data?.filter((p) => p.user.id !== user.id);
 
   const { dispatch } = useContext(ImageContext);
   const router = useRouter();
@@ -73,7 +73,7 @@ export default function Skills() {
       <div className="wrapper">
         <div className={styles.container}>
           {data &&
-            posts?.map((post) => (
+            data?.map((post) => (
               <div className={styles.post}>
                 <div className={styles.profile}>
                   <div>
@@ -86,7 +86,7 @@ export default function Skills() {
                     {post.user.name}
                   </div>
                   <div className={styles.box_1}>
-                    <span>My skill or service:</span> {post.skill}
+                    <span>Skills or service:</span> {post.skill}
                   </div>
                   <div className={styles.box_2}>Location: {post.location}</div>
                 </div>
@@ -100,12 +100,14 @@ export default function Skills() {
                   />
                 </div>
                 <div className={styles.about}>{post.aboutSkill}</div>
-                <button
-                  onClick={() => handleSelect(post.user)}
-                  className={styles.button}
-                >
-                  Message
-                </button>
+                {user.id !== post.user.id && (
+                  <button
+                    onClick={() => handleSelect(post.user)}
+                    className={styles.button}
+                  >
+                    Message
+                  </button>
+                )}
               </div>
             ))}
         </div>

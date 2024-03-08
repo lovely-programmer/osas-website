@@ -25,7 +25,7 @@ export default function ShowNavbar() {
       pathname === "/posts/freeuseditems" ||
       pathname === "/posts/skills" ||
       pathname === "/posts/studentMarket" ||
-      pathname === "/posts/rent" ||
+      pathname === "/posts/rents" ||
       pathname === "/posts/profile" ||
       pathname === "/posts/skills" ||
       pathname === "/posts/skills"

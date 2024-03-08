@@ -12,7 +12,7 @@ export default function FreeUsedItems() {
   const { user } = getAUser();
   const slug = "usedItem";
   const { data, isLoading } = getAllOtherPosts(slug);
-  const posts = data?.filter((p) => p.user.id !== user.id);
+  // const posts = data?.filter((p) => p.user.id !== user.id);
 
   const { dispatch } = useContext(ImageContext);
   const router = useRouter();
@@ -73,7 +73,7 @@ export default function FreeUsedItems() {
       <div className="wrapper">
         <div className={styles.container}>
           {data &&
-            posts?.map((post) => (
+            data?.map((post) => (
               <div className={styles.post} key={post._id}>
                 <div className={styles.profile}>
                   <div>
@@ -86,7 +86,7 @@ export default function FreeUsedItems() {
                     {post.user.name}
                   </div>
                   <div className={styles.box_1}>
-                    <span>My free used item:</span> {post.usedItem}
+                    <span>Free used item:</span> {post.usedItem}
                   </div>
                 </div>
                 <div className={styles.imgContainer}>
@@ -99,12 +99,14 @@ export default function FreeUsedItems() {
                   />
                 </div>
                 <div className={styles.about}>{post.aboutItem}</div>
-                <button
-                  onClick={() => handleSelect(post.user)}
-                  className={styles.button}
-                >
-                  Message
-                </button>
+                {user.id !== post.user.id && (
+                  <button
+                    onClick={() => handleSelect(post.user)}
+                    className={styles.button}
+                  >
+                    Message
+                  </button>
+                )}
               </div>
             ))}
         </div>
