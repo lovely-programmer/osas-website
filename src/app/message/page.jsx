@@ -324,7 +324,7 @@ export default function Message() {
                   onChange={(e) => setText(e.target.value)}
                   type="text"
                   autoFocus
-                  value={text}
+                  // value={text}
                 />
                 <label htmlFor="photoImg">
                   <IoMdAttach style={{ cursor: "pointer" }} />
@@ -482,7 +482,7 @@ export default function Message() {
                   onChange={(e) => setText(e.target.value)}
                   type="text"
                   autoFocus
-                  value={text}
+                  // value={text}
                 />
                 <label htmlFor="photoImg">
                   <IoMdAttach style={{ cursor: "pointer" }} />
