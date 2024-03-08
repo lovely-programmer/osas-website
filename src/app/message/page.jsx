@@ -322,7 +322,7 @@ export default function Message() {
 
           {navUser && (
             <div className={styles.messageBox}>
-              <div className={styles.form}>
+              <form className={styles.form}>
                 <textarea
                   onChange={(e) => setText(e.target.value)}
                   type="text"
@@ -342,7 +342,7 @@ export default function Message() {
                 <button type="button" onClick={() => handleSubmit(navUser)}>
                   Submit
                 </button>
-              </div>
+              </form>
             </div>
           )}
         </div>
@@ -480,7 +480,7 @@ export default function Message() {
             </div>
 
             <div className={styles.messageBox}>
-              <div className={styles.form}>
+              <form className={styles.form}>
                 <textarea
                   onChange={(e) => setText(e.target.value)}
                   type="text"
@@ -500,7 +500,7 @@ export default function Message() {
                 <button type="button" onClick={() => handleSubmit(navUser)}>
                   Submit
                 </button>
-              </div>
+              </form>
             </div>
           </div>
         )}
