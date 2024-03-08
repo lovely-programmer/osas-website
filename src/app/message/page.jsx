@@ -460,7 +460,6 @@ export default function Message() {
                   id="photoImg"
                   accept="image/png, image/gif, image/jpeg"
                   onChange={(e) => setImg(e.target.files[0])}
-                  value={img}
                 />
                 <button type="button" onClick={() => handleSubmit(navUser)}>
                   Submit

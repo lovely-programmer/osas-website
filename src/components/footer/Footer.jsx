@@ -32,7 +32,7 @@ export default function Footer() {
               </div>
               <div className={styles.ballDiv}>
                 <img src="/lease.svg" alt="" />
-                <Link className={styles.rent} href="">
+                <Link className={styles.rent} href="/posts/rents">
                   Rent
                 </Link>
                 <div className={styles.ball}>10</div>
