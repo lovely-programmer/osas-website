@@ -14,10 +14,22 @@ export default function ShowNavbar() {
     if (
       pathname === "/message" ||
       pathname === "/welcome" ||
-      pathname === "/siginin"
+      pathname === "/siginin" ||
+      pathname === "/signup/post" ||
+      pathname === "/signup/welcome"
     ) {
       setShowNav(false);
-    } else {
+    }
+
+    if (
+      pathname === "/posts/freeuseditems" ||
+      pathname === "/posts/skills" ||
+      pathname === "/posts/studentMarket" ||
+      pathname === "/posts/rent" ||
+      pathname === "/posts/profile" ||
+      pathname === "/posts/skills" ||
+      pathname === "/posts/skills"
+    ) {
       setShowNav(true);
     }
   }, [pathname]);
@@ -30,10 +42,3 @@ export default function ShowNavbar() {
     return <Navbar />;
   }
 }
-
-//  pathname === "/posts/freeuseditems" ||
-//       pathname === "/posts/skills" ||
-//       pathname === "/posts/studentMarket" ||
-//       pathname === "/posts/rent" ||
-//       pathname === "/posts/profile" ||
-//       pathname === "/posts/skills" ||
