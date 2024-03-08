@@ -144,6 +144,7 @@ export default function Message() {
     } else {
       upload();
       setImg(null);
+      setText(null);
     }
   };
 
