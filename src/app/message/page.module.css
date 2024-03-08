@@ -210,7 +210,7 @@
   bottom: 0;
 }
 
-.messageBox form {
+.messageBox .form {
   display: flex;
   align-items: center;
   gap: 2px;

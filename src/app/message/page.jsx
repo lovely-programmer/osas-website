@@ -34,7 +34,7 @@ export default function Message() {
   const [messages, setMessages] = useState([]);
   const [messageUserId, setMessageUserId] = useState(null);
   const [text, setText] = useState("");
-  const [img, setImg] = useState(null);
+  const [img, setImg] = useState("");
   const ref = useRef();
 
   useEffect(() => {
@@ -68,9 +68,11 @@ export default function Message() {
     setMessageUserId(u?.id);
   };
 
+  console.log(img);
+
   const handleSubmit = async (receiver) => {
     // update array in firebase arrayUnion
-    if (img) {
+    if (img !== "") {
       const storageRef = uploadRef(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, img);
 
@@ -93,7 +95,7 @@ export default function Message() {
         }
       );
 
-      // setImg(null);
+      setImg("");
       setText("");
     } else {
       if (text !== "") {
@@ -285,7 +287,7 @@ export default function Message() {
 
           {navUser && (
             <div className={styles.messageBox}>
-              <form>
+              <div className={styles.form}>
                 <textarea
                   onChange={(e) => setText(e.target.value)}
                   type="text"
@@ -305,7 +307,7 @@ export default function Message() {
                 <button type="button" onClick={() => handleSubmit(navUser)}>
                   Submit
                 </button>
-              </form>
+              </div>
             </div>
           )}
         </div>
@@ -426,7 +428,7 @@ export default function Message() {
             </div>
 
             <div className={styles.messageBox}>
-              <form>
+              <div className={styles.form}>
                 <textarea
                   onChange={(e) => setText(e.target.value)}
                   type="text"
@@ -442,11 +444,12 @@ export default function Message() {
                   id="photoImg"
                   accept="image/png, image/gif, image/jpeg"
                   onChange={(e) => setImg(e.target.files[0])}
+                  value={img}
                 />
                 <button type="button" onClick={() => handleSubmit(navUser)}>
                   Submit
                 </button>
-              </form>
+              </div>
             </div>
           </div>
         )}
