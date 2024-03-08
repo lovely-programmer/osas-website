@@ -146,6 +146,9 @@ export default function Message() {
       setImg(null);
       setText(null);
     }
+
+    setImg(null);
+    setText(null);
   };
 
   const lastMessage = messages[messages.length - 1];
@@ -324,7 +327,7 @@ export default function Message() {
                   onChange={(e) => setText(e.target.value)}
                   type="text"
                   autoFocus
-                  // value={text}
+                  value={text}
                 />
                 <label htmlFor="photoImg">
                   <IoMdAttach style={{ cursor: "pointer" }} />
@@ -482,7 +485,7 @@ export default function Message() {
                   onChange={(e) => setText(e.target.value)}
                   type="text"
                   autoFocus
-                  // value={text}
+                  value={text}
                 />
                 <label htmlFor="photoImg">
                   <IoMdAttach style={{ cursor: "pointer" }} />
