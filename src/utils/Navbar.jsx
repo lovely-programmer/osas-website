@@ -22,6 +22,7 @@ export default function ShowNavbar() {
     }
 
     if (
+      pathname === "/" ||
       pathname === "/posts/freeuseditems" ||
       pathname === "/posts/skills" ||
       pathname === "/posts/studentMarket" ||
