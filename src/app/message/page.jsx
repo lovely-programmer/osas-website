@@ -24,6 +24,7 @@ import {
   ref as uploadRef,
   uploadBytesResumable,
 } from "firebase/storage";
+import MessageLoader from "../../components/messageLoader/MessageLoader";
 const storage = getStorage(app);
 
 export default function Message() {
@@ -35,6 +36,7 @@ export default function Message() {
   const [messageUserId, setMessageUserId] = useState(null);
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
+  const [imageUploading, setImageUploading] = useState(false);
   const ref = useRef();
 
   useEffect(() => {
@@ -68,8 +70,6 @@ export default function Message() {
     setMessageUserId(u?.id);
   };
 
-  console.log(img);
-
   const handleSubmit = async (receiver) => {
     // update array in firebase arrayUnion
 
@@ -83,14 +83,17 @@ export default function Message() {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-          }
+          if (progress !== "100") setImageUploading(true);
+          if (progress == 100) setImageUploading(false);
+          if (progress)
+            switch (snapshot.state) {
+              case "paused":
+                console.log("Upload is paused");
+                break;
+              case "running":
+                console.log("Upload is running");
+                break;
+            }
         },
         (error) => {
           console.log(error);
@@ -183,8 +186,6 @@ export default function Message() {
           date: m.date,
         }),
       });
-
-      setCheckDelete((prev) => prev + 1);
     }
   };
 
@@ -255,49 +256,63 @@ export default function Message() {
 
           <div className={styles.chats}>
             <div className={styles.chatTop}>
-              {messages.map((m) => (
-                <div
-                  ref={ref}
-                  className={`${
-                    m.senderId === user.id ? styles.chatRight : styles.chatLeft
-                  }`}
-                  key={m.id}
-                >
+              <div>
+                {messages.map((m) => (
                   <div
+                    ref={ref}
                     className={`${
                       m.senderId === user.id
-                        ? styles.rightText
-                        : styles.leftText
+                        ? styles.chatRight
+                        : styles.chatLeft
                     }`}
+                    key={m.id}
                   >
-                    <p>
-                      <div className={styles.p_text}>{m.text} </div>
-                      <div className={styles.p_icon}>
-                        {m.senderId === user.id && (
-                          <MdDelete onClick={() => handleDelete(m)} />
-                        )}
-                      </div>
-                    </p>
-                    {m.img && (
-                      <div
-                        style={{
-                          display: "flex",
-                          marginRight: "10px",
-                          justifyContent: "flex-end",
-                        }}
-                      >
-                        <Image
-                          src={m.img}
-                          alt=""
-                          height={200}
-                          width={200}
-                          style={{ marginBottom: "5px", borderRadius: "5px" }}
-                        />
-                      </div>
-                    )}
+                    <div
+                      className={`${
+                        m.senderId === user.id
+                          ? styles.rightText
+                          : styles.leftText
+                      }`}
+                    >
+                      <p>
+                        <div className={styles.p_text}>{m.text} </div>
+                        <div className={styles.p_icon}>
+                          {m.senderId === user.id && (
+                            <MdDelete onClick={() => handleDelete(m)} />
+                          )}
+                        </div>
+                      </p>
+                      {m.img && (
+                        <div
+                          style={{
+                            display: "flex",
+                            marginRight: "10px",
+                            justifyContent: "flex-end",
+                          }}
+                        >
+                          <Image
+                            src={m.img}
+                            alt=""
+                            height={200}
+                            width={200}
+                            style={{ marginBottom: "5px", borderRadius: "5px" }}
+                          />
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              <div
+                style={{
+                  marginBottom: "20px",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginRight: "32px",
+                }}
+              >
+                {imageUploading && <MessageLoader />}
+              </div>
             </div>
           </div>
 
@@ -397,51 +412,66 @@ export default function Message() {
 
             <div className={styles.chats}>
               <div className={styles.chatTop}>
-                {messages.map((m) => (
-                  <div
-                    ref={ref}
-                    className={`${
-                      m.senderId === user.id
-                        ? styles.chatRight
-                        : styles.chatLeft
-                    }`}
-                    key={m.id}
-                  >
+                <div>
+                  {messages.map((m) => (
                     <div
+                      ref={ref}
                       className={`${
                         m.senderId === user.id
-                          ? styles.rightText
-                          : styles.leftText
+                          ? styles.chatRight
+                          : styles.chatLeft
                       }`}
+                      key={m.id}
                     >
-                      <p>
-                        <div className={styles.p_text}>{m.text} </div>
-                        <div className={styles.p_icon}>
-                          {m.senderId === user.id && (
-                            <MdDelete onClick={() => handleDelete(m)} />
-                          )}
-                        </div>
-                      </p>
-                      {m.img && (
-                        <div
-                          style={{
-                            display: "flex",
-                            marginRight: "10px",
-                            justifyContent: "flex-end",
-                          }}
-                        >
-                          <Image
-                            src={m.img}
-                            alt=""
-                            height={200}
-                            width={200}
-                            style={{ marginBottom: "5px", borderRadius: "5px" }}
-                          />
-                        </div>
-                      )}
+                      <div
+                        className={`${
+                          m.senderId === user.id
+                            ? styles.rightText
+                            : styles.leftText
+                        }`}
+                      >
+                        <p>
+                          <div className={styles.p_text}>{m.text} </div>
+                          <div className={styles.p_icon}>
+                            {m.senderId === user.id && (
+                              <MdDelete onClick={() => handleDelete(m)} />
+                            )}
+                          </div>
+                        </p>
+                        {m.img && (
+                          <div
+                            style={{
+                              display: "flex",
+                              marginRight: "10px",
+                              justifyContent: "flex-end",
+                            }}
+                          >
+                            <Image
+                              src={m.img}
+                              alt=""
+                              height={200}
+                              width={200}
+                              style={{
+                                marginBottom: "5px",
+                                borderRadius: "5px",
+                              }}
+                            />
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+                <div
+                  style={{
+                    marginBottom: "20px",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    marginRight: "32px",
+                  }}
+                >
+                  {imageUploading && <MessageLoader />}
+                </div>
               </div>
             </div>
 

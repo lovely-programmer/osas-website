@@ -8,8 +8,6 @@ export default function ShowNavbar() {
   const pathname = usePathname();
   const [showNav, setShowNav] = useState(true);
 
-  console.log(showNav);
-
   useEffect(() => {
     if (
       pathname === "/message" ||
