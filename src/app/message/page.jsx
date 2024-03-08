@@ -34,7 +34,7 @@ export default function Message() {
   const [messages, setMessages] = useState([]);
   const [messageUserId, setMessageUserId] = useState(null);
   const [text, setText] = useState("");
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState(null);
   const ref = useRef();
 
   useEffect(() => {
@@ -72,11 +72,26 @@ export default function Message() {
 
   const handleSubmit = async (receiver) => {
     // update array in firebase arrayUnion
-    if (img !== "") {
+
+    const upload = () => {
       const storageRef = uploadRef(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, img);
 
       uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
         (error) => {
           console.log(error);
         },
@@ -94,10 +109,9 @@ export default function Message() {
           });
         }
       );
+    };
 
-      setImg("");
-      setText("");
-    } else {
+    if (img == null) {
       if (text !== "") {
         await updateDoc(doc(db, "chats", combinedId), {
           messages: arrayUnion({
@@ -122,10 +136,12 @@ export default function Message() {
         },
         [combinedId + ".date"]: serverTimestamp(),
       });
-    }
 
-    setText("");
-    setImg(null);
+      setText("");
+    } else {
+      upload();
+      setImg(null);
+    }
   };
 
   const lastMessage = messages[messages.length - 1];
