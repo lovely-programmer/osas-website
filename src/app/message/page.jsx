@@ -417,7 +417,9 @@ export default function Message() {
                       <p>
                         <div className={styles.p_text}>{m.text} </div>
                         <div className={styles.p_icon}>
-                          <MdDelete onClick={() => handleDelete(m)} />
+                          {m.senderId === user.id && (
+                            <MdDelete onClick={() => handleDelete(m)} />
+                          )}
                         </div>
                       </p>
                       {m.img && (

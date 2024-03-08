@@ -41,11 +41,11 @@ export default function Post() {
             Student Support offers free access to limitless post in need (Trade
             by barter) post. You can exchange goods, items and services as you
             want in accordance to your choice.
-            <span>Note</span>
+            {/* <span>Note</span>
             <div className={styles.p2}>
               Posting in the other section such as skill or services, your
               market, rent; a one time monthly subscription of ₦1000 is needed.
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

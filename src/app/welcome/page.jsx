@@ -72,7 +72,7 @@ export default function page() {
                 support foundation enables you to show it to the world
                 effortlessly and you get great patronaged.
               </p>
-              <img src="./market.jpg" alt="" />
+              <img src="./skill.jpg" alt="" />
             </div>
           </section>
           <section>
