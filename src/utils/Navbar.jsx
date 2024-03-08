@@ -9,7 +9,11 @@ export default function ShowNavbar() {
   const [showNav, setShowNav] = useState(true);
 
   useEffect(() => {
-    if (pathname === "/message" || pathname === "/welcome") setShowNav(false);
+    if (pathname === "/message" || pathname === "/welcome") {
+      setShowNav(false);
+    } else {
+      setShowNav(true);
+    }
   }, [pathname]);
 
   if (pathname === "/welcome") {
