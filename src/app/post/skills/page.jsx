@@ -70,6 +70,10 @@ export default function Skills() {
               }),
             });
 
+            await fetch(`/api/notification/${slug}`, {
+              method: "PUT",
+            });
+
             if (res.status == 201) {
               setSkill("");
               setLocation("");

@@ -68,6 +68,10 @@ export default function UsedItems() {
               }),
             });
 
+            await fetch(`/api/notification/${slug}`, {
+              method: "PUT",
+            });
+
             if (res.status == 201) {
               setUsedItem("");
               setAboutItem("");

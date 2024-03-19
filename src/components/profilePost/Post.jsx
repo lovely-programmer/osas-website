@@ -14,6 +14,8 @@ export default function Post({ previewImage, post, option }) {
       ? "My skill or service"
       : option == "market"
       ? "My Market"
+      : option == "rent"
+      ? "Rent Item"
       : "My Trade";
 
   const things =
@@ -23,6 +25,8 @@ export default function Post({ previewImage, post, option }) {
       ? post.skill
       : option == "market"
       ? post.market
+      : option == "rent"
+      ? post.rentItem
       : post.myTrade;
 
   const aboutThings =
@@ -32,6 +36,8 @@ export default function Post({ previewImage, post, option }) {
       ? post.aboutSkill
       : option == "market"
       ? post.aboutMarket
+      : option == "rent"
+      ? post.aboutItem
       : post.myNeed;
 
   const handleDelete = async (id) => {

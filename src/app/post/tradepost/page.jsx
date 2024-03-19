@@ -26,6 +26,8 @@ export default function TradePost() {
     setFile(URL.createObjectURL(e.target.files[0]));
   };
 
+  const slug = "need";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -64,6 +66,10 @@ export default function TradePost() {
                 myNeed,
                 myTrade,
               }),
+            });
+
+            await fetch(`/api/notification/${slug}`, {
+              method: "PUT",
             });
 
             if (res.status == "201") {

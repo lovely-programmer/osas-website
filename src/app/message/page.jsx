@@ -144,11 +144,11 @@ export default function Message() {
     } else {
       upload();
       setImg(null);
-      setText(null);
+      setText("");
     }
 
     setImg(null);
-    setText(null);
+    setText("");
   };
 
   const lastMessage = messages[messages.length - 1];
@@ -322,7 +322,7 @@ export default function Message() {
 
           {navUser && (
             <div className={styles.messageBox}>
-              <form className={styles.form}>
+              <div className={styles.form}>
                 <textarea
                   onChange={(e) => setText(e.target.value)}
                   type="text"
@@ -342,7 +342,7 @@ export default function Message() {
                 <button type="button" onClick={() => handleSubmit(navUser)}>
                   Submit
                 </button>
-              </form>
+              </div>
             </div>
           )}
         </div>
@@ -480,7 +480,7 @@ export default function Message() {
             </div>
 
             <div className={styles.messageBox}>
-              <form className={styles.form}>
+              <div className={styles.form}>
                 <textarea
                   onChange={(e) => setText(e.target.value)}
                   type="text"
@@ -500,7 +500,7 @@ export default function Message() {
                 <button type="button" onClick={() => handleSubmit(navUser)}>
                   Submit
                 </button>
-              </form>
+              </div>
             </div>
           </div>
         )}

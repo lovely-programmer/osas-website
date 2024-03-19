@@ -68,6 +68,10 @@ export default function StudentMarket() {
               }),
             });
 
+            await fetch(`/api/notification/${slug}`, {
+              method: "PUT",
+            });
+
             if (res.status == 201) {
               setMarket("");
               setAboutMarket("");

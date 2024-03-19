@@ -19,6 +19,11 @@ export const POST = async (req, { params }) => {
       const post = await prisma.post.create({
         data: { ...body, userEmail: session.user.email },
       });
+
+      await prisma.postNotification.create({
+        data: { userEmail: session.user.email },
+      });
+
       return new NextResponse(JSON.stringify(post), { status: 201 });
     }
 
@@ -78,6 +83,14 @@ export const GET = async (req, { params }) => {
 
     if (slug == "market") {
       const posts = await prisma.studentMarketPost.findMany({
+        orderBy: [{ createdAt: "desc" }],
+        include: { user: true },
+      });
+      return new NextResponse(JSON.stringify(posts), { status: 200 });
+    }
+
+    if (slug == "rentItem") {
+      const posts = await prisma.rentPost.findMany({
         orderBy: [{ createdAt: "desc" }],
         include: { user: true },
       });

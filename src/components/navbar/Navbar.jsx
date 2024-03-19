@@ -16,6 +16,15 @@ export default function Navbar() {
   const { user } = getAUser();
   const pathname = usePathname();
   const router = useRouter();
+  const usedItemNotification = user?.usedItemNotification - 1;
+
+  const setUsedItemNotificationDefault = async (slug) => {
+    if (usedItemNotification > 0) {
+      await fetch(`/api/notification/update/${slug}`, {
+        method: "PUT",
+      });
+    }
+  };
 
   if (status === "unauthenticated") {
     router.push("/welcome");
@@ -41,7 +50,7 @@ export default function Navbar() {
             <div className={styles.links}>
               <Link className={styles.messageLink} href="/message">
                 <RiMessengerLine />
-                <div className={styles.ball}>6</div>
+                {/* <div className={styles.ball}>6</div> */}
                 <span>Message</span>
               </Link>
               <Link className={styles.messageLink} href="/connect">
@@ -50,12 +59,18 @@ export default function Navbar() {
               </Link>
               <Link className={styles.messageLink} href="/news">
                 <IoNewspaperOutline />
-                <div className={styles.ballNews}>7</div>
+                {/* <div className={styles.ballNews}>7</div> */}
                 <span>News</span>
               </Link>
-              <Link className={styles.messageLink} href="/posts/freeuseditems">
+              <Link
+                className={styles.messageLink}
+                href="/posts/freeuseditems"
+                onClick={() => setUsedItemNotificationDefault("usedItem")}
+              >
                 <MdOutlineShoppingBag />
-                <div className={styles.ball}>2</div>
+                {usedItemNotification > 0 && (
+                  <div className={styles.ball}>{usedItemNotification}</div>
+                )}
                 <span>Free used item</span>
               </Link>
             </div>

@@ -11,6 +11,34 @@ import { getAUser } from "../../requests/requests";
 export default function Footer() {
   const { status } = useSession();
   const { user } = getAUser();
+  const skillNotification = user?.skillNotification - 1;
+  const rentNotification = user?.rentNotification - 1;
+  const marketNotification = user?.marketNotification - 1;
+
+  const setSkillNotificationDefault = async (slug) => {
+    if (skillNotification > 0) {
+      await fetch(`/api/notification/update/${slug}`, {
+        method: "PUT",
+      });
+    }
+  };
+
+  const setRentNotificationDefault = async (slug) => {
+    if (rentNotification > 0) {
+      await fetch(`/api/notification/update/${slug}`, {
+        method: "PUT",
+      });
+    }
+  };
+
+  const setMarketNotification = async (slug) => {
+    if (marketNotification > 0) {
+      await fetch(`/api/notification/update/${slug}`, {
+        method: "PUT",
+      });
+    }
+  };
+
   return (
     <>
       {status === "authenticated" && user?.createdSuccessfully == true && (
@@ -24,32 +52,55 @@ export default function Footer() {
                 <IoChatbubblesOutline />
                 <Link href="">Customer Care</Link>
               </div>
-              <div>
+              <div
+                className={styles.ballDiv}
+                onClick={() => setSkillNotificationDefault("skills")}
+              >
                 <Link href="/posts/skills">
                   <MdOutlineWorkOutline />
                 </Link>
                 <Link href="/posts/skills">Skill or Service</Link>
+                {skillNotification > 0 && (
+                  <div
+                    style={{ marginLeft: "22px", top: "-4px" }}
+                    className={styles.ball}
+                  >
+                    {skillNotification}
+                  </div>
+                )}
               </div>
-              <div className={styles.ballDiv}>
-                <img src="/lease.svg" alt="" />
+              <div
+                className={styles.ballDiv}
+                onClick={() => setRentNotificationDefault("rentItem")}
+              >
+                <Link href="/posts/rents">
+                  <img src="/lease.svg" alt="" />
+                </Link>
                 <Link className={styles.rent} href="/posts/rents">
                   Rent
                 </Link>
-                <div className={styles.ball}>10</div>
+                {rentNotification > 0 && (
+                  <div className={styles.ball}>{rentNotification}</div>
+                )}
               </div>
               <div className={styles.ballDiv}>
                 <LiaHandHoldingHeartSolid />
                 <Link href="" className={styles.materials}>
                   Giveaway
                 </Link>
-                <div className={styles.ball}>20</div>
+                {/* <div className={styles.ball}>20</div> */}
               </div>
-              <div className={styles.ballDiv}>
+              <div
+                className={styles.ballDiv}
+                onClick={() => setMarketNotification("market")}
+              >
                 <Link href="/posts/studentmarket">
                   <RiShoppingBasketLine />
                 </Link>
                 <Link href="/posts/studentmarket">Students Market</Link>
-                <div className={styles.ball}>50</div>
+                {marketNotification > 0 && (
+                  <div className={styles.ball}>{marketNotification}</div>
+                )}
               </div>
             </div>
           </div>

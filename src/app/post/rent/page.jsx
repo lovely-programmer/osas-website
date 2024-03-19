@@ -68,6 +68,10 @@ export default function page() {
               }),
             });
 
+            await fetch(`/api/notification/${slug}`, {
+              method: "PUT",
+            });
+
             if (res.status == 201) {
               setRentItem("");
               setAboutItem("");
