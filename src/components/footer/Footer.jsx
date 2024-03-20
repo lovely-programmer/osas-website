@@ -50,7 +50,7 @@ export default function Footer() {
             <div className={styles.footerContainer}>
               <div>
                 <IoChatbubblesOutline />
-                <Link href="">Customer Care</Link>
+                <Link href="/contact">Customer Care</Link>
               </div>
               <div
                 className={styles.ballDiv}
@@ -84,8 +84,10 @@ export default function Footer() {
                 )}
               </div>
               <div className={styles.ballDiv}>
-                <LiaHandHoldingHeartSolid />
-                <Link href="" className={styles.materials}>
+                <Link href="/posts/giveaway">
+                  <LiaHandHoldingHeartSolid />
+                </Link>
+                <Link href="/posts/giveaway" className={styles.materials}>
                   Giveaway
                 </Link>
                 {/* <div className={styles.ball}>20</div> */}
