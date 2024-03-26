@@ -70,6 +70,30 @@ export default function Message() {
     setMessageUserId(u?.id);
   };
 
+  useEffect(() => {
+    const update = async () => {
+      await updateDoc(doc(db, "userChats", navUser?.email), {
+        [combinedId + ".unseenMessage"]: {
+          data: {
+            number: 0,
+          },
+        },
+        [combinedId + ".date"]: serverTimestamp(),
+      });
+    };
+    navUser && update();
+  }, [navUser]);
+
+  const getOnlyone = Object.entries(chats)?.filter(
+    (c) => c[1].userInfo.email === navUser?.email
+  );
+
+  const unseenMessageCount = getOnlyone.map(
+    (one) => one[1].unseenMessage?.data?.number
+  );
+
+  console.log(unseenMessageCount[0]);
+
   const handleSubmit = async (receiver) => {
     // update array in firebase arrayUnion
 
@@ -139,6 +163,28 @@ export default function Message() {
         },
         [combinedId + ".date"]: serverTimestamp(),
       });
+
+      if (typeof unseenMessageCount[0] == "number") {
+        await updateDoc(doc(db, "userChats", user?.email), {
+          [combinedId + ".unseenMessage"]: {
+            data: {
+              id: user?.email,
+              number: unseenMessageCount[0] + 1,
+            },
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
+      } else {
+        await updateDoc(doc(db, "userChats", user?.email), {
+          [combinedId + ".unseenMessage"]: {
+            data: {
+              id: user?.email,
+              number: 1,
+            },
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
+      }
 
       setText("");
     } else {
@@ -228,6 +274,13 @@ export default function Message() {
                               ? chat[1].lastMessage?.text
                               : "Click to start a conversation"}
                           </p>
+                          {chat[1].unseenMessage?.data?.number &&
+                            chat[1].unseenMessage?.data?.number > 0 &&
+                            chat[1].unseenMessage?.data?.id !== user?.email && (
+                              <div className={styles.notification}>
+                                {chat[1].unseenMessage?.data.number}
+                              </div>
+                            )}
                         </div>
                       </div>
                     </div>
@@ -381,6 +434,12 @@ export default function Message() {
                               ? chat[1].lastMessage?.text
                               : "Click to start a conversation"}
                           </p>
+                          {chat[1].unseenMessage?.number &&
+                            chat[1].unseenMessage?.number > 0 && (
+                              <div className={styles.notification}>
+                                {chat[1].unseenMessage?.number}
+                              </div>
+                            )}
                         </div>
                       </div>
                     </div>

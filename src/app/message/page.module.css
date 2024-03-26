@@ -42,6 +42,8 @@
 
 .person {
   padding-top: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .person p {
@@ -49,6 +51,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.person .notification {
+  background-color: var(--bg);
+  border-radius: 3px;
+  padding: 3px;
 }
 
 .personContainer_1 {
