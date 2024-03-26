@@ -434,10 +434,11 @@ export default function Message() {
                               ? chat[1].lastMessage?.text
                               : "Click to start a conversation"}
                           </p>
-                          {chat[1].unseenMessage?.number &&
-                            chat[1].unseenMessage?.number > 0 && (
+                          {chat[1].unseenMessage?.data?.number &&
+                            chat[1].unseenMessage?.data?.number > 0 &&
+                            chat[1].unseenMessage?.data?.id !== user?.email && (
                               <div className={styles.notification}>
-                                {chat[1].unseenMessage?.number}
+                                {chat[1].unseenMessage?.data.number}
                               </div>
                             )}
                         </div>
