@@ -139,6 +139,48 @@ export default function Message() {
       );
     };
 
+    if (typeof unseenMessageCount[0] == "number") {
+      await updateDoc(doc(db, "userChats", user?.email), {
+        [combinedId + ".unseenMessage"]: {
+          data: {
+            id: user?.email,
+            number: unseenMessageCount[0] + 1,
+          },
+        },
+        [combinedId + ".date"]: serverTimestamp(),
+      });
+
+      await updateDoc(doc(db, "userChats", receiver?.email), {
+        [combinedId + ".unseenMessage"]: {
+          data: {
+            id: receiver?.email,
+            number: unseenMessageCount[0] + 1,
+          },
+        },
+        [combinedId + ".date"]: serverTimestamp(),
+      });
+    } else {
+      await updateDoc(doc(db, "userChats", user?.email), {
+        [combinedId + ".unseenMessage"]: {
+          data: {
+            id: user?.email,
+            number: 1,
+          },
+        },
+        [combinedId + ".date"]: serverTimestamp(),
+      });
+
+      await updateDoc(doc(db, "userChats", receiver?.email), {
+        [combinedId + ".unseenMessage"]: {
+          data: {
+            id: receiver?.email,
+            number: 1,
+          },
+        },
+        [combinedId + ".date"]: serverTimestamp(),
+      });
+    }
+
     if (img == null) {
       if (text !== "") {
         await updateDoc(doc(db, "chats", combinedId), {
@@ -164,28 +206,6 @@ export default function Message() {
         },
         [combinedId + ".date"]: serverTimestamp(),
       });
-
-      if (typeof unseenMessageCount[0] == "number") {
-        await updateDoc(doc(db, "userChats", user?.email), {
-          [combinedId + ".unseenMessage"]: {
-            data: {
-              id: user?.email,
-              number: unseenMessageCount[0] + 1,
-            },
-          },
-          [combinedId + ".date"]: serverTimestamp(),
-        });
-      } else {
-        await updateDoc(doc(db, "userChats", user?.email), {
-          [combinedId + ".unseenMessage"]: {
-            data: {
-              id: user?.email,
-              number: 1,
-            },
-          },
-          [combinedId + ".date"]: serverTimestamp(),
-        });
-      }
 
       setText("");
     } else {
