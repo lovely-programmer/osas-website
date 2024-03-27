@@ -68,7 +68,9 @@ export default function Message() {
   const handleSelect = (u) => {
     setNavUser(u);
     setMessageUserId(u?.id);
+  };
 
+  useEffect(() => {
     const update = async () => {
       await updateDoc(doc(db, "userChats", navUser?.email), {
         [combinedId + ".unseenMessage"]: {
@@ -80,14 +82,8 @@ export default function Message() {
         [combinedId + ".date"]: serverTimestamp(),
       });
     };
-
-    update();
-  };
-
-  // useEffect(() => {
-
-  //   navUser && update();
-  // }, [navUser]);
+    navUser && update();
+  }, [navUser]);
 
   const getOnlyone = Object.entries(chats)?.filter(
     (c) => c[1].userInfo.email === navUser?.email
