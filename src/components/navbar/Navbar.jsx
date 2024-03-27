@@ -10,6 +10,9 @@ import { useSession } from "next-auth/react";
 import { getAUser } from "../../requests/requests";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { usePathname, useRouter } from "next/navigation";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../utils/firebase";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const { status } = useSession();
@@ -17,6 +20,8 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const usedItemNotification = user?.usedItemNotification - 1;
+  const [chats, setChats] = useState();
+  const [message, setMessage] = useState([]);
 
   const setUsedItemNotificationDefault = async (slug) => {
     if (usedItemNotification > 0) {
@@ -25,6 +30,35 @@ export default function Navbar() {
       });
     }
   };
+
+  useEffect(() => {
+    const getChats = () => {
+      const unsub = onSnapshot(doc(db, "userChats", user.email), (doc) => {
+        setChats(doc.data());
+      });
+      return () => unsub();
+    };
+    user.email && getChats();
+  }, [user.email]);
+
+  useEffect(() => {
+    const getData = () => {
+      const count =
+        chats &&
+        Object.entries(chats)?.map(
+          (chat) => chat[1].unseenMessage.data?.number
+        );
+      setMessage(count);
+    };
+    getData();
+  }, [chats]);
+
+  const totalMessages = message.reduce(getsum, 0);
+  console.log(totalMessages);
+
+  function getsum(total, num) {
+    return total + num;
+  }
 
   if (status === "unauthenticated") {
     router.push("/welcome");
@@ -50,7 +84,9 @@ export default function Navbar() {
             <div className={styles.links}>
               <Link className={styles.messageLink} href="/message">
                 <RiMessengerLine />
-                {/* <div className={styles.ball}>6</div> */}
+                {totalMessages > 0 && (
+                  <div className={styles.ball}>{totalMessages}</div>
+                )}
                 <span>Message</span>
               </Link>
               <Link className={styles.messageLink} href="/connect">

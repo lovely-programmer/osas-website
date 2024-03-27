@@ -75,6 +75,7 @@ export default function Message() {
       await updateDoc(doc(db, "userChats", navUser?.email), {
         [combinedId + ".unseenMessage"]: {
           data: {
+            id: navUser.email,
             number: 0,
           },
         },
@@ -240,7 +241,7 @@ export default function Message() {
   };
 
   useEffect(() => {
-    setTimeout(5000, updateLastMessage());
+    setTimeout(3000, updateLastMessage());
   }, [handleDelete]);
 
   return (
