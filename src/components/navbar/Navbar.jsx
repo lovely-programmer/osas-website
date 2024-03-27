@@ -53,7 +53,7 @@ export default function Navbar() {
     getData();
   }, [chats]);
 
-  const totalMessages = message.reduce(getsum, 0);
+  const totalMessages = message && message.reduce(getsum, 0);
   console.log(totalMessages);
 
   function getsum(total, num) {
