@@ -68,9 +68,7 @@ export default function Message() {
   const handleSelect = (u) => {
     setNavUser(u);
     setMessageUserId(u?.id);
-  };
 
-  useEffect(() => {
     const update = async () => {
       await updateDoc(doc(db, "userChats", navUser?.email), {
         [combinedId + ".unseenMessage"]: {
@@ -82,8 +80,14 @@ export default function Message() {
         [combinedId + ".date"]: serverTimestamp(),
       });
     };
-    navUser && update();
-  }, [navUser]);
+
+    update();
+  };
+
+  // useEffect(() => {
+
+  //   navUser && update();
+  // }, [navUser]);
 
   const getOnlyone = Object.entries(chats)?.filter(
     (c) => c[1].userInfo.email === navUser?.email
@@ -275,8 +279,7 @@ export default function Message() {
                               ? chat[1].lastMessage?.text
                               : "Click to start a conversation"}
                           </p>
-                          {chat[1].unseenMessage?.data?.number &&
-                            chat[1].unseenMessage?.data?.number > 0 &&
+                          {chat[1].unseenMessage?.data.number > 0 &&
                             chat[1].unseenMessage?.data?.id !== user?.email && (
                               <div className={styles.notification}>
                                 {chat[1].unseenMessage?.data.number}
@@ -435,8 +438,7 @@ export default function Message() {
                               ? chat[1].lastMessage?.text
                               : "Click to start a conversation"}
                           </p>
-                          {chat[1].unseenMessage?.data?.number &&
-                            chat[1].unseenMessage?.data?.number > 0 &&
+                          {chat[1].unseenMessage?.data.number > 0 &&
                             chat[1].unseenMessage?.data?.id !== user?.email && (
                               <div className={styles.notification}>
                                 {chat[1].unseenMessage?.data.number}
