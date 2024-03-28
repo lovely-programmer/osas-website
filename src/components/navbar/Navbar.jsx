@@ -34,7 +34,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const getChats = () => {
-      const unsub = onSnapshot(doc(db, "userChats", user.email), (doc) => {
+      const unsub = onSnapshot(doc(db, "userChats", user?.email), (doc) => {
         setChats(doc.data());
       });
       return () => unsub();
@@ -47,7 +47,7 @@ export default function Navbar() {
       const count =
         chats &&
         Object.entries(chats)?.filter(
-          (chat) => chat[1].unseenMessage.data?.id !== user.email
+          (chat) => chat[1].unseenMessage.data?.id !== user?.email
         );
 
       const unseenMessages = count?.map(
@@ -59,8 +59,6 @@ export default function Navbar() {
     };
     getData();
   }, [chats]);
-
-  console.log(messageId);
 
   const totalMessages = message && message.reduce(getsum, 0);
   console.log(totalMessages);
