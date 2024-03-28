@@ -153,7 +153,7 @@ export default function Message() {
       await updateDoc(doc(db, "userChats", receiver?.email), {
         [combinedId + ".unseenMessage"]: {
           data: {
-            id: receiver?.email,
+            id: user?.email,
             number: unseenMessageCount[0] + 1,
           },
         },
@@ -173,7 +173,7 @@ export default function Message() {
       await updateDoc(doc(db, "userChats", receiver?.email), {
         [combinedId + ".unseenMessage"]: {
           data: {
-            id: receiver?.email,
+            id: user?.email,
             number: 1,
           },
         },

@@ -22,6 +22,7 @@ export default function Navbar() {
   const usedItemNotification = user?.usedItemNotification - 1;
   const [chats, setChats] = useState();
   const [message, setMessage] = useState([]);
+  const [messageId, setMessageId] = useState([]);
 
   const setUsedItemNotificationDefault = async (slug) => {
     if (usedItemNotification > 0) {
@@ -48,10 +49,22 @@ export default function Navbar() {
         Object.entries(chats)?.map(
           (chat) => chat[1].unseenMessage.data?.number
         );
+      const countId =
+        chats &&
+        Object.entries(chats)?.filter(
+          (chat) => chat[1].unseenMessage.data?.id === user.email
+        );
       setMessage(count);
+      setMessageId(countId);
     };
     getData();
   }, [chats]);
+
+  console.log(messageId);
+
+  if (messageId == user?.email) {
+    console.log("true");
+  }
 
   const totalMessages = message && message.reduce(getsum, 0);
   console.log(totalMessages);
