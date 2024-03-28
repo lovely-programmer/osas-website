@@ -50,7 +50,7 @@ export default function Navbar() {
           (chat) => chat[1].unseenMessage.data?.id !== user.email
         );
 
-      const unseenMessages = count.map(
+      const unseenMessages = count?.map(
         (chat) => chat[1].unseenMessage.data?.number
       );
 
