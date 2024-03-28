@@ -46,25 +46,21 @@ export default function Navbar() {
     const getData = () => {
       const count =
         chats &&
-        Object.entries(chats)?.map(
-          (chat) => chat[1].unseenMessage.data?.number
-        );
-      const countId =
-        chats &&
         Object.entries(chats)?.filter(
-          (chat) => chat[1].unseenMessage.data?.id === user.email
+          (chat) => chat[1].unseenMessage.data?.id !== user.email
         );
-      setMessage(count);
-      setMessageId(countId);
+
+      const unseenMessages = count.map(
+        (chat) => chat[1].unseenMessage.data?.number
+      );
+
+      setMessage(unseenMessages);
+      setMessageId(count);
     };
     getData();
   }, [chats]);
 
   console.log(messageId);
-
-  if (messageId == user?.email) {
-    console.log("true");
-  }
 
   const totalMessages = message && message.reduce(getsum, 0);
   console.log(totalMessages);
