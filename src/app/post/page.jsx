@@ -2,8 +2,10 @@
 import { useState } from "react";
 import styles from "./post.module.css";
 import { useRouter } from "next/navigation";
+import { getAUser } from "../../requests/requests";
 
 export default function Post() {
+  const { user } = getAUser();
   const [select, setSelect] = useState("");
   const router = useRouter();
   const goToPost = (e) => {
@@ -13,6 +15,8 @@ export default function Post() {
     if (select == "usedItem") router.push("/post/usedItems");
     if (select == "market") router.push("/post/studentmarket");
     if (select == "rent") router.push("/post/rent");
+    if (select == "giveaway") router.push("/post/giveaway");
+    if (select == "news") router.push("/post/news");
   };
 
   return (
@@ -33,6 +37,8 @@ export default function Post() {
               <option value="usedItem">Free Used Item</option>
               <option value="market">Your Market</option>
               <option value="rent">Rent</option>
+              {user.admin == true && <option value="giveaway">Giveaway</option>}
+              {user.admin == true && <option value="news">News</option>}
             </select>
             <button>Go To Post</button>
           </form>

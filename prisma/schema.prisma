@@ -56,6 +56,8 @@ model User {
   usedItemNotification Int                 @default(1)
   marketNotification   Int                 @default(1)
   rentNotification     Int                 @default(1)
+  giveNotification     Int                 @default(1)
+  newsNotification     Int                 @default(1)
   admin                Boolean             @default(false)
   accounts             Account[]
   sessions             Session[]
