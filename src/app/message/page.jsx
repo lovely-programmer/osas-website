@@ -81,6 +81,15 @@ export default function Message() {
         },
         [combinedId + ".date"]: serverTimestamp(),
       });
+      await updateDoc(doc(db, "userChats", user?.email), {
+        [combinedId + ".unseenMessage"]: {
+          data: {
+            id: navUser.email,
+            number: 0,
+          },
+        },
+        [combinedId + ".date"]: serverTimestamp(),
+      });
     };
     navUser && update();
   }, [navUser]);
