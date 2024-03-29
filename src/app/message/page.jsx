@@ -68,6 +68,7 @@ export default function Message() {
   const handleSelect = (u) => {
     setNavUser(u);
     setMessageUserId(u?.id);
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -222,9 +223,6 @@ export default function Message() {
       setImg(null);
       setText("");
     }
-
-    setImg(null);
-    setText("");
   };
 
   const lastMessage = messages[messages.length - 1];
@@ -270,7 +268,7 @@ export default function Message() {
   };
 
   useEffect(() => {
-    setTimeout(3000, updateLastMessage());
+    setTimeout(1500, updateLastMessage());
   }, [handleDelete]);
 
   return (
@@ -334,7 +332,7 @@ export default function Message() {
                     />
                     <div className={styles.personContainer}>
                       <span>{navUser?.name}</span>
-                      <div className={styles.person}>online</div>
+                      {/* <div className={styles.person}>online</div> */}
                     </div>
                   </div>
                 </div>
@@ -494,7 +492,7 @@ export default function Message() {
                       />
                       <div className={styles.personContainer}>
                         <span>{navUser?.name}</span>
-                        <div className={styles.person}>online</div>
+                        {/* <div className={styles.person}>online</div> */}
                       </div>
                     </div>
                   </div>
