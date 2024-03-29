@@ -20,12 +20,20 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const usedItemNotification = user?.usedItemNotification - 1;
+  const newsNotification = user?.newsNotification - 1;
   const [chats, setChats] = useState();
   const [message, setMessage] = useState([]);
-  const [messageId, setMessageId] = useState([]);
 
   const setUsedItemNotificationDefault = async (slug) => {
     if (usedItemNotification > 0) {
+      await fetch(`/api/notification/update/${slug}`, {
+        method: "PUT",
+      });
+    }
+  };
+
+  const setNewsNotification = async (slug) => {
+    if (newsNotification > 0) {
       await fetch(`/api/notification/update/${slug}`, {
         method: "PUT",
       });
@@ -55,13 +63,11 @@ export default function Navbar() {
       );
 
       setMessage(unseenMessages);
-      setMessageId(count);
     };
     getData();
   }, [chats]);
 
   const totalMessages = message && message.reduce(getsum, 0);
-  console.log(totalMessages);
 
   function getsum(total, num) {
     return total + num;
@@ -100,9 +106,15 @@ export default function Navbar() {
                 <VscDebugDisconnect />
                 <span>Connect</span>
               </Link>
-              <Link className={styles.messageLink} href="/news">
+              <Link
+                className={styles.messageLink}
+                href="/news"
+                onClick={() => setNewsNotification("news")}
+              >
                 <IoNewspaperOutline />
-                {/* <div className={styles.ballNews}>7</div> */}
+                {newsNotification > 0 && (
+                  <div className={styles.ballNews}>{newsNotification}</div>
+                )}
                 <span>News</span>
               </Link>
               <Link

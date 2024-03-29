@@ -67,6 +67,7 @@ model User {
   StudentMarketPost    StudentMarketPost[]
   RentPost             RentPost[]
   GiveawayPost         GiveawayPost[]
+  News                 News[]
 }
 
 model VerificationToken {
@@ -136,4 +137,13 @@ model GiveawayPost {
   aboutItem    String
   userEmail    String
   user         User     @relation(fields: [userEmail], references: [email])
+}
+
+model News {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  image     String
+  text      String
+  userEmail String
+  user      User     @relation(fields: [userEmail], references: [email])
 }

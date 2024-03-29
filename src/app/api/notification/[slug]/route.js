@@ -73,6 +73,32 @@ export const PUT = async (req, { params }) => {
         status: 201,
       });
     }
+    if (slug == "giveaway") {
+      await prisma.user.updateMany({
+        where: {
+          email: {
+            not: session.user.email,
+          },
+        },
+        data: { giveNotification: { increment: 1 } },
+      });
+      return new NextResponse(JSON.stringify({ message: "users notified" }), {
+        status: 201,
+      });
+    }
+    if (slug == "news") {
+      await prisma.user.updateMany({
+        where: {
+          email: {
+            not: session.user.email,
+          },
+        },
+        data: { newsNotification: { increment: 1 } },
+      });
+      return new NextResponse(JSON.stringify({ message: "users notified" }), {
+        status: 201,
+      });
+    }
   } catch (error) {
     return new NextResponse(
       JSON.stringify({ message: "Something went wrong" }, { status: 500 })

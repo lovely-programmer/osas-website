@@ -13,7 +13,7 @@ import {
 
 const storage = getStorage(app);
 
-export default function page() {
+export default function Giveaway() {
   const [file, setFile] = useState(null);
   const [media, setMedia] = useState("");
   const [giveawayItem, setGiveawayItem] = useState("");
@@ -98,29 +98,6 @@ export default function page() {
     <div className="wrapper">
       <div className={styles.container}>
         <div className={styles.header}>Giveaway</div>
-        <div className={styles.listContainer}>
-          <ul className={styles.questionList}>
-            <li>Do you have any item or goods to lease/rent out?</li>
-            <li>Do you know millions of person needs it</li>
-            <li>
-              Do you know you can make huge amount of money in leasing or
-              renting out
-            </li>
-          </ul>
-        </div>
-        <div className={styles.note}>
-          <span>Note:</span>
-          <ul>
-            <li>
-              Students Support is a Godly foundation, raised to help you make
-              money through leasing or Renting out your item or goods
-            </li>
-            <li>
-              Student Support helps you connect to people who need that item or
-              goods
-            </li>
-          </ul>
-        </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.previewImage}>
             Preview Image <img src={file} alt="" />

@@ -54,7 +54,7 @@
 }
 
 .person .notification {
-  background-color: var(--bg);
+  background-color: #07bc2f8c;
   border-radius: 3px;
   padding: 3px;
 }
@@ -262,9 +262,15 @@
     display: none !important;
   }
 
+  .searchContainer input {
+    background-color: var(--bg);
+  }
+
   .left {
     width: 100%;
     z-index: 0;
+    height: unset;
+    background-color: var(--bg);
   }
 
   .right {

@@ -61,6 +61,13 @@ export const POST = async (req, { params }) => {
       });
       return new NextResponse(JSON.stringify(post), { status: 201 });
     }
+
+    if (slug == "news") {
+      const post = await prisma.news.create({
+        data: { ...body, userEmail: session.user.email },
+      });
+      return new NextResponse(JSON.stringify(post), { status: 201 });
+    }
   } catch (error) {
     console.log(error);
     return new NextResponse(
@@ -106,6 +113,14 @@ export const GET = async (req, { params }) => {
 
     if (slug == "giveaway") {
       const posts = await prisma.giveawayPost.findMany({
+        orderBy: [{ createdAt: "desc" }],
+        include: { user: true },
+      });
+      return new NextResponse(JSON.stringify(posts), { status: 200 });
+    }
+
+    if (slug == "news") {
+      const posts = await prisma.news.findMany({
         orderBy: [{ createdAt: "desc" }],
         include: { user: true },
       });

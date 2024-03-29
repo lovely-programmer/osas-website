@@ -14,6 +14,7 @@ export default function Footer() {
   const skillNotification = user?.skillNotification - 1;
   const rentNotification = user?.rentNotification - 1;
   const marketNotification = user?.marketNotification - 1;
+  const giveNotification = user?.giveNotification - 1;
 
   const setSkillNotificationDefault = async (slug) => {
     if (skillNotification > 0) {
@@ -39,6 +40,14 @@ export default function Footer() {
     }
   };
 
+  const setGiveNotification = async (slug) => {
+    if (giveNotification > 0) {
+      await fetch(`/api/notification/update/${slug}`, {
+        method: "PUT",
+      });
+    }
+  };
+
   return (
     <>
       {status === "authenticated" && user?.createdSuccessfully == true && (
@@ -49,7 +58,9 @@ export default function Footer() {
           <div className="wrapper">
             <div className={styles.footerContainer}>
               <div>
-                <IoChatbubblesOutline />
+                <Link href="/contact">
+                  <IoChatbubblesOutline />
+                </Link>
                 <Link href="/contact">Customer Care</Link>
               </div>
               <div
@@ -83,14 +94,19 @@ export default function Footer() {
                   <div className={styles.ball}>{rentNotification}</div>
                 )}
               </div>
-              <div className={styles.ballDiv}>
+              <div
+                className={styles.ballDiv}
+                onClick={() => setGiveNotification("giveaway")}
+              >
                 <Link href="/posts/giveaway">
                   <LiaHandHoldingHeartSolid />
                 </Link>
                 <Link href="/posts/giveaway" className={styles.materials}>
                   Giveaway
                 </Link>
-                {/* <div className={styles.ball}>20</div> */}
+                {giveNotification > 0 && (
+                  <div className={styles.ball}>{giveNotification}</div>
+                )}
               </div>
               <div
                 className={styles.ballDiv}
