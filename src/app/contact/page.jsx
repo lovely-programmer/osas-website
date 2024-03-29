@@ -1,6 +1,9 @@
+"use client";
+import { getAUser } from "../../requests/requests";
 import styles from "./page.module.css";
 
 export default function Contact() {
+  const { user } = getAUser();
   const sendMail = () => {};
   return (
     <div className="wrapper">
@@ -13,11 +16,16 @@ export default function Contact() {
             <h2>Get in touch</h2>
             <form>
               <div className={styles.form__group}>
-                <input type="text" name="user_name" required />
+                <input value={user?.name} type="text" name="user_name" />
                 <label htmlFor="">Name</label>
               </div>
               <div className={styles.form__group}>
-                <input type="email" required name="user_email" />
+                <input
+                  value={user?.email}
+                  type="email"
+                  required
+                  name="user_email"
+                />
                 <label htmlFor="">Email</label>
               </div>
               <div className={styles.form__group}>

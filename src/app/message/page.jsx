@@ -297,19 +297,21 @@ export default function Message() {
                         className={styles.profileImg}
                       />
                       <div className={styles.personContainer_1}>
-                        <span>{chat[1].userInfo.name}</span>
-                        <div className={styles.person}>
-                          <p>
-                            {chat[1].lastMessage?.text
-                              ? chat[1].lastMessage?.text
-                              : "Click to start a conversation"}
-                          </p>
+                        <div className={styles.info}>
+                          <span>{chat[1].userInfo.name}</span>
                           {chat[1].unseenMessage?.data.number > 0 &&
                             chat[1].unseenMessage?.data?.id !== user?.email && (
                               <div className={styles.notification}>
                                 {chat[1].unseenMessage?.data.number}
                               </div>
                             )}
+                        </div>
+                        <div className={styles.person}>
+                          <p>
+                            {chat[1].lastMessage?.text
+                              ? chat[1].lastMessage?.text
+                              : "Click to start a conversation"}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -405,7 +407,7 @@ export default function Message() {
           {navUser && (
             <div className={styles.messageBox}>
               <div className={styles.form}>
-                <textarea
+                <input
                   onChange={(e) => setText(e.target.value)}
                   type="text"
                   autoFocus
@@ -421,9 +423,7 @@ export default function Message() {
                   accept="image/png, image/gif, image/jpeg"
                   onChange={(e) => setImg(e.target.files[0])}
                 />
-                <button type="button" onClick={() => handleSubmit(navUser)}>
-                  Submit
-                </button>
+                <button onClick={() => handleSubmit(navUser)}>Submit</button>
               </div>
             </div>
           )}
@@ -456,19 +456,21 @@ export default function Message() {
                         onClick={() => setShowChat(true)}
                         className={styles.personContainer_1}
                       >
-                        <span>{chat[1].userInfo.name}</span>
-                        <div className={styles.person}>
-                          <p>
-                            {chat[1].lastMessage?.text
-                              ? chat[1].lastMessage?.text
-                              : "Click to start a conversation"}
-                          </p>
+                        <div className={styles.info}>
+                          <span>{chat[1].userInfo.name}</span>
                           {chat[1].unseenMessage?.data.number > 0 &&
                             chat[1].unseenMessage?.data?.id !== user?.email && (
                               <div className={styles.notification}>
                                 {chat[1].unseenMessage?.data.number}
                               </div>
                             )}
+                        </div>
+                        <div className={styles.person}>
+                          <p>
+                            {chat[1].lastMessage?.text
+                              ? chat[1].lastMessage?.text
+                              : "Click to start a conversation"}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -569,7 +571,7 @@ export default function Message() {
 
             <div className={styles.messageBox}>
               <div className={styles.form}>
-                <textarea
+                <input
                   onChange={(e) => setText(e.target.value)}
                   type="text"
                   autoFocus
@@ -585,9 +587,7 @@ export default function Message() {
                   accept="image/png, image/gif, image/jpeg"
                   onChange={(e) => setImg(e.target.files[0])}
                 />
-                <button type="button" onClick={() => handleSubmit(navUser)}>
-                  Submit
-                </button>
+                <button onClick={() => handleSubmit(navUser)}>Submit</button>
               </div>
             </div>
           </div>

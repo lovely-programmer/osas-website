@@ -38,6 +38,7 @@
 
 .profile div {
   display: flex;
+  width: 100%;
 }
 
 .person {
@@ -53,14 +54,26 @@
   text-overflow: ellipsis;
 }
 
-.person .notification {
-  background-color: #07bc2f8c;
-  border-radius: 3px;
-  padding: 3px;
-}
 
 .personContainer_1 {
   overflow-x: scroll;
+}
+
+.personContainer_1 .info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.personContainer_1 .info span {
+  padding-right: 5px;
+}
+
+.personContainer_1 .info .notification {
+  background-color: #07bc2f8c;
+  border-radius: 3px;
+  padding: 3px 12px;
+  width: fit-content;
+  height: fit-content;
 }
 
 .personContainer_1::-webkit-scrollbar {
@@ -225,7 +238,7 @@
   background-color: var(--lightBg);
 }
 
-.messageBox textarea {
+.messageBox input {
   background-color: var(--lightBg);
   color: var(--textColor);
   outline: none;
@@ -336,7 +349,11 @@
     display: none;
   }
 
-  .mobileContainer .messageBox textarea {
+  /* .mobileContainer .messageBox {
+    bottom: 131px;
+  } */
+
+  .mobileContainer .messageBox input {
     width: 100% !important;
   }
 

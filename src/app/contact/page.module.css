@@ -52,7 +52,7 @@
 }
 
 .form__group label {
-  /* color: var(--bgColor); */
+  color: #0000008c;
   position: absolute;
   top: 1rem;
   left: 0;
