@@ -355,6 +355,7 @@
 
   .mobileContainer .messageBox input {
     width: 100% !important;
+    font-size: 18px;
   }
 
   .messageBox button {

@@ -37,6 +37,7 @@ export default function Message() {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
   const [imageUploading, setImageUploading] = useState(false);
+  const [focus, setFocus] = useState(true);
   const ref = useRef();
 
   useEffect(() => {
@@ -106,6 +107,7 @@ export default function Message() {
   console.log(unseenMessageCount[0]);
 
   const handleSubmit = async (receiver) => {
+    setFocus(true);
     // update array in firebase arrayUnion
 
     const upload = () => {
@@ -265,11 +267,15 @@ export default function Message() {
         }),
       });
     }
+
+    setTimeout(() => {
+      updateLastMessage();
+    }, 1500);
   };
 
-  useEffect(() => {
-    setTimeout(1500, updateLastMessage());
-  }, [handleDelete]);
+  // useEffect(() => {
+  //   setTimeout(1500, updateLastMessage());
+  // }, [handleDelete]);
 
   return (
     <>
@@ -408,7 +414,7 @@ export default function Message() {
                 <input
                   onChange={(e) => setText(e.target.value)}
                   type="text"
-                  autoFocus
+                  autoFocus={focus}
                   value={text}
                 />
                 <label htmlFor="photoImg">
@@ -572,7 +578,7 @@ export default function Message() {
                 <input
                   onChange={(e) => setText(e.target.value)}
                   type="text"
-                  autoFocus
+                  autoFocus={focus}
                   value={text}
                 />
                 <label htmlFor="photoImg">
