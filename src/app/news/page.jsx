@@ -14,7 +14,7 @@ export default function News() {
         {data &&
           data?.map((post) => (
             <div className={styles.post} key={post._id}>
-              {post.img && (
+              {post.image && (
                 <div className={styles.imgContainer}>
                   <img src={post.image} alt="" className={styles.img} />
                 </div>
