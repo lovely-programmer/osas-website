@@ -133,7 +133,7 @@ export default function Skills() {
           </div>
           <div className={styles.formgroup}>
             <label htmlFor="skills">What's your skill or service?</label>
-            <input
+            <textarea
               type="text"
               id="skills"
               placeholder="What's your skill or service"
@@ -143,7 +143,7 @@ export default function Skills() {
           </div>
           <div className={styles.formgroup}>
             <label htmlFor="location">What's your location?</label>
-            <input
+            <textarea
               type="text"
               id="location"
               placeholder="What's your location"
@@ -155,7 +155,7 @@ export default function Skills() {
             <label htmlFor="aboutService">
               Write something about your skill or service
             </label>
-            <input
+            <textarea
               type="text"
               id="aboutService"
               placeholder="Write something about your skill or service"

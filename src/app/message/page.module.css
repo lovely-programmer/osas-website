@@ -238,7 +238,7 @@
   background-color: var(--lightBg);
 }
 
-.messageBox input {
+.messageBox textarea {
   background-color: var(--lightBg);
   color: var(--textColor);
   outline: none;
@@ -349,11 +349,7 @@
     display: none;
   }
 
-  /* .mobileContainer .messageBox {
-    bottom: 131px;
-  } */
-
-  .mobileContainer .messageBox input {
+  .mobileContainer .messageBox textarea {
     width: 100% !important;
     font-size: 18px;
   }

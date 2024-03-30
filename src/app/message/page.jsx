@@ -37,8 +37,8 @@ export default function Message() {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
   const [imageUploading, setImageUploading] = useState(false);
-  const [focus, setFocus] = useState(true);
   const ref = useRef();
+  const inputRef = useRef(null);
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
@@ -104,10 +104,8 @@ export default function Message() {
     (one) => one[1].unseenMessage?.data?.number
   );
 
-  console.log(unseenMessageCount[0]);
-
   const handleSubmit = async (receiver) => {
-    setFocus(true);
+    inputRef?.current.focus();
     // update array in firebase arrayUnion
 
     const upload = () => {
@@ -411,11 +409,12 @@ export default function Message() {
           {navUser && (
             <div className={styles.messageBox}>
               <div className={styles.form}>
-                <input
+                <textarea
+                  ref={inputRef}
                   onChange={(e) => setText(e.target.value)}
-                  type="text"
-                  autoFocus={focus}
                   value={text}
+                  type="text"
+                  autoFocus
                 />
                 <label htmlFor="photoImg">
                   <IoMdAttach style={{ cursor: "pointer" }} />
@@ -427,7 +426,9 @@ export default function Message() {
                   accept="image/png, image/gif, image/jpeg"
                   onChange={(e) => setImg(e.target.files[0])}
                 />
-                <button onClick={() => handleSubmit(navUser)}>Submit</button>
+                <button type="button" onClick={() => handleSubmit(navUser)}>
+                  Submit
+                </button>
               </div>
             </div>
           )}
@@ -575,11 +576,12 @@ export default function Message() {
 
             <div className={styles.messageBox}>
               <div className={styles.form}>
-                <input
+                <textarea
+                  ref={inputRef}
                   onChange={(e) => setText(e.target.value)}
-                  type="text"
-                  autoFocus={focus}
                   value={text}
+                  type="text"
+                  autoFocus
                 />
                 <label htmlFor="photoImg">
                   <IoMdAttach style={{ cursor: "pointer" }} />

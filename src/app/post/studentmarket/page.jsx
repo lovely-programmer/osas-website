@@ -127,7 +127,7 @@ export default function StudentMarket() {
           </div>
           <div className={styles.formgroup}>
             <label htmlFor="market">What's your market?</label>
-            <input
+            <textarea
               type="text"
               id="market"
               placeholder="What's your market"
@@ -139,7 +139,7 @@ export default function StudentMarket() {
             <label htmlFor="aboutMarket">
               Write something about your market
             </label>
-            <input
+            <textarea
               type="text"
               id="aboutMarket"
               placeholder="Write something aboutyour market"

@@ -101,7 +101,7 @@ export default function News() {
           </div>
           <div className={styles.formgroup}>
             <label htmlFor="news">Latest Update</label>
-            <input
+            <textarea
               type="text"
               id="news"
               placeholder="Latest news"
@@ -115,7 +115,7 @@ export default function News() {
               type="file"
               id="newsbanner"
               accept="image/png, image/gif, image/jpeg"
-              required
+              // required
               onChange={handleChange}
             />
           </div>

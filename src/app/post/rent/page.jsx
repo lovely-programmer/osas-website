@@ -127,7 +127,7 @@ export default function page() {
           </div>
           <div className={styles.formgroup}>
             <label htmlFor="rent">What's do you want to rent</label>
-            <input
+            <textarea
               type="text"
               id="rent"
               placeholder="What's do you want to rent"
@@ -137,7 +137,7 @@ export default function page() {
           </div>
           <div className={styles.formgroup}>
             <label htmlFor="aboutRent">Write something about the item</label>
-            <input
+            <textarea
               type="text"
               id="aboutRent"
               placeholder="Write something about the item"

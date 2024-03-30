@@ -114,7 +114,20 @@
   background-color: var(--lightBg);
 }
 
+.formgroup textarea:last-child {
+  background-color: var(--lightBg);
+}
+
 .formgroup input {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  flex: 1;
+  color: var(--textColor);
+}
+
+.formgroup textarea {
   outline: none;
   border-radius: 5px;
   border: none;
@@ -162,6 +175,10 @@
   }
 
   .formgroup input {
+    width: 100%;
+  }
+
+  .formgroup textarea {
     width: 100%;
   }
 

@@ -104,7 +104,7 @@ export default function Giveaway() {
           </div>
           <div className={styles.formgroup}>
             <label htmlFor="giveaway">What's do you want to giveaway</label>
-            <input
+            <textarea
               type="text"
               id="giveaway"
               placeholder="What's do you want to giveaway"
@@ -116,7 +116,7 @@ export default function Giveaway() {
             <label htmlFor="aboutGiveawayItem">
               Write something about the item
             </label>
-            <input
+            <textarea
               type="text"
               id="aboutGiveawayItem"
               placeholder="Write something about the item"

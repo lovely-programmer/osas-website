@@ -130,7 +130,7 @@ export default function UsedItems() {
           </div>
           <div className={styles.formgroup}>
             <label htmlFor="usedItem">What's your used item?</label>
-            <input
+            <textarea
               type="text"
               id="usedItem"
               placeholder="What's your used item"
@@ -142,7 +142,7 @@ export default function UsedItems() {
             <label htmlFor="aboutItem">
               Write something about your used item
             </label>
-            <input
+            <textarea
               type="text"
               id="aboutItem"
               placeholder="Write something about your used item"
