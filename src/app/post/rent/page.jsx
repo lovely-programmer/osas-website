@@ -128,8 +128,9 @@ export default function page() {
           <div className={styles.formgroup}>
             <label htmlFor="rent">What's do you want to rent</label>
             <textarea
-              type="text"
               id="rent"
+              cols="20"
+              rows="5"
               placeholder="What's do you want to rent"
               required
               onChange={(e) => setRentItem(e.target.value)}
@@ -138,8 +139,9 @@ export default function page() {
           <div className={styles.formgroup}>
             <label htmlFor="aboutRent">Write something about the item</label>
             <textarea
-              type="text"
               id="aboutRent"
+              cols="20"
+              rows="5"
               placeholder="Write something about the item"
               required
               onChange={(e) => setAboutItem(e.target.value)}

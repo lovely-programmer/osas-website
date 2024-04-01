@@ -3,9 +3,9 @@ import styles from "./Post.module.css";
 import { useRouter } from "next/navigation";
 import { getAllOtherPosts, getPosts } from "../../requests/requests";
 
-export default function Post({ previewImage, post, option }) {
+export default function Post({ previewImage, post, option, slug }) {
   const { postMutate } = getPosts();
-  const { otherPostMutate } = getAllOtherPosts();
+  const { otherPostMutate } = getAllOtherPosts(slug);
   const router = useRouter();
   const heading =
     option == "useditem"
@@ -16,6 +16,10 @@ export default function Post({ previewImage, post, option }) {
       ? "My Market"
       : option == "rent"
       ? "Rent Item"
+      : option == "giveaway"
+      ? "Giveaway"
+      : option == "news"
+      ? "News"
       : "My Trade";
 
   const things =
@@ -27,6 +31,8 @@ export default function Post({ previewImage, post, option }) {
       ? post.market
       : option == "rent"
       ? post.rentItem
+      : option == "giveaway"
+      ? post.giveawayItem
       : post.myTrade;
 
   const aboutThings =
@@ -38,6 +44,10 @@ export default function Post({ previewImage, post, option }) {
       ? post.aboutMarket
       : option == "rent"
       ? post.aboutItem
+      : option == "giveaway"
+      ? post.aboutItem
+      : option == "news"
+      ? post?.text
       : post.myNeed;
 
   const handleDelete = async (id) => {
@@ -70,19 +80,29 @@ export default function Post({ previewImage, post, option }) {
           >
             Delete
           </span>
-          {/* <FaDeleteLeft onClick={() => handleDelete(post.id)} /> */}
         </div>
-        <div className={styles.trade}>
-          {heading}: {things}
-          {option == "skill" && <div>Location: {post.location} </div>}
+        {option == "news" ? (
+          <div className={styles.trade} style={{ marginBottom: "10px" }}>
+            {heading}: {things}
+            {option == "skill" && <div>Location: {post.location} </div>}
+          </div>
+        ) : (
+          <div className={styles.trade}>
+            {heading}: {things}
+            {option == "skill" && <div>Location: {post.location} </div>}
+          </div>
+        )}
+      </div>
+      {post.image && (
+        <div className={styles.tradeImgContainer}>
+          <Image src={post.image} alt="" fill className={styles.tradeImg} />
         </div>
-      </div>
-      <div className={styles.tradeImgContainer}>
-        <Image src={post.image} alt="" fill className={styles.tradeImg} />
-      </div>
+      )}
       <div className={styles.needs}>
         {option == "" || option == "myneed" ? (
           <span>MY NEEDS </span>
+        ) : option == "news" ? (
+          <span></span>
         ) : (
           <span className={styles.about}>about {option} </span>
         )}

@@ -34,6 +34,21 @@ export default function Profile() {
   const [state, setState] = useState(user.state);
   const storage = getStorage(app);
 
+  let slug =
+    option == "skill"
+      ? "skills"
+      : option == "useditem"
+      ? "usedItem"
+      : option == "market"
+      ? "market"
+      : option == "rent"
+      ? "rentItem"
+      : option == "giveaway"
+      ? "giveaway"
+      : option == "news"
+      ? "news"
+      : "";
+
   const handleRequest = () => {
     let slug =
       option == "skill"
@@ -44,6 +59,10 @@ export default function Profile() {
         ? "market"
         : option == "rent"
         ? "rentItem"
+        : option == "giveaway"
+        ? "giveaway"
+        : option == "news"
+        ? "news"
         : "";
     const { data } = getAllOtherPosts(slug);
     if (slug == "" || option == "myneed") return myPosts;
@@ -237,6 +256,8 @@ export default function Profile() {
             <option value="useditem">Free Used Item</option>
             <option value="market">My Market</option>
             <option value="rent">Rent</option>
+            {user.admin == true && <option value="giveaway">Giveaway</option>}
+            {user.admin == true && <option value="news">News</option>}
           </select>
           {isLoading && "Loading..."}
           {posts?.map((post) => (
@@ -245,6 +266,7 @@ export default function Profile() {
               previewImage={previewImage}
               post={post}
               option={option}
+              slug={slug}
             />
           ))}
         </div>

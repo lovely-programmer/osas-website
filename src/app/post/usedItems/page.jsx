@@ -131,7 +131,8 @@ export default function UsedItems() {
           <div className={styles.formgroup}>
             <label htmlFor="usedItem">What's your used item?</label>
             <textarea
-              type="text"
+              cols="20"
+              rows="5"
               id="usedItem"
               placeholder="What's your used item"
               required
@@ -143,7 +144,8 @@ export default function UsedItems() {
               Write something about your used item
             </label>
             <textarea
-              type="text"
+              cols="20"
+              rows="5"
               id="aboutItem"
               placeholder="Write something about your used item"
               required

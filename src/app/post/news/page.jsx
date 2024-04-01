@@ -85,7 +85,22 @@ export default function News() {
       );
     };
 
-    upload();
+    file && upload();
+
+    if (file == null) {
+      const res = await fetch(`/api/posts/${slug}`, {
+        method: "POST",
+        body: JSON.stringify({
+          text,
+        }),
+      });
+
+      await fetch(`/api/notification/${slug}`, {
+        method: "PUT",
+      });
+
+      setIsLoading(false);
+    }
   };
 
   if (isLoading) {
@@ -105,6 +120,8 @@ export default function News() {
               type="text"
               id="news"
               placeholder="Latest news"
+              cols="20"
+              rows="5"
               required
               onChange={(e) => setText(e.target.value)}
             />

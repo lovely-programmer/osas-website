@@ -129,7 +129,8 @@ export default function TradePost() {
           <div className={styles.formgroup}>
             <label htmlFor="yourTrade">What's your Trade?</label>
             <textarea
-              type="text"
+              cols="20"
+              rows="5"
               id="yourTrade"
               placeholder="What's your trade, goods, skills, services"
               required
@@ -139,7 +140,8 @@ export default function TradePost() {
           <div className={styles.formgroup}>
             <label htmlFor="yourNeed">What's your Need?</label>
             <textarea
-              type="text"
+              cols="20"
+              rows="5"
               id="yourNeed"
               placeholder="What's your needs?"
               required

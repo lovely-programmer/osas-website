@@ -8,6 +8,7 @@ import NextAuth from "../utils/NextAuth";
 import ShowFooter from "../utils/Footer";
 import { ImageContextProvider } from "../context/ImageContext";
 import ShowNavbar from "../utils/Navbar";
+import { MessagerContextProvider } from "../context/MessangeUserContext";
 
 export const metadata = {
   title: "Student Support",
@@ -22,14 +23,16 @@ export default function RootLayout({ children }) {
           <ThemeContextProvider>
             <ImageContextProvider>
               <ThemeProvider>
-                <NextAuth>
-                  <div className="container">
-                    <ShowNavbar />
-                    {children}
-                    <ShowFooter />
-                  </div>
-                </NextAuth>
-                <ToastContainer />
+                <MessagerContextProvider>
+                  <NextAuth>
+                    <div className="container">
+                      <ShowNavbar />
+                      {children}
+                      <ShowFooter />
+                    </div>
+                  </NextAuth>
+                  <ToastContainer />
+                </MessagerContextProvider>
               </ThemeProvider>
             </ImageContextProvider>
           </ThemeContextProvider>
