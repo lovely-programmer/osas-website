@@ -46,7 +46,7 @@ export default function Sidebar() {
       await updateDoc(doc(db, "userChats", data.userInfo?.email), {
         [combinedId + ".unseenMessage"]: {
           data: {
-            id: data.userInfo.email,
+            id: data.userInfo?.email,
             number: 0,
           },
         },
