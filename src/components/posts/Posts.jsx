@@ -93,7 +93,9 @@ export default function Posts({ post }) {
           </div>
           <div className={styles.needs}>
             <span>MY EXCHANGE NEEDS </span>
-            <div>{post.myNeed}</div>
+            <div style={{ whiteSpace: "pre-wrap", lineHeight: "24px" }}>
+              {post.myNeed}
+            </div>
           </div>
           {user.id !== post.user.id && (
             <button

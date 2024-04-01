@@ -38,9 +38,9 @@ model Session {
 }
 
 model User {
-  id                   String              @id @default(cuid()) @map("_id")
+  id                   String                 @id @default(cuid()) @map("_id")
   name                 String?
-  email                String              @unique
+  email                String                 @unique
   emailVerified        DateTime?
   image                String?
   institution          String?
@@ -50,15 +50,8 @@ model User {
   age                  String?
   country              String?
   state                String?
-  createdSuccessfully  Boolean             @default(false)
-  postNotification     Int                 @default(1)
-  skillNotification    Int                 @default(1)
-  usedItemNotification Int                 @default(1)
-  marketNotification   Int                 @default(1)
-  rentNotification     Int                 @default(1)
-  giveNotification     Int                 @default(1)
-  newsNotification     Int                 @default(1)
-  admin                Boolean             @default(false)
+  createdSuccessfully  Boolean                @default(false)
+  admin                Boolean                @default(false)
   accounts             Account[]
   sessions             Session[]
   Post                 Post[]
@@ -68,6 +61,13 @@ model User {
   RentPost             RentPost[]
   GiveawayPost         GiveawayPost[]
   News                 News[]
+  postNotification     Int                 @default(0)
+  skillNotification    Int                 @default(0)
+  usedItemNotification Int                 @default(0)
+  marketNotification   Int                 @default(0)
+  rentNotification     Int                 @default(0)
+  giveNotification     Int                 @default(0)
+  newsNotification     Int                 @default(0)
 }
 
 model VerificationToken {
@@ -147,3 +147,4 @@ model News {
   userEmail String
   user      User     @relation(fields: [userEmail], references: [email])
 }
+

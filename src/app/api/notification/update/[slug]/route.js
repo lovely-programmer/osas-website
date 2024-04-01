@@ -10,7 +10,7 @@ export const PUT = async (req, { params }) => {
     if (slug == "need") {
       await prisma.user.update({
         where: { email: session.user.email },
-        data: { postNotification: 1 },
+        data: { postNotification: 0 },
       });
       return new NextResponse(JSON.stringify({ message: "updated" }), {
         status: 201,
@@ -19,7 +19,7 @@ export const PUT = async (req, { params }) => {
     if (slug == "skills") {
       await prisma.user.update({
         where: { email: session.user.email },
-        data: { skillNotification: 1 },
+        data: { skillNotification: 0 },
       });
       return new NextResponse(JSON.stringify({ message: "updated" }), {
         status: 201,
@@ -28,7 +28,7 @@ export const PUT = async (req, { params }) => {
     if (slug == "usedItem") {
       await prisma.user.update({
         where: { email: session.user.email },
-        data: { usedItemNotification: 1 },
+        data: { usedItemNotification: 0 },
       });
       return new NextResponse(JSON.stringify({ message: "updated" }), {
         status: 201,
@@ -37,7 +37,7 @@ export const PUT = async (req, { params }) => {
     if (slug == "market") {
       await prisma.user.update({
         where: { email: session.user.email },
-        data: { marketNotification: 1 },
+        data: { marketNotification: 0 },
       });
       return new NextResponse(JSON.stringify({ message: "updated" }), {
         status: 201,
@@ -46,7 +46,7 @@ export const PUT = async (req, { params }) => {
     if (slug == "rentItem") {
       await prisma.user.update({
         where: { email: session.user.email },
-        data: { rentNotification: 1 },
+        data: { rentNotification: 0 },
       });
       return new NextResponse(JSON.stringify({ message: "updated" }), {
         status: 201,
@@ -55,7 +55,7 @@ export const PUT = async (req, { params }) => {
     if (slug == "giveaway") {
       await prisma.user.update({
         where: { email: session.user.email },
-        data: { giveNotification: 1 },
+        data: { giveNotification: 0 },
       });
       return new NextResponse(JSON.stringify({ message: "updated" }), {
         status: 201,
@@ -64,7 +64,7 @@ export const PUT = async (req, { params }) => {
     if (slug == "news") {
       await prisma.user.update({
         where: { email: session.user.email },
-        data: { newsNotification: 1 },
+        data: { newsNotification: 0 },
       });
       return new NextResponse(JSON.stringify({ message: "updated" }), {
         status: 201,

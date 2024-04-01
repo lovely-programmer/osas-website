@@ -134,6 +134,7 @@
   padding: 10px;
   flex: 1;
   color: var(--textColor);
+  white-space: pre-wrap;
 }
 
 .button {

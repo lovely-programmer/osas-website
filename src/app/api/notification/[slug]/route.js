@@ -8,7 +8,7 @@ export const PUT = async (req, { params }) => {
 
   try {
     if (slug == "need") {
-      await prisma.user.updateMany({
+      const data = await prisma.user.update({
         where: {
           email: {
             not: session.user.email,
@@ -16,13 +16,13 @@ export const PUT = async (req, { params }) => {
         },
         data: { postNotification: { increment: 1 } },
       });
-      return new NextResponse(JSON.stringify({ message: "users notified" }), {
+      return new NextResponse(JSON.stringify(data), {
         status: 201,
       });
     }
 
     if (slug == "skills") {
-      await prisma.user.updateMany({
+      const data = await prisma.user.updateMany({
         where: {
           email: {
             not: session.user.email,
@@ -30,12 +30,12 @@ export const PUT = async (req, { params }) => {
         },
         data: { skillNotification: { increment: 1 } },
       });
-      return new NextResponse(JSON.stringify({ message: "users notified" }), {
+      return new NextResponse(JSON.stringify(data), {
         status: 201,
       });
     }
     if (slug == "usedItem") {
-      await prisma.user.updateMany({
+      const data = await prisma.user.updateMany({
         where: {
           email: {
             not: session.user.email,
@@ -43,12 +43,12 @@ export const PUT = async (req, { params }) => {
         },
         data: { usedItemNotification: { increment: 1 } },
       });
-      return new NextResponse(JSON.stringify({ message: "users notified" }), {
+      return new NextResponse(JSON.stringify(data), {
         status: 201,
       });
     }
     if (slug == "market") {
-      await prisma.user.updateMany({
+      const data = await prisma.user.updateMany({
         where: {
           email: {
             not: session.user.email,
@@ -56,12 +56,12 @@ export const PUT = async (req, { params }) => {
         },
         data: { marketNotification: { increment: 1 } },
       });
-      return new NextResponse(JSON.stringify({ message: "users notified" }), {
+      return new NextResponse(JSON.stringify(data), {
         status: 201,
       });
     }
     if (slug == "rentItem") {
-      await prisma.user.updateMany({
+      const data = await prisma.user.updateMany({
         where: {
           email: {
             not: session.user.email,
@@ -69,12 +69,12 @@ export const PUT = async (req, { params }) => {
         },
         data: { rentNotification: { increment: 1 } },
       });
-      return new NextResponse(JSON.stringify({ message: "users notified" }), {
+      return new NextResponse(JSON.stringify(data), {
         status: 201,
       });
     }
     if (slug == "giveaway") {
-      await prisma.user.updateMany({
+      const data = await prisma.user.updateMany({
         where: {
           email: {
             not: session.user.email,
@@ -82,12 +82,12 @@ export const PUT = async (req, { params }) => {
         },
         data: { giveNotification: { increment: 1 } },
       });
-      return new NextResponse(JSON.stringify({ message: "users notified" }), {
+      return new NextResponse(JSON.stringify(data), {
         status: 201,
       });
     }
     if (slug == "news") {
-      await prisma.user.updateMany({
+      const data = await prisma.user.updateMany({
         where: {
           email: {
             not: session.user.email,
@@ -95,7 +95,7 @@ export const PUT = async (req, { params }) => {
         },
         data: { newsNotification: { increment: 1 } },
       });
-      return new NextResponse(JSON.stringify({ message: "users notified" }), {
+      return new NextResponse(JSON.stringify(data), {
         status: 201,
       });
     }

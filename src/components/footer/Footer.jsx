@@ -2,7 +2,7 @@
 import Link from "next/link";
 import styles from "./footer.module.css";
 import { IoChatbubblesOutline, IoNewspaperOutline } from "react-icons/io5";
-import { MdOutlineSchool, MdOutlineWorkOutline } from "react-icons/md";
+import { MdOutlineWorkOutline } from "react-icons/md";
 import { LiaHandHoldingHeartSolid } from "react-icons/lia";
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { useSession } from "next-auth/react";
@@ -12,10 +12,10 @@ import { usePathname, useSearchParams } from "next/navigation";
 export default function Footer() {
   const { status } = useSession();
   const { user } = getAUser();
-  const skillNotification = user?.skillNotification - 1;
-  const rentNotification = user?.rentNotification - 1;
-  const marketNotification = user?.marketNotification - 1;
-  const giveNotification = user?.giveNotification - 1;
+  const skillNotification = user?.skillNotification;
+  const rentNotification = user?.rentNotification;
+  const marketNotification = user?.marketNotification;
+  const giveNotification = user?.giveNotification;
 
   const pathname = usePathname();
   const searchParams = useSearchParams();

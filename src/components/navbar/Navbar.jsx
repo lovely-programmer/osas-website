@@ -19,8 +19,8 @@ export default function Navbar() {
   const { user } = getAUser();
   const pathname = usePathname();
   const router = useRouter();
-  const usedItemNotification = user?.usedItemNotification - 1;
-  const newsNotification = user?.newsNotification - 1;
+  const usedItemNotification = user?.usedItemNotification;
+  const newsNotification = user?.newsNotification;
   const [chats, setChats] = useState();
   const [message, setMessage] = useState([]);
 

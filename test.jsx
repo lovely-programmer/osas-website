@@ -602,3 +602,52 @@ export default function Message() {
     </>
   );
 }
+
+// model postNotification {
+//   id        String   @id @default(cuid()) @map("_id")
+//   createdAt DateTime @default(now())
+//   senderId  String
+//   user      User     @relation(fields: [senderId], references: [email])
+// }
+
+// model skillNotification {
+//   id        String   @id @default(cuid()) @map("_id")
+//   createdAt DateTime @default(now())
+//   senderId  String
+//   user      User     @relation(fields: [senderId], references: [email])
+// }
+
+// model usedItemNotification {
+//   id        String   @id @default(cuid()) @map("_id")
+//   createdAt DateTime @default(now())
+//   senderId  String
+//   user      User     @relation(fields: [senderId], references: [email])
+// }
+
+// model marketNotification {
+//   id        String   @id @default(cuid()) @map("_id")
+//   createdAt DateTime @default(now())
+//   senderId  String
+//   user      User     @relation(fields: [senderId], references: [email])
+// }
+
+// model rentNotification {
+//   id        String   @id @default(cuid()) @map("_id")
+//   createdAt DateTime @default(now())
+//   senderId  String
+//   user      User     @relation(fields: [senderId], references: [email])
+// }
+
+// model giveNotification {
+//   id        String   @id @default(cuid()) @map("_id")
+//   createdAt DateTime @default(now())
+//   senderId  String
+//   user      User     @relation(fields: [senderId], references: [email])
+// }
+
+// model newsNotification {
+//   id        String   @id @default(cuid()) @map("_id")
+//   createdAt DateTime @default(now())
+//   senderId  String
+//   user      User     @relation(fields: [senderId], references: [email])
+// }
