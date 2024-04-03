@@ -50,7 +50,7 @@ export default function Sidebar() {
             number: 0,
           },
         },
-        [combinedId + ".date"]: serverTimestamp(),
+        // [combinedId + ".date"]: serverTimestamp(),
       });
       await updateDoc(doc(db, "userChats", user?.email), {
         [combinedId + ".unseenMessage"]: {
@@ -59,7 +59,7 @@ export default function Sidebar() {
             number: 0,
           },
         },
-        [combinedId + ".date"]: serverTimestamp(),
+        // [combinedId + ".date"]: serverTimestamp(),
       });
     };
     update();
