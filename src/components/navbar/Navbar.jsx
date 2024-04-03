@@ -55,11 +55,11 @@ export default function Navbar() {
       const count =
         chats &&
         Object.entries(chats)?.filter(
-          (chat) => chat[1].unseenMessage.data?.id !== user?.email
+          (chat) => chat[1].unseenMessage?.data?.id !== user?.email
         );
 
       const unseenMessages = count?.map(
-        (chat) => chat[1].unseenMessage.data?.number
+        (chat) => chat[1].unseenMessage?.data?.number
       );
 
       setMessage(unseenMessages);
