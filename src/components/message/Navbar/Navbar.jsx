@@ -15,13 +15,13 @@ export default function Navbar() {
           <div className={styles.profile}>
             <div>
               <Image
-                src={data.userInfo.image}
+                src={data?.userInfo?.image}
                 width={50}
                 height={50}
                 className={styles.profileImg}
               />
               <div className={styles.personContainer}>
-                <span>{data.userInfo.name}</span>
+                <span>{data?.userInfo?.name}</span>
                 {/* <div className={styles.person}>online</div> */}
               </div>
             </div>

@@ -21,7 +21,7 @@ export default function Sidebar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const messageUserId = data.userInfo?.id;
+  const messageUserId = data?.userInfo?.id;
 
   const url = pathname + searchParams;
   const messagePage = url.split("/");
@@ -43,10 +43,10 @@ export default function Sidebar() {
 
   const handleSelect = (u) => {
     const update = async () => {
-      await updateDoc(doc(db, "userChats", data.userInfo?.email), {
+      await updateDoc(doc(db, "userChats", data?.userInfo?.email), {
         [combinedId + ".unseenMessage"]: {
           data: {
-            id: data.userInfo?.email,
+            id: data?.userInfo?.email,
             number: 0,
           },
         },
@@ -55,7 +55,7 @@ export default function Sidebar() {
       await updateDoc(doc(db, "userChats", user?.email), {
         [combinedId + ".unseenMessage"]: {
           data: {
-            id: data.userInfo?.email,
+            id: data?.userInfo?.email,
             number: 0,
           },
         },

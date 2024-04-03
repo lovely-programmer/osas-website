@@ -30,7 +30,7 @@ const storage = getStorage(app);
 export default function page() {
   const { user } = getAUser();
   const { data } = useContext(MessagerContext);
-  const messageUserId = data.userInfo.id;
+  const messageUserId = data?.userInfo?.id;
   const [messages, setMessages] = useState([]);
   const [chats, setChats] = useState([]);
   const [text, setText] = useState("");
@@ -67,7 +67,7 @@ export default function page() {
   }, [combinedId]);
 
   const getOnlyone = Object.entries(chats)?.filter(
-    (c) => c[1].userInfo.email === data.userInfo.email
+    (c) => c[1].userInfo.email === data?.userInfo?.email
   );
 
   const unseenMessageCount = getOnlyone.map(
@@ -131,7 +131,7 @@ export default function page() {
         [combinedId + ".date"]: serverTimestamp(),
       });
 
-      await updateDoc(doc(db, "userChats", data.userInfo.email), {
+      await updateDoc(doc(db, "userChats", data?.userInfo?.email), {
         [combinedId + ".unseenMessage"]: {
           data: {
             id: user?.email,
@@ -151,7 +151,7 @@ export default function page() {
         [combinedId + ".date"]: serverTimestamp(),
       });
 
-      await updateDoc(doc(db, "userChats", data.userInfo.email), {
+      await updateDoc(doc(db, "userChats", data?.userInfo?.email), {
         [combinedId + ".unseenMessage"]: {
           data: {
             id: user?.email,
@@ -181,7 +181,7 @@ export default function page() {
         [combinedId + ".date"]: serverTimestamp(),
       });
 
-      await updateDoc(doc(db, "userChats", data.userInfo.email), {
+      await updateDoc(doc(db, "userChats", data?.userInfo?.email), {
         [combinedId + ".lastMessage"]: {
           text,
         },
@@ -206,7 +206,7 @@ export default function page() {
         },
       });
 
-      await updateDoc(doc(db, "userChats", data.userInfo.email), {
+      await updateDoc(doc(db, "userChats", data?.userInfo?.email), {
         [combinedId + ".lastMessage"]: {
           text: lastMessage?.text,
         },
