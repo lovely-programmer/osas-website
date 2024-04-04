@@ -12,7 +12,8 @@ import { MessagerContextProvider } from "../context/MessangeUserContext";
 
 export const metadata = {
   title: "Student Support",
-  description: "This is My App",
+  description:
+    "Student Support is a Godly foundation raised to help or assist student at all time. It is seasoned through appropriate support systems. The Emerging of the support foundation is Emboided in creating assistance to student through the platform to help in their academic journey",
 };
 
 export default function RootLayout({ children }) {
