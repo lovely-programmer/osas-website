@@ -1,5 +1,5 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styles from "./searchbox.module.css";
 import { IoIosSearch } from "react-icons/io";
 import { SearchContext } from "../../context/SearchContext";
