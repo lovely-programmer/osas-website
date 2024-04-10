@@ -9,6 +9,7 @@ import ShowFooter from "../utils/Footer";
 import { ImageContextProvider } from "../context/ImageContext";
 import ShowNavbar from "../utils/Navbar";
 import { MessagerContextProvider } from "../context/MessangeUserContext";
+import { SearchContextProvider } from "../context/SearchContext";
 
 export const metadata = {
   title: "Student Support",
@@ -25,14 +26,16 @@ export default function RootLayout({ children }) {
             <ImageContextProvider>
               <ThemeProvider>
                 <MessagerContextProvider>
-                  <NextAuth>
-                    <div className="container">
-                      <ShowNavbar />
-                      {children}
-                      <ShowFooter />
-                    </div>
-                  </NextAuth>
-                  <ToastContainer />
+                  <SearchContextProvider>
+                    <NextAuth>
+                      <div className="container">
+                        <ShowNavbar />
+                        {children}
+                        <ShowFooter />
+                      </div>
+                    </NextAuth>
+                    <ToastContainer />
+                  </SearchContextProvider>
                 </MessagerContextProvider>
               </ThemeProvider>
             </ImageContextProvider>

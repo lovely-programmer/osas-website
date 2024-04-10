@@ -170,7 +170,8 @@
   margin-bottom: 20px;
   cursor: pointer;
   flex-direction: column-reverse;
-  /* max-width: 50%; */
+  /*  important change */
+  max-width: 100%;
 }
 
 .right .chats .chatRight .rightText p,

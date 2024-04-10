@@ -11,7 +11,7 @@ import {
 import { db } from "../../utils/firebase";
 import { getAUser } from "../../requests/requests";
 import { useRouter, usePathname } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ImageContext } from "../../context/ImageContext";
 
 export default function Posts({ post }) {

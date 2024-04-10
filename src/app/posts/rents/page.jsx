@@ -5,8 +5,9 @@ import { getAUser, getAllOtherPosts } from "../../../requests/requests";
 import Spinner from "../../../components/spinner/Spinner";
 import Carousel from "../../../components/carousel/Carousel";
 import { usePathname, useRouter } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { ImageContext } from "../../../context/ImageContext";
+import { SearchContext } from "../../../context/SearchContext";
 
 export default function Rents() {
   const { user } = getAUser();
@@ -17,6 +18,16 @@ export default function Rents() {
   const { dispatch } = useContext(ImageContext);
   const router = useRouter();
   const pathname = usePathname();
+
+  const { data: search } = useContext(SearchContext);
+
+  const searchItems = useMemo(
+    () =>
+      data?.filter((p) => {
+        return p.rentItem.toLowerCase().includes(search.text.toLowerCase());
+      }),
+    [data, search]
+  );
 
   const showImagePage = (post) => {
     const data = { id: post.id, image: post.image, pathname };
@@ -72,43 +83,42 @@ export default function Rents() {
       <Carousel carousel="/jane.jpg" />
       <div className="wrapper">
         <div className={styles.container}>
-          {data &&
-            data?.map((post) => (
-              <div className={styles.post} key={post._id}>
-                <div className={styles.profile}>
-                  <div>
-                    <Image
-                      src={post.user.image}
-                      width={50}
-                      height={50}
-                      className={styles.profileImg}
-                    />{" "}
-                    {post.user.name}
-                  </div>
-                  <div className={styles.box_1}>
-                    <span>rent item:</span> {post.rentItem}
-                  </div>
-                </div>
-                <div className={styles.imgContainer}>
+          {searchItems?.map((post) => (
+            <div className={styles.post} key={post._id}>
+              <div className={styles.profile}>
+                <div>
                   <Image
-                    onClick={() => showImagePage(post)}
-                    src={post.image}
-                    alt=""
-                    fill
-                    className={styles.img}
-                  />
+                    src={post.user.image}
+                    width={50}
+                    height={50}
+                    className={styles.profileImg}
+                  />{" "}
+                  {post.user.name}
                 </div>
-                <div className={styles.about}>{post.aboutItem}</div>
-                {user.id !== post.user.id && (
-                  <button
-                    onClick={() => handleSelect(post.user)}
-                    className={styles.button}
-                  >
-                    Message
-                  </button>
-                )}
+                <div className={styles.box_1}>
+                  <span>rent item:</span> {post.rentItem}
+                </div>
               </div>
-            ))}
+              <div className={styles.imgContainer}>
+                <Image
+                  onClick={() => showImagePage(post)}
+                  src={post.image}
+                  alt=""
+                  fill
+                  className={styles.img}
+                />
+              </div>
+              <div className={styles.about}>{post.aboutItem}</div>
+              {user.id !== post.user.id && (
+                <button
+                  onClick={() => handleSelect(post.user)}
+                  className={styles.button}
+                >
+                  Message
+                </button>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </>
