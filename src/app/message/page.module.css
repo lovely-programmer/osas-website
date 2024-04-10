@@ -127,15 +127,12 @@
   display: flex;
   justify-content: space-between;
   margin-right: 20px;
-  position: fixed;
-  top: 0;
-  z-index: 1;
 }
 
 .right .chats {
-  padding-top: 20px;
+  padding-top: 100px;
   margin-left: 10px;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 45px);
   overflow-y: scroll;
 }
 
