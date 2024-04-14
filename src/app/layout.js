@@ -17,6 +17,13 @@ export const metadata = {
     "Student Support is a Godly foundation raised to help or assist student at all time. It is seasoned through appropriate support systems. The Emerging of the support foundation is Emboided in creating assistance to student through the platform to help in their academic journey",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
