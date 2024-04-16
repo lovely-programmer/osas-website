@@ -102,10 +102,10 @@ export default function Navbar() {
                 )}
                 <span>Message</span>
               </Link>
-              <Link className={styles.messageLink} href="/connect">
+              {/* <Link className={styles.messageLink} href="/connect">
                 <VscDebugDisconnect />
                 <span>Connect</span>
-              </Link>
+              </Link> */}
               <Link
                 className={styles.messageLink}
                 href="/news"

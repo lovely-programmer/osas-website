@@ -32,9 +32,9 @@ export default function AuthLinks() {
       {status === "authenticated" && user?.createdSuccessfully == true && (
         <>
           <div className={styles.container}>
-            <Link className={styles.link} href="/subscribe">
+            {/* <Link className={styles.link} href="/subscribe">
               Subscribe
-            </Link>
+            </Link> */}
             <Link className={styles.link} href="/post">
               Post
             </Link>
@@ -70,9 +70,9 @@ export default function AuthLinks() {
             {status !== "unauthorized" && (
               <>
                 <div className={styles.menuContainer}>
-                  <Link href="/message" onClick={() => setOpen(!open)}>
+                  {/* <Link href="/message" onClick={() => setOpen(!open)}>
                     Subscribe
-                  </Link>
+                  </Link> */}
                   <Link href="/post" onClick={() => setOpen(!open)}>
                     Post
                   </Link>
