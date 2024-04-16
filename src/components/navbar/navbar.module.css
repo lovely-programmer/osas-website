@@ -146,18 +146,18 @@
 
   .messageLink span,
   .giveLink {
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 
 @media screen and (max-width: 440px) {
-  .logo {
+  /* .logo {
     font-size: 12px;
     margin-right: 10px;
-  }
+  } */
 
-  .messageLink span,
+  /* .messageLink span,
   .giveLink {
     font-size: 9px;
-  }
+  } */
 }
