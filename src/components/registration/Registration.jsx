@@ -12,6 +12,8 @@ import { getAUser } from "../../requests/requests";
 export default function Registration() {
   const { user } = getAUser();
   const [institution, setInstitution] = useState("");
+  const [department, setDepartment] = useState("");
+  const [skill, setSkill] = useState("");
   const [dob, setDob] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [whatsappNumber, setWhatsappNumber] = useState("");
@@ -34,6 +36,7 @@ export default function Registration() {
 
   const userData = {
     institution,
+    department,
     dob,
     phoneNumber,
     whatsappNumber,
@@ -69,7 +72,9 @@ export default function Registration() {
         <h2>Welcome to student support, kindly fill in your info</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.formgroup}>
-            <label htmlFor="institution">Institution</label>
+            <label htmlFor="institution">
+              Institution (University student only)
+            </label>
             <input
               placeholder="e.g University of Benin"
               required
@@ -77,6 +82,30 @@ export default function Registration() {
               id="institution"
               value={institution}
               onChange={(e) => setInstitution(e.target.value)}
+            />
+          </div>
+          <div className={styles.formgroup}>
+            <label htmlFor="department">
+              Department (University student only)
+            </label>
+            <input
+              placeholder="e.g Department of Mechanical Engineering"
+              required
+              type="text"
+              id="department"
+              value={department}
+              onChange={(e) => setDepartment(e.target.value)}
+            />
+          </div>
+          <div className={styles.formgroup}>
+            <label htmlFor="skill">Skills (optional)</label>
+            <input
+              placeholder="e.g Web developer"
+              required
+              type="text"
+              id="skill"
+              value={skill}
+              onChange={(e) => skill(e.target.value)}
             />
           </div>
           <div className={styles.formgroup}>

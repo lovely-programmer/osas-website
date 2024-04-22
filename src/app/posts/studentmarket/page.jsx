@@ -2,6 +2,14 @@
 import Image from "next/image";
 import styles from "../post.module.css";
 import { getAUser, getAllOtherPosts } from "../../../requests/requests";
+import {
+  doc,
+  getDoc,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "../../../utils/firebase";
 import Spinner from "../../../components/spinner/Spinner";
 import Carousel from "../../../components/carousel/Carousel";
 import { useContext, useMemo } from "react";

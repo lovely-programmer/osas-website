@@ -23,11 +23,20 @@ export const getUser = (email) => {
   };
 };
 
-export const getAUser = (email) => {
+export const getAUser = () => {
   const { data, error, isLoading } = useSWR(`${url}/api/user`, fetcher);
 
   return {
     user: data,
+    isLoading,
+  };
+};
+
+export const getAllUser = () => {
+  const { data, error, isLoading } = useSWR(`${url}/api/user/allUser`, fetcher);
+
+  return {
+    allUser: data,
     isLoading,
   };
 };

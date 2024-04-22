@@ -247,7 +247,11 @@ export default function page() {
       {/* <Sidebar /> */}
       <div className={styles.right}>
         <Navbar />
-        <div className={styles.chats}>
+        <div
+          className={`${styles.chats} ${
+            document.activeElement === inputRef?.current && "smallChat"
+          }`}
+        >
           <div className={styles.chatTop}>
             <div>
               {messages.map((m) => (

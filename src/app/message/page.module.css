@@ -132,8 +132,9 @@
 .right .chats {
   padding-top: 100px;
   margin-left: 10px;
-  height: calc(100vh - 45px);
+  height: calc(100vh - 80px);
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 /* .right .chats .chatTop {
@@ -245,7 +246,6 @@
   margin-right: 20px;
 }
 
-/* @media screen and (max-width: 640px) { */
 .searchContainer input {
   background-color: var(--bg);
 }
@@ -267,55 +267,4 @@
 
 .personContainer span {
   font-size: 16px;
-}
-
-.mobileContainer .right .container {
-  display: block !important;
-  position: fixed;
-  z-index: 1;
-}
-
-.mobileContainer .right .header {
-  font-size: 25px;
-  cursor: pointer;
-  margin-left: 20px;
-  width: unset;
-}
-
-.mobileContainer .right .header svg {
-  display: flex;
-}
-
-.mobileContainer .right .chats {
-  margin-left: 20px;
-  overflow-y: scroll;
-  padding-bottom: 0;
-  height: 100%;
-}
-
-.mobileContainer .right .chats .chatTop {
-  padding-top: 80px;
-  padding-bottom: 70px;
-}
-
-.mobileContainer .right .chats .chatTop p {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  gap: 3px;
-}
-
-.mobileContainer .right .chats .chatTop p .p_icon svg {
-  fill: #601463;
-  font-size: 20px;
-}
-
-.mobileContainer .right .chats .chatTop p .p_icon {
-  display: flex;
-  align-items: center;
-}
-
-.mobileContainer .right .chats::-webkit-scrollbar {
-  display: none;
 }

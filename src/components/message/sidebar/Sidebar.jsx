@@ -8,6 +8,7 @@ import { db } from "../../../utils/firebase";
 import styles from "../page.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Sidebar() {
   const { user } = getAUser();
@@ -78,7 +79,10 @@ export default function Sidebar() {
   return (
     // !messagePage && (
     <div className={styles.left}>
-      <h4>Chats</h4>
+      <div className={styles.topLeft}>
+        <h4>Chats</h4>
+        <Link href="/">Home</Link>
+      </div>
       <div className={styles.searchContainer}>
         <IoIosSearch />
         <input

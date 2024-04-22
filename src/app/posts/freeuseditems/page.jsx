@@ -2,12 +2,20 @@
 import Image from "next/image";
 import styles from "../post.module.css";
 import { getAUser, getAllOtherPosts } from "../../../requests/requests";
+import {
+  doc,
+  getDoc,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import Spinner from "../../../components/spinner/Spinner";
 import Carousel from "../../../components/carousel/Carousel";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext, useMemo } from "react";
 import { ImageContext } from "../../../context/ImageContext";
 import { SearchContext } from "../../../context/SearchContext";
+import { db } from "../../../utils/firebase";
 
 export default function FreeUsedItems() {
   const { user } = getAUser();
