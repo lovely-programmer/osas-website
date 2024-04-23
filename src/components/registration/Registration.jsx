@@ -66,6 +66,8 @@ export default function Registration() {
     return <Spinner />;
   }
 
+  console.log(institution !== "");
+
   return (
     <div className={styles.container}>
       <div className={styles.registration}>
@@ -73,11 +75,11 @@ export default function Registration() {
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.formgroup}>
             <label htmlFor="institution">
-              Institution (University student only)
+              Institution and Department (University student only)
             </label>
             <input
               placeholder="e.g University of Benin"
-              required
+              required={department !== ""}
               type="text"
               id="institution"
               value={institution}
@@ -85,14 +87,14 @@ export default function Registration() {
             />
           </div>
           <div className={styles.formgroup}>
-            <label htmlFor="department">
+            {/* <label htmlFor="department">
               Department (University student only)
-            </label>
+            </label> */}
             <input
               placeholder="e.g Department of Mechanical Engineering"
-              required
+              required={institution !== ""}
               type="text"
-              id="department"
+              // id="department"
               value={department}
               onChange={(e) => setDepartment(e.target.value)}
             />
@@ -101,7 +103,7 @@ export default function Registration() {
             <label htmlFor="skill">Skills (optional)</label>
             <input
               placeholder="e.g Web developer"
-              required
+              required={institution !== "" && department !== ""}
               type="text"
               id="skill"
               value={skill}

@@ -94,8 +94,8 @@ export default function Connect() {
                   className={styles.button}
                   onClick={() => handleSelect(users)}
                 >
-                  Message
-                  {/* Ask me any questions on my Discipline */}
+                  {/* Message */}
+                  Ask me any questions on my Discipline
                 </button>
               </div>
             </div>
