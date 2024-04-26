@@ -109,8 +109,8 @@
 }
 
 .right {
-  /* margin-left: 300px; */
   width: 100%;
+  position: relative;
 }
 
 .right .container {
@@ -131,9 +131,10 @@
 
 .right .chats {
   padding-top: 100px;
-  /* padding-bottom: 60px; */
+  padding-bottom: 60px;
   margin-left: 10px;
-  height: calc(100vh - 80px);
+  height: 100%;
+  /* height: calc(100vh - 80px); */
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -214,7 +215,7 @@
 
 .messageBox {
   margin-right: 20px;
-  position: fixed;
+  position: absolute;
   width: 100%;
   bottom: 0;
   z-index: 5000;
