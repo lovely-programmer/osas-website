@@ -117,14 +117,6 @@ export default function Giveaway() {
                 />
               </div>
               <div className={styles.about}>{post.aboutItem}</div>
-              {user.id !== post.user.id && (
-                <button
-                  onClick={() => handleSelect(post.user)}
-                  className={styles.button}
-                >
-                  Message
-                </button>
-              )}
             </div>
           ))}
         </div>
