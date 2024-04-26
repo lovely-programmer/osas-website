@@ -89,9 +89,9 @@ a {
     max-width: 640px;
   }
 
-  .smallChat {
+  /* .smallChat {
     height: calc(100vh - 155px) !important;
-  }
+  } */
 }
 
 @media screen and (max-width: 640px) {
