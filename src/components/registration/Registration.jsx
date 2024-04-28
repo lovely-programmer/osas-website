@@ -13,7 +13,7 @@ export default function Registration() {
   const { user } = getAUser();
   const [institution, setInstitution] = useState("");
   const [department, setDepartment] = useState("");
-  const [skill, setSkill] = useState("");
+  const [skills, setSkills] = useState("");
   const [dob, setDob] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [whatsappNumber, setWhatsappNumber] = useState("");
@@ -66,8 +66,6 @@ export default function Registration() {
     return <Spinner />;
   }
 
-  console.log(institution !== "");
-
   return (
     <div className={styles.container}>
       <div className={styles.registration}>
@@ -107,7 +105,7 @@ export default function Registration() {
               type="text"
               id="skill"
               value={skill}
-              onChange={(e) => setSkill(e.target.value)}
+              onChange={(e) => setSkills(e.target.value)}
             />
           </div>
           <div className={styles.formgroup}>
