@@ -46,11 +46,9 @@ export default function ShowNavbar() {
     }
   }, [pathname]);
 
-  // if (pathname === "/welcome") {
-  //   return <WelcomeNav />;
-  // }
-
-  console.log(showNav);
+  if (pathname === "/welcome") {
+    return <WelcomeNav />;
+  }
 
   if (showNav) {
     return <Navbar />;
