@@ -105,7 +105,7 @@ export default function Registration() {
               required={institution === "" && department === ""}
               type="text"
               id="skill"
-              value={skill}
+              value={skills}
               onChange={(e) => setSkills(e.target.value)}
             />
           </div>
