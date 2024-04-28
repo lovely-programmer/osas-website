@@ -63,9 +63,9 @@
   gap: 5px;
 }
 
-.formgroup label {
+/* .formgroup label {
   width: 30%;
-}
+} */
 
 .formgroup input {
   outline: none;
@@ -91,20 +91,20 @@
   border-color: var(--blueColor);
 }
 
-@media screen and (max-width: 770px) {
+/* @media screen and (max-width: 770px) {
   .formgroup label {
     width: 50%;
   }
-}
+} */
 
 @media screen and (max-width: 450px) {
   .container h2 {
     font-size: 19px;
   }
 
-  .formgroup label {
+  /* .formgroup label {
     width: 100%;
-  }
+  } */
 }
 
 /* Post styles */
@@ -219,9 +219,9 @@
     flex-direction: column;
   }
 
-  .formgroup label {
+  /* .formgroup label {
     width: 100%;
-  }
+  } */
 
   .formgroup input {
     width: 100%;

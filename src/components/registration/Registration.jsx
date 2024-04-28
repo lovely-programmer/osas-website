@@ -103,7 +103,7 @@ export default function Registration() {
             <label htmlFor="skill">Skills (optional)</label>
             <input
               placeholder="e.g Web developer"
-              required={institution !== "" && department !== ""}
+              required={institution === "" && department === ""}
               type="text"
               id="skill"
               value={skill}
