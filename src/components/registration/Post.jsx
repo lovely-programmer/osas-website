@@ -32,6 +32,11 @@ export default function Post() {
     e.preventDefault();
     setIsLoading(true);
 
+    await fetch("/api/user", {
+      method: "PUT",
+      body: JSON.stringify(),
+    });
+
     const upload = () => {
       const name = new Date().getTime() + media.name;
       const storageRef = ref(storage, name);
