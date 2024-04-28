@@ -46,7 +46,11 @@ export default function ShowNavbar() {
     }
   }, [pathname]);
 
-  if (pathname === "/welcome") {
+  if (
+    pathname === "/welcome" ||
+    pathname === "/signup/post" ||
+    pathname === "/signup/welcome"
+  ) {
     return <WelcomeNav />;
   }
 
