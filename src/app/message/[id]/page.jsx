@@ -244,7 +244,6 @@ export default function page() {
 
   return (
     <div className={styles.container}>
-      {/* <Sidebar /> */}
       <div className={styles.right}>
         <Navbar />
         <div
