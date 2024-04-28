@@ -131,10 +131,10 @@
 
 .right .chats {
   padding-top: 100px;
-  padding-bottom: 60px;
+  /* padding-bottom: 60px; */
   margin-left: 10px;
   height: 100%;
-  /* height: calc(100vh - 80px); */
+  height: calc(100dvh - 155px);
   overflow-y: scroll;
   overflow-x: hidden;
 }
