@@ -107,7 +107,7 @@ export default function Registration() {
               type="text"
               id="skill"
               value={skill}
-              onChange={(e) => skill(e.target.value)}
+              onChange={(e) => setSkill(e.target.value)}
             />
           </div>
           <div className={styles.formgroup}>
