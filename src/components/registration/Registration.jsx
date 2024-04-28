@@ -37,6 +37,7 @@ export default function Registration() {
   const userData = {
     institution,
     department,
+    skills,
     dob,
     phoneNumber,
     whatsappNumber,
