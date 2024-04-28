@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import styles from "./navbar.module.css";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 
 export default function WelcomeNav() {
-  const { status } = useSession();
+  // const {session} = useSession()
   return (
     <div className={styles.navbar}>
       <div className="wrapper">
@@ -14,11 +14,9 @@ export default function WelcomeNav() {
             <span>Support</span>
           </Link>
 
-          {status === "unauthenticated" && (
-            <Link href="/signin" className={styles.login}>
-              Login
-            </Link>
-          )}
+          <Link href="/signin" className={styles.login}>
+            Login
+          </Link>
         </div>
       </div>
     </div>
