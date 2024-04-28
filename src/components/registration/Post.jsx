@@ -16,12 +16,10 @@ const storage = getStorage(app);
 
 export default function Post() {
   const [file, setFile] = useState(null);
-  const [image, setImage] = useState("");
   const [media, setMedia] = useState("");
   const [myTrade, setMyTrade] = useState("");
   const [myNeed, setMyNeed] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [imageUploading, setImageUploading] = useState(false);
 
   const handleChange = (e) => {
     setMedia(e.target.files[0]);
@@ -30,7 +28,10 @@ export default function Post() {
 
   const router = useRouter();
 
-  useEffect(() => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
     const upload = () => {
       const name = new Date().getTime() + media.name;
       const storageRef = ref(storage, name);
@@ -43,7 +44,6 @@ export default function Post() {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
-          if (progress == "100") setImageUploading(false);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -57,42 +57,28 @@ export default function Post() {
           console.log(error);
         },
         () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setImage(downloadURL);
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            const res = await fetch("/api/posts", {
+              method: "POST",
+              body: JSON.stringify({
+                image: downloadURL,
+                myNeed,
+                myTrade,
+              }),
+            });
+
+            if (res.status == "201") {
+              router.push("/");
+            } else {
+              setIsLoading(false);
+              toast.error("Something went wrong");
+            }
           });
         }
       );
     };
 
-    if (media) {
-      setImageUploading(true);
-      upload();
-    }
-  }, [media]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    const res = await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        image,
-        myNeed,
-        myTrade,
-      }),
-    });
-
-    await fetch("/api/user", {
-      method: "PUT",
-      body: JSON.stringify(),
-    });
-
-    if (res.status == 201) {
-      router.push("/");
-    } else {
-      setIsLoading(false);
-      console.log("Something went wrong");
-    }
+    upload();
   };
 
   if (isLoading) {
@@ -161,9 +147,7 @@ export default function Post() {
               onChange={handleChange}
             />
           </div>
-          <button disabled={imageUploading} className={styles.button}>
-            {imageUploading ? "uploading image in progress" : "Submit"}
-          </button>
+          <button className={styles.button}>Submit</button>
         </form>
       </div>
     </div>
