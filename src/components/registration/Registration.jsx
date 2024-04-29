@@ -74,7 +74,8 @@ export default function Registration() {
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.formgroup}>
             <label htmlFor="institution">
-              Institution and Department (University student only)
+              Institution and Department (Necessary for student but optional for
+              non-student)
             </label>
             <input
               placeholder="e.g University of Benin"
@@ -99,7 +100,9 @@ export default function Registration() {
             />
           </div>
           <div className={styles.formgroup}>
-            <label htmlFor="skill">Skills (optional)</label>
+            <label htmlFor="skill">
+              Skills (optional for student but necessary for non-student)
+            </label>
             <input
               placeholder="e.g Web developer"
               required={institution === "" && department === ""}

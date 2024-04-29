@@ -31,8 +31,6 @@ export default function Sidebar() {
     [conversation, query]
   );
 
-  console.log(filteredConversation);
-
   const combinedId =
     user?.id > messageUserId
       ? user?.id + messageUserId
