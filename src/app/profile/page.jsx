@@ -25,6 +25,8 @@ export default function Profile() {
 
   const [username, setUsername] = useState(user.name);
   const [institution, setInstitution] = useState(user.institution);
+  const [department, setDepartment] = useState(user?.department);
+  const [skills, setSkills] = useState(user?.skills);
   const [dob, setDob] = useState(user.dob);
   const [image, setImage] = useState(user.image);
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
@@ -125,6 +127,8 @@ export default function Profile() {
   const userData = {
     name: username,
     institution,
+    department,
+    skills,
     dob,
     phoneNumber,
     whatsappNumber,
@@ -189,6 +193,22 @@ export default function Profile() {
               type="text"
               value={institution}
               onChange={(e) => setInstitution(e.target.value)}
+            />
+          </div>
+          <div className={styles.formgroup}>
+            <span>Department</span>
+            <input
+              type="text"
+              value={department}
+              onChange={(e) => setDepartment(e.target.value)}
+            />
+          </div>
+          <div className={styles.formgroup}>
+            <span>Skills/Occupation</span>
+            <input
+              type="text"
+              value={skills}
+              onChange={(e) => setSkills(e.target.value)}
             />
           </div>
           <div className={styles.formgroup}>

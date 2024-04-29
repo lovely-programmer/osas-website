@@ -34,6 +34,8 @@ export const PUT = async (req, { params }) => {
     const {
       name,
       institution,
+      department,
+      skills,
       dob,
       phoneNumber,
       whatsappNumber,
@@ -47,6 +49,8 @@ export const PUT = async (req, { params }) => {
       data: {
         name,
         institution,
+        department,
+        skills,
         dob,
         phoneNumber,
         whatsappNumber,

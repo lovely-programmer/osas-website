@@ -64,8 +64,10 @@ export default function Posts({ post }) {
           [combinedId + ".date"]: serverTimestamp(),
         });
       }
-    } catch (error) {}
-    router.push("/message");
+      router.push("/message");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="wrapper">
