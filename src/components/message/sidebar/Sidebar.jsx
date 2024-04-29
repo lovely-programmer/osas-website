@@ -94,7 +94,7 @@ export default function Sidebar() {
       </div>
       <div className={styles.chats}>
         <span className={styles.all}>All Chats</span>
-        {filteredConversation.map((chat) => (
+        {filteredConversation?.map((chat) => (
           <div className={styles.profile} key={chat[0]}>
             <div onClick={() => handleSelect(chat[1].userInfo)}>
               <Image
