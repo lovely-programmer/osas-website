@@ -46,7 +46,7 @@ export default function Posts({ post }) {
         await setDoc(doc(db, "chats", combinedId), { messages: [] });
 
         // create user chats
-        await updateDoc(doc(db, "userChats", user.email), {
+        await setDoc(doc(db, "userChats", user.email), {
           [combinedId + ".userInfo"]: {
             id: messageUser.id,
             name: messageUser.name,
@@ -56,7 +56,7 @@ export default function Posts({ post }) {
           [combinedId + ".date"]: serverTimestamp(),
         });
 
-        await updateDoc(doc(db, "userChats", messageUser.email), {
+        await setDoc(doc(db, "userChats", messageUser.email), {
           [combinedId + ".userInfo"]: {
             id: user.id,
             name: user.name,
