@@ -53,7 +53,6 @@ export default function Sidebar() {
             number: 0,
           },
         },
-        // [combinedId + ".date"]: serverTimestamp(),
       });
       await updateDoc(doc(db, "userChats", user?.email), {
         [combinedId + ".unseenMessage"]: {
@@ -62,7 +61,6 @@ export default function Sidebar() {
             number: 0,
           },
         },
-        // [combinedId + ".date"]: serverTimestamp(),
       });
     };
     update();
@@ -106,17 +104,17 @@ export default function Sidebar() {
               <div className={styles.personContainer_1}>
                 <div className={styles.info}>
                   <span>{chat[1].userInfo.name}</span>
-                  {chat[1].unseenMessage?.data.number > 0 &&
-                    chat[1].unseenMessage?.data?.id !== user?.email && (
+                  {chat[1]?.unseenMessage?.data.number > 0 &&
+                    chat[1]?.unseenMessage?.data?.id !== user?.email && (
                       <div className={styles.notification}>
-                        {chat[1].unseenMessage?.data.number}
+                        {chat[1]?.unseenMessage?.data.number}
                       </div>
                     )}
                 </div>
                 <div className={styles.person}>
                   <p>
-                    {chat[1].lastMessage?.text
-                      ? chat[1].lastMessage?.text
+                    {chat[1]?.lastMessage?.text
+                      ? chat[1]?.lastMessage?.text
                       : "Click to start a conversation"}
                   </p>
                 </div>
