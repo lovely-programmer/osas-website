@@ -21,6 +21,8 @@ export default function Sidebar() {
   const conversation =
     chats && Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date);
 
+  console.log(conversation);
+
   const filteredConversation = useMemo(
     () =>
       conversation?.filter((c) => {
@@ -107,7 +109,7 @@ export default function Sidebar() {
                   {chat[1]?.unseenMessage?.data.number > 0 &&
                     chat[1]?.unseenMessage?.data?.id !== user?.email && (
                       <div className={styles.notification}>
-                        {chat[1]?.unseenMessage?.data.number}
+                        {chat[1]?.unseenMessage?.data?.number}
                       </div>
                     )}
                 </div>
