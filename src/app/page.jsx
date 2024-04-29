@@ -15,6 +15,7 @@ export default function Home() {
 
   const searchItems = useMemo(
     () =>
+      data &&
       data?.filter((p) => {
         return p.myTrade.toLowerCase().includes(search.text.toLowerCase());
       }),
