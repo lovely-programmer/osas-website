@@ -13,14 +13,14 @@ export default function Home() {
   const { user } = getAUser();
   const { data: search } = useContext(SearchContext);
 
-  const searchItems = useMemo(
-    () =>
-      data &&
-      data?.filter((p) => {
-        return p.myTrade.toLowerCase().includes(search.text.toLowerCase());
-      }),
-    [data, search]
-  );
+  // const searchItems = useMemo(
+  //   () =>
+  //     data &&
+  //     data?.filter((p) => {
+  //       return p.myTrade.toLowerCase().includes(search.text.toLowerCase());
+  //     }),
+  //   [data, search]
+  // );
 
   if (isLoading) return <Spinner />;
 
@@ -29,7 +29,7 @@ export default function Home() {
       <Carousel carousel="/jane.jpg" />
       {status === "authenticated" &&
         user.createdSuccessfully &&
-        searchItems?.map((post) => <Posts post={post} key={post._id} />)}
+        data?.map((post) => <Posts post={post} key={post._id} />)}
     </>
   );
 }
