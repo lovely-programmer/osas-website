@@ -21,6 +21,8 @@ export default function Sidebar() {
   const conversation =
     chats && Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date);
 
+  console.log(conversation);
+
   const filteredConversation = useMemo(
     () =>
       conversation?.filter((c) => {
@@ -28,6 +30,8 @@ export default function Sidebar() {
       }),
     [conversation, query]
   );
+
+  console.log(filteredConversation);
 
   const combinedId =
     user?.id > messageUserId
@@ -92,7 +96,7 @@ export default function Sidebar() {
       </div>
       <div className={styles.chats}>
         <span className={styles.all}>All Chats</span>
-        {conversation?.map((chat) => (
+        {filteredConversation?.map((chat) => (
           <div className={styles.profile} key={chat[0]}>
             <div onClick={() => handleSelect(chat[1].userInfo)}>
               <Image
