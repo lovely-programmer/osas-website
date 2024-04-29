@@ -81,13 +81,13 @@ export default function Connect() {
                       School of Study: {users.institution}
                     </div>
                   )}
-                  {users?.course && (
+                  {users?.department && (
                     <div className={styles.course}>
                       Department: {users.department}
                     </div>
                   )}
-                  {users?.skill && (
-                    <div className={styles.course}>Skill: {users.skill}</div>
+                  {users?.skills && (
+                    <div className={styles.course}>Skill: {users.skills}</div>
                   )}
                 </div>
                 <button

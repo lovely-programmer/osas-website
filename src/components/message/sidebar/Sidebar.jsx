@@ -21,19 +21,13 @@ export default function Sidebar() {
   const conversation =
     chats && Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date);
 
-  console.log(conversation);
-
   const filteredConversation = useMemo(
     () =>
-      // conversation?.filter((c) => {
-      //   return c[1].userInfo?.name.toLowerCase().includes(query.toLowerCase());
-      // }),
-      conversation?.filter((c) =>
-        c[1].userInfo?.name.toLowerCase().includes(query.toLowerCase())
-      )[(conversation, query)]
+      conversation?.filter((c) => {
+        return c[1].userInfo?.name.toLowerCase().includes(query.toLowerCase());
+      }),
+    [conversation, query]
   );
-
-  console.log(filteredConversation);
 
   const combinedId =
     user?.id > messageUserId
