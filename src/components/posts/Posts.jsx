@@ -30,6 +30,8 @@ export default function Posts({ post }) {
     router.push(`/post/${post.id}`);
   };
 
+  console.log(post.user.id);
+
   const handleSelect = async (messageUser) => {
     // check whether the group(chats in firestore) exits, if not create
     const combinedId =
