@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Carousel from "../../components/carousel/Carousel";
-import { getAUser, getAllUser } from "../../requests/requests";
+import { getAUser } from "../../requests/requests";
 import {
   doc,
   getDoc,
@@ -15,16 +15,14 @@ import { useRouter } from "next/navigation";
 
 export default function Connect() {
   const { user } = getAUser();
-  const { allUser } = getAllUser();
+  // const { allUser } = getAllUser();
   const router = useRouter();
 
-  const availableUsers = async () => {
+  const allUser = async () => {
     const res = await fetch("/api/user/allUser");
     const data = await res.json();
-    console.log(data);
+    return data;
   };
-
-  availableUsers();
 
   const filterUser = allUser?.filter((u) => u.id !== user.id);
 
