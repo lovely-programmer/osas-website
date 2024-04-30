@@ -14,14 +14,15 @@ import { db } from "../../utils/firebase";
 import { useRouter } from "next/navigation";
 
 export default function Connect() {
+  const { allUser, setAllUser } = useState(null);
   const { user } = getAUser();
   // const { allUser } = getAllUser();
   const router = useRouter();
 
-  const allUser = async () => {
+  const getAllUser = async () => {
     const res = await fetch("/api/user/allUser");
     const data = await res.json();
-    return data;
+    setAllUser(data);
   };
 
   const filterUser = allUser?.filter((u) => u.id !== user.id);
