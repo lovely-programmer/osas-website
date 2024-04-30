@@ -20,11 +20,14 @@ export default function Connect() {
   // const { allUser } = getAllUser();
   const router = useRouter();
 
-  const getAllUser = async () => {
-    const res = await fetch("/api/user/allUser");
-    const data = await res.json();
-    setAllUser(data);
-  };
+  useEffect(() => {
+    const getAllUser = async () => {
+      const res = await fetch("/api/user/allUser");
+      const data = await res.json();
+      setAllUser(data);
+    };
+    getAllUser();
+  }, [allUser]);
 
   const filterUser = allUser?.filter((u) => u.id !== user.id);
 
