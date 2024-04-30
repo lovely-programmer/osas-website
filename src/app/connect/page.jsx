@@ -18,6 +18,14 @@ export default function Connect() {
   const { allUser } = getAllUser();
   const router = useRouter();
 
+  const availableUsers = async () => {
+    const res = await fetch("/api/user/allUser");
+    const data = await res.json();
+    console.log(data);
+  };
+
+  availableUsers();
+
   const filterUser = allUser?.filter((u) => u.id !== user.id);
 
   const handleSelect = async (messageUser) => {
