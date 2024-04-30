@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Carousel from "../../components/carousel/Carousel";
-import { getAUser } from "../../requests/requests";
+import { getAUser, textUser } from "../../requests/requests";
 import {
   doc,
   getDoc,
@@ -15,9 +15,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Connect() {
-  const { allUser, setAllUser } = useState(null);
+  const [allUser, setAllUser] = useState(null);
   const { user } = getAUser();
-  // const { allUser } = getAllUser();
   const router = useRouter();
 
   useEffect(() => {
@@ -27,7 +26,7 @@ export default function Connect() {
       setAllUser(data);
     };
     getAllUser();
-  }, [allUser]);
+  }, []);
 
   const filterUser = allUser?.filter((u) => u.id !== user.id);
 

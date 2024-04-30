@@ -21,8 +21,6 @@ export default function Sidebar() {
   const conversation =
     chats && Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date);
 
-  console.log(conversation);
-
   const filteredConversation = useMemo(
     () =>
       conversation?.filter((c) => {
@@ -47,6 +45,12 @@ export default function Sidebar() {
   }, [user.email]);
 
   const handleSelect = (u) => {
+    dispatch({
+      type: "SELECT_USER",
+      payload: u,
+    });
+    localStorage.setItem("selectUserData", JSON.stringify(u));
+
     const update = async () => {
       await updateDoc(doc(db, "userChats", data?.userInfo?.email), {
         [combinedId + ".unseenMessage"]: {
@@ -65,15 +69,9 @@ export default function Sidebar() {
         },
       });
     };
-    update();
 
+    data && update();
     router.push(`/message/${u.id}`);
-
-    dispatch({
-      type: "SELECT_USER",
-      payload: u,
-    });
-    localStorage.setItem("selectUserData", JSON.stringify(u));
   };
 
   return (

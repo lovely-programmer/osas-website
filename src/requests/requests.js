@@ -32,6 +32,12 @@ export const getAUser = () => {
   };
 };
 
+export const textUser = async () => {
+  const res = await fetch(`${url}/api/user`);
+  const user = await res.json();
+  return { user };
+};
+
 export const getAllUser = () => {
   const { data, error, isLoading } = useSWR(`${url}/api/user/allUser`, fetcher);
 
