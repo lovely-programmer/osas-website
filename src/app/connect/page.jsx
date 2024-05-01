@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Carousel from "../../components/carousel/Carousel";
-import { getAUser, textUser } from "../../requests/requests";
+import { getAUser } from "../../requests/requests";
 import {
   doc,
   getDoc,
@@ -21,7 +21,9 @@ export default function Connect() {
 
   useEffect(() => {
     const getAllUser = async () => {
-      const res = await fetch("/api/user/allUser");
+      const res = await fetch("/api/user/allUser", {
+        cache: "no-cache",
+      });
       const data = await res.json();
       setAllUser(data);
     };

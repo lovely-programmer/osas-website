@@ -39,11 +39,15 @@ export const textUser = async () => {
 };
 
 export const getAllUser = () => {
-  const { data, error, isLoading } = useSWR(`${url}/api/user/allUser`, fetcher);
+  const { data, mutate, error, isLoading } = useSWR(
+    `${url}/api/user/allUser`,
+    fetcher
+  );
 
   return {
     allUser: data,
     isLoading,
+    mutate,
   };
 };
 
