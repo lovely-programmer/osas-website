@@ -67,7 +67,7 @@ export default function page() {
   }, [combinedId]);
 
   const getOnlyone = Object.entries(chats)?.filter(
-    (c) => c[1].userInfo.email === data?.userInfo?.email
+    (c) => c[1].userInfo?.email === data?.userInfo?.email
   );
 
   const unseenMessageCount = getOnlyone.map(
