@@ -47,8 +47,8 @@ export default function Navbar() {
       });
       return () => unsub();
     };
-    user.email && getChats();
-  }, [user.email]);
+    user?.email && getChats();
+  }, [user?.email]);
 
   useEffect(() => {
     const getData = () => {

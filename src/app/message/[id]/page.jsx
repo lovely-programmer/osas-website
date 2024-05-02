@@ -46,13 +46,13 @@ export default function page() {
 
   useEffect(() => {
     const getChats = () => {
-      const unsub = onSnapshot(doc(db, "userChats", user.email), (doc) => {
+      const unsub = onSnapshot(doc(db, "userChats", user?.email), (doc) => {
         setChats(doc.data());
       });
       return () => unsub();
     };
-    user.email && getChats();
-  }, [user.email]);
+    user?.email && getChats();
+  }, [user?.email]);
 
   const combinedId =
     user?.id > messageUserId
