@@ -67,11 +67,10 @@ export default function Navbar() {
     getData();
   }, [chats]);
 
-  const totalMessages = message && message.reduce(getsum, 0);
+  console.log(message);
 
-  function getsum(total, num) {
-    return total + num;
-  }
+  const totalMessages =
+    message && message.reduce((total, num) => total + num, 0);
 
   if (status === "unauthenticated") {
     router.push("/welcome");
