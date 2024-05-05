@@ -1,10 +1,36 @@
 "use client";
 import { getAUser } from "../../requests/requests";
 import styles from "./page.module.css";
+import { useRef } from "react";
+import { toast } from "react-toastify";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
+  const form = useRef();
   const { user } = getAUser();
-  const sendMail = () => {};
+  const sendMail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_m2zkreq",
+        "template_lmifd7p",
+        form.current,
+        "user_AnjF4Y8dbderf60LOsMSF"
+      )
+      .then(
+        (result) => {
+          e.target.reset();
+          console.log(result.text);
+          toast.success("message sent successfully");
+        },
+        (error) => {
+          console.log(error.text);
+          toast.error(error.text);
+        }
+      );
+  };
+
   return (
     <div className="wrapper">
       <div className={styles.container}>
@@ -14,7 +40,7 @@ export default function Contact() {
           </div>
           <div className={styles.right}>
             <h2>Get in touch</h2>
-            <form>
+            <form ref={form} onSubmit={sendMail}>
               <div className={styles.form__group}>
                 <input value={user?.name} type="text" name="user_name" />
                 <label htmlFor="">Name</label>
@@ -29,7 +55,7 @@ export default function Contact() {
                 <label htmlFor="">Email</label>
               </div>
               <div className={styles.form__group}>
-                <input type="text" required />
+                <input type="text" name="user_subject" required />
                 <label htmlFor="">Your Subject</label>
               </div>
               <div className={styles.form__group}>
