@@ -38,6 +38,11 @@ export default function AuthLinks() {
             <Link className={styles.link} href="/post">
               Post
             </Link>
+            {user.admin && (
+              <Link href="/contact/users" onClick={() => setOpen(!open)}>
+                ContactUser
+              </Link>
+            )}
             <div onClick={logOut}>Logout</div>
             <Link href="/profile" className={styles.profileImg}>
               <img src={user?.image} alt="" />
@@ -70,9 +75,11 @@ export default function AuthLinks() {
             {status !== "unauthorized" && (
               <>
                 <div className={styles.menuContainer}>
-                  {/* <Link href="/message" onClick={() => setOpen(!open)}>
-                    Subscribe
-                  </Link> */}
+                  {user.admin && (
+                    <Link href="/contact/users" onClick={() => setOpen(!open)}>
+                      ContactUser
+                    </Link>
+                  )}
                   <Link href="/post" onClick={() => setOpen(!open)}>
                     Post
                   </Link>
