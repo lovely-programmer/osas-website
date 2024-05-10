@@ -6,6 +6,8 @@ const { allUser } = getAllUser();
 
 const emails = allUser.map((users) => users.emails);
 
+console.log(emails);
+
 export const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {

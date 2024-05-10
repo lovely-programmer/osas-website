@@ -18,12 +18,12 @@ export default function ContactUsers() {
       }),
     });
 
-    if (!res.ok) {
-      toast.error("Something went wrong");
-    } else {
+    if (res.status === 201) {
       toast.success("message sent successfully");
       setSubject("");
       setMessage("");
+    } else {
+      toast.error("Something went wrong");
     }
   };
 
