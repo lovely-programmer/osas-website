@@ -1,10 +1,23 @@
 import { NextResponse } from "next/server";
 import { getAuthSession } from "../../../../utils/auth";
-import { transporter, mailOptions } from "../../../../utils/nodemailer";
+import nodemailer from "nodemailer";
 
 export const POST = async (req) => {
   const session = await getAuthSession();
   const data = await req.json();
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL,
+    to: data.emails,
+  };
 
   if (!session) {
     return new NextResponse(

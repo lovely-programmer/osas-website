@@ -196,7 +196,7 @@ export default function page() {
     setSubmited(false);
   };
 
-  const lastMessage = messages[messages.length - 1];
+  const lastMessage = messages[messages?.length - 1];
 
   const updateLastMessage = async () => {
     if (lastMessage?.text) {

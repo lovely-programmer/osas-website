@@ -2,10 +2,15 @@
 import { toast } from "react-toastify";
 import styles from "../page.module.css";
 import { useState } from "react";
+import { getAllUser } from "../../../requests/requests";
 
 export default function ContactUsers() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+
+  const { allUser } = getAllUser();
+
+  const emails = allUser?.map((users) => users.email);
 
   const sendMail = async (e) => {
     e.preventDefault();
@@ -15,6 +20,7 @@ export default function ContactUsers() {
       body: JSON.stringify({
         subject,
         message,
+        emails,
       }),
     });
 
@@ -43,6 +49,7 @@ export default function ContactUsers() {
                   name="subject"
                   onChange={(e) => setSubject(e.target.value)}
                   required
+                  value={subject}
                 />
                 <label htmlFor="">Your Subject</label>
               </div>
@@ -55,6 +62,7 @@ export default function ContactUsers() {
                   id=""
                   cols="30"
                   rows="10"
+                  value={message}
                 ></textarea>
               </div>
               <div className={styles.form__group}>
