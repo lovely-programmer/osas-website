@@ -40,7 +40,7 @@ export default function AuthLinks() {
             </Link>
             {user.admin && (
               <Link href="/contact/users" onClick={() => setOpen(!open)}>
-                ContactUser
+                Contact Users
               </Link>
             )}
             <div onClick={logOut}>Logout</div>
@@ -77,7 +77,7 @@ export default function AuthLinks() {
                 <div className={styles.menuContainer}>
                   {user.admin && (
                     <Link href="/contact/users" onClick={() => setOpen(!open)}>
-                      ContactUser
+                      Contact Users
                     </Link>
                   )}
                   <Link href="/post" onClick={() => setOpen(!open)}>

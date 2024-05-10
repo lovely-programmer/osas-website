@@ -37,9 +37,6 @@ export default function ContactUsers() {
     <div className="wrapper">
       <div className={styles.container}>
         <div className={styles.content}>
-          <div className={styles.left}>
-            <img src="./email.gif" alt="" />
-          </div>
           <div className={styles.right}>
             <h2>Get in touch</h2>
             <form onSubmit={sendMail}>
