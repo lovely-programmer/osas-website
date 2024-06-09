@@ -105,7 +105,7 @@ export default function Skills() {
         <div className={styles.listContainer}>
           <ul className={styles.questionList}>
             <li>
-              Do you know any skill or services, you want the world to know?
+              Do you have any skill or services, you want the world to know?
             </li>
             <li>
               Do you know it cost you less or nothing to share the world about

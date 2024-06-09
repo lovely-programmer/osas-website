@@ -80,14 +80,6 @@
 
 
 .menuContainer a:first-child {
-  background-color: #e7700d;
-  border-radius: 6px;
-  color: var(--softTextColor);
-  padding: 8px 10.4px;
-  text-align: center;
-}
-
-.menuContainer a:nth-child(2) {
   background-color: #1b75d0;
   border-radius: 6px;
   color: var(--softTextColor);
@@ -95,7 +87,31 @@
   text-align: center;
 }
 
+.menuContainer a:nth-child(2) {
+  background-color: #e7700d;
+  border-radius: 6px;
+  color: var(--softTextColor);
+  padding: 8px 10.4px;
+  text-align: center;
+}
+
 .menuContainer a:nth-child(3) {
+  background-color: var(--lightBg);
+  border-radius: 6px;
+  color: var(--softTextColor);
+  padding: 8px 10.4px;
+  text-align: center;
+}
+
+.menuContainer a:nth-child(4) {
+  background-color: #1b75d0;
+  border-radius: 6px;
+  color: var(--softTextColor);
+  padding: 8px 10.4px;
+  text-align: center;
+}
+
+.menuContainer a:nth-child(5) {
   background-color: var(--lightBg);
   border-radius: 6px;
   color: var(--softTextColor);

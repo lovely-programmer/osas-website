@@ -32,9 +32,6 @@ export default function AuthLinks() {
       {status === "authenticated" && user?.createdSuccessfully == true && (
         <>
           <div className={styles.container}>
-            {/* <Link className={styles.link} href="/subscribe">
-              Subscribe
-            </Link> */}
             <Link className={styles.link} href="/post">
               Post
             </Link>
@@ -43,6 +40,13 @@ export default function AuthLinks() {
                 Contact Users
               </Link>
             )}
+            <Link
+              className={styles.link}
+              href="/subscribe"
+              onClick={() => setOpen(!open)}
+            >
+              Subscribe
+            </Link>
             <div onClick={logOut}>Logout</div>
             <Link href="/profile" className={styles.profileImg}>
               <img src={user?.image} alt="" />
@@ -80,6 +84,9 @@ export default function AuthLinks() {
                       Contact Users
                     </Link>
                   )}
+                  <Link href="/subscribe" onClick={() => setOpen(!open)}>
+                    Subscribe
+                  </Link>
                   <Link href="/post" onClick={() => setOpen(!open)}>
                     Post
                   </Link>

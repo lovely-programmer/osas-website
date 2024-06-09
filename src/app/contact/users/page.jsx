@@ -26,11 +26,12 @@ export default function ContactUsers() {
 
     if (res.status === 201) {
       toast.success("message sent successfully");
-      setSubject("");
-      setMessage("");
     } else {
       toast.error("Something went wrong");
     }
+
+    setSubject("");
+    setMessage("");
   };
 
   return (

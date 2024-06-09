@@ -38,38 +38,41 @@ model Session {
 }
 
 model User {
-  id                   String              @id @default(cuid()) @map("_id")
-  name                 String?
-  email                String              @unique
-  emailVerified        DateTime?
-  image                String?
-  institution          String?
-  department           String?
-  skills               String?
-  dob                  String?
-  phoneNumber          String?
-  whatsappNumber       String?
-  age                  String?
-  country              String?
-  state                String?
-  createdSuccessfully  Boolean             @default(false)
-  admin                Boolean             @default(false)
-  accounts             Account[]
-  sessions             Session[]
-  Post                 Post[]
-  SkillPost            SkillPost[]
-  UsedItemPost         UsedItemPost[]
-  StudentMarketPost    StudentMarketPost[]
-  RentPost             RentPost[]
-  GiveawayPost         GiveawayPost[]
-  News                 News[]
-  postNotification     Int                 @default(0)
-  skillNotification    Int                 @default(0)
-  usedItemNotification Int                 @default(0)
-  marketNotification   Int                 @default(0)
-  rentNotification     Int                 @default(0)
-  giveNotification     Int                 @default(0)
-  newsNotification     Int                 @default(0)
+  id                    String              @id @default(cuid()) @map("_id")
+  name                  String?
+  email                 String              @unique
+  emailVerified         DateTime?
+  image                 String?
+  institution           String?
+  department            String?
+  skills                String?
+  dob                   String?
+  phoneNumber           String?
+  whatsappNumber        String?
+  age                   String?
+  country               String?
+  state                 String?
+  createdSuccessfully   Boolean             @default(false)
+  subscribed            Boolean             @default(false)
+  admin                 Boolean             @default(false)
+  subNotificationNumber Int?                @default(0)
+  accounts              Account[]
+  sessions              Session[]
+  Post                  Post[]
+  SkillPost             SkillPost[]
+  UsedItemPost          UsedItemPost[]
+  StudentMarketPost     StudentMarketPost[]
+  RentPost              RentPost[]
+  GiveawayPost          GiveawayPost[]
+  News                  News[]
+  postNotification      Int                 @default(0)
+  skillNotification     Int                 @default(0)
+  usedItemNotification  Int                 @default(0)
+  marketNotification    Int                 @default(0)
+  rentNotification      Int                 @default(0)
+  giveNotification      Int                 @default(0)
+  newsNotification      Int                 @default(0)
+  Subscription          Subscription[]
 }
 
 model VerificationToken {
@@ -148,4 +151,12 @@ model News {
   text      String
   userEmail String
   user      User     @relation(fields: [userEmail], references: [email])
+}
+
+model Subscription {
+  id         String   @id @default(cuid()) @map("_id")
+  subDate    DateTime @default(now())
+  subExpDate DateTime
+  userEmail  String
+  user       User     @relation(fields: [userEmail], references: [email])
 }

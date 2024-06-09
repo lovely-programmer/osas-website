@@ -19,6 +19,10 @@ export default function Post() {
     if (select == "news") router.push("/post/news");
   };
 
+  const checkSubscribed = () => {
+    router.push("/subscribe");
+  };
+
   return (
     <div className="wrapper">
       <div className={styles.container}>
@@ -33,10 +37,16 @@ export default function Post() {
             >
               <option value="">Select</option>
               <option value="need">Your Need</option>
-              <option value="skills">Skill or Service</option>
+              <option onClick={checkSubscribed} value="skills">
+                Skill or Service
+              </option>
               <option value="usedItem">Free Used Item</option>
-              <option value="market">Your Market</option>
-              <option value="rent">Rent</option>
+              <option onClick={checkSubscribed} value="market">
+                Your Market
+              </option>
+              <option onClick={checkSubscribed} value="rent">
+                Rent
+              </option>
               {user.admin == true && <option value="giveaway">Giveaway</option>}
               {user.admin == true && <option value="news">News</option>}
             </select>
@@ -47,11 +57,11 @@ export default function Post() {
             Student Support offers free access to limitless post in need (Trade
             by barter) post. You can exchange goods, items and services as you
             want in accordance to your choice.
-            {/* <span>Note</span>
+            <span>Note</span>
             <div className={styles.p2}>
-              Posting in the other section such as skill or services, your
-              market, rent; a one time monthly subscription of ₦1000 is needed.
-            </div> */}
+              Posting in the other section such as skill/Services, market, rent;
+              a one time monthly subscription of ₦1000 is needed.
+            </div>
           </div>
         </div>
       </div>
