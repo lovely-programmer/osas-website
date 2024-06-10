@@ -8,19 +8,30 @@ export default function Post() {
   const { user } = getAUser();
   const [select, setSelect] = useState("");
   const router = useRouter();
+
   const goToPost = (e) => {
     e.preventDefault();
+
     if (select == "need") router.push("/post/tradepost");
-    if (select == "skills") router.push("/post/skills");
-    if (select == "usedItem") router.push("/post/usedItems");
-    if (select == "market") router.push("/post/studentmarket");
-    if (select == "rent") router.push("/post/rent");
     if (select == "giveaway") router.push("/post/giveaway");
     if (select == "news") router.push("/post/news");
-  };
+    if (select == "usedItem") router.push("/post/usedItems");
 
-  const checkSubscribed = () => {
-    router.push("/subscribe");
+    if (user.subscribed == false && select == "market") {
+      router.push("/subscribe");
+    } else if (user.subscribed && select == "market") {
+      router.push("/post/studentmarket");
+    }
+    if (user.subscribed == false && select == "skills") {
+      router.push("/subscribe");
+    } else if (user.subscribed && select == "skills") {
+      router.push("/post/skills");
+    }
+    if (user.subscribed == false && select == "rent") {
+      router.push("/subscribe");
+    } else if (user.subscribed && select == "rent") {
+      router.push("/post/rent");
+    }
   };
 
   return (
@@ -37,15 +48,16 @@ export default function Post() {
             >
               <option value="">Select</option>
               <option value="need">Your Need</option>
-              <option onClick={checkSubscribed} value="skills">
-                Skill or Service
-              </option>
               <option value="usedItem">Free Used Item</option>
-              <option onClick={checkSubscribed} value="market">
-                Your Market
+              <option value="skills">
+                Skill or Service{" "}
+                <span style={{ color: "#e7700d" }}>(Premium)</span>
               </option>
-              <option onClick={checkSubscribed} value="rent">
-                Rent
+              <option value="market">
+                Your Market <span style={{ color: "#e7700d" }}>(Premium)</span>
+              </option>
+              <option value="rent">
+                Rent <span style={{ color: "#e7700d" }}>(Premium)</span>
               </option>
               {user.admin == true && <option value="giveaway">Giveaway</option>}
               {user.admin == true && <option value="news">News</option>}

@@ -1,12 +1,15 @@
 "use client";
 import styles from "./page.module.css";
-// import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { PaystackButton } from "react-paystack";
 import { getAUser } from "../../requests/requests";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Spinner from "../../components/spinner/Spinner";
+import { toast } from "react-toastify";
 
 export default function Subscribe() {
   const { user } = getAUser();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   // Subscription
@@ -14,7 +17,8 @@ export default function Subscribe() {
   const next30DaysDate = new Date(next30Days);
 
   const subscribe = async () => {
-    const res = await fetch(`/api/user/subsribe`, {
+    setLoading(true);
+    const res = await fetch("/api/user/subscribe", {
       method: "POST",
       body: JSON.stringify({
         subExpDate: next30DaysDate,
@@ -27,6 +31,9 @@ export default function Subscribe() {
 
     if (res.ok) {
       router.push("/post");
+    } else {
+      setLoading(false);
+      toast.error("Something went wrong");
     }
   };
 
@@ -42,6 +49,8 @@ export default function Subscribe() {
     onSuccess: () => subscribe(),
     onClose: () => alert("Wait! You need this subscription, don't go!!!!"),
   };
+
+  if (loading) return <Spinner />;
 
   return (
     <div className="wrapper">

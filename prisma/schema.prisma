@@ -156,7 +156,7 @@ model News {
 model Subscription {
   id         String   @id @default(cuid()) @map("_id")
   subDate    DateTime @default(now())
-  subExpDate DateTime
+  subExpDate String
   userEmail  String
   user       User     @relation(fields: [userEmail], references: [email])
 }
