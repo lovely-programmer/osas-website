@@ -1,17 +1,25 @@
 "use client";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { getAUser } from "../requests/requests";
-import Spinner from "../components/spinner/Spinner";
+import { getSubscription } from "../requests/requests";
+import { useEffect } from "react";
 
 export default function NextAuth({ children }) {
-  const { status } = useSession();
-  const { user, isLoading } = getAUser();
-  const router = useRouter();
+  const { subscription } = getSubscription();
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  useEffect(() => {
+    const unSubscribe = () => {
+      subscription?.map(async (sub) => {
+        if (
+          new Date(subscription.subExpDate).getTime() >= new Date().getTime()
+        ) {
+          await fetch("/api/user/unsubscribe", {
+            method: "PUT",
+          });
+        }
+      });
+    };
+
+    unSubscribe();
+  });
 
   return <div>{children}</div>;
 }

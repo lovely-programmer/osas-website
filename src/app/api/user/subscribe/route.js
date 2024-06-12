@@ -2,6 +2,28 @@ import { NextResponse } from "next/server";
 import { getAuthSession } from "../../../../utils/auth";
 import prisma from "../../../../utils/connect";
 
+export const GET = async (req) => {
+  const session = await getAuthSession();
+  if (!session) {
+    return new NextResponse(
+      JSON.stringify({ message: "Not Authenticated!" }, { status: 401 })
+    );
+  }
+
+  try {
+    const subscription = await prisma.subscription.findMany({
+      where: {
+        userEmail: session.user.email,
+      },
+    });
+    return new NextResponse(JSON.stringify(subscription), { status: 200 });
+  } catch (err) {
+    return new NextResponse(
+      JSON.stringify({ message: "Something went wrong" }, { status: 500 })
+    );
+  }
+};
+
 export const POST = async (req) => {
   const session = await getAuthSession();
   if (!session) {
@@ -34,7 +56,7 @@ export const PUT = async (req) => {
       data: { subscribed: true, subNotificationNumber: { increment: 1 } },
     });
     return new NextResponse(
-      JSON.stringify({ message: "image updated successfully" }),
+      JSON.stringify({ message: "suscribed successfully" }),
       {
         status: 201,
       }

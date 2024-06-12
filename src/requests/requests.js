@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const url = "https://www.studentcentral.online";
+const url = "http://localhost:3000";
 
 // "https://studenthelpers.netlify.app"
 // http://localhost:3000
@@ -19,6 +19,18 @@ export const getUser = (email) => {
 
   return {
     user: data,
+    isLoading,
+  };
+};
+
+export const getSubscription = () => {
+  const { data, error, isLoading } = useSWR(
+    `${url}/api/user/subscribe`,
+    fetcher
+  );
+
+  return {
+    subscription: data,
     isLoading,
   };
 };

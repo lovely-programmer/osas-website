@@ -59,8 +59,10 @@ export default function Post() {
               <option value="rent">
                 Rent <span style={{ color: "#e7700d" }}>(Premium)</span>
               </option>
-              {user.admin == true && <option value="giveaway">Giveaway</option>}
-              {user.admin == true && <option value="news">News</option>}
+              {user?.admin == true && (
+                <option value="giveaway">Giveaway</option>
+              )}
+              {user?.admin == true && <option value="news">News</option>}
             </select>
             <button>Go To Post</button>
           </form>
