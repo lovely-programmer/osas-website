@@ -35,16 +35,8 @@ export default function AuthLinks() {
             <Link className={styles.link} href="/post">
               Post
             </Link>
-            {user.admin && (
-              <Link href="/contact/users" onClick={() => setOpen(!open)}>
-                Contact Users
-              </Link>
-            )}
-            <Link
-              className={styles.link}
-              href="/subscribe"
-              onClick={() => setOpen(!open)}
-            >
+            {user.admin && <Link href="/contact/users">Contact Users</Link>}
+            <Link className={styles.link} href="/subscribe">
               Subscribe
             </Link>
             <div onClick={logOut}>Logout</div>
