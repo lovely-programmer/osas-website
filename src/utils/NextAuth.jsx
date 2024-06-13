@@ -7,15 +7,16 @@ export default function NextAuth({ children }) {
 
   useEffect(() => {
     const unSubscribe = () => {
-      subscription?.map(async (sub) => {
-        if (
-          new Date(subscription.subExpDate).getTime() >= new Date().getTime()
-        ) {
-          await fetch("/api/user/unsubscribe", {
-            method: "PUT",
-          });
-        }
-      });
+      subscription &&
+        subscription?.map(async (sub) => {
+          if (
+            new Date(subscription.subExpDate).getTime() >= new Date().getTime()
+          ) {
+            await fetch("/api/user/unsubscribe", {
+              method: "PUT",
+            });
+          }
+        });
     };
 
     unSubscribe();
