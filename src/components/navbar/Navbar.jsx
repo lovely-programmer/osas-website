@@ -7,7 +7,7 @@ import Searchbox from "../searchbox/Searchbox";
 import { VscDebugDisconnect } from "react-icons/vsc";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { useSession } from "next-auth/react";
-import { getAUser } from "../../requests/requests";
+import { getAUser, getSubscription } from "../../requests/requests";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { usePathname, useRouter } from "next/navigation";
 import { doc, onSnapshot } from "firebase/firestore";
@@ -17,12 +17,29 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   const { status } = useSession();
   const { user } = getAUser();
+  const { subscription } = getSubscription();
   const pathname = usePathname();
   const router = useRouter();
   const usedItemNotification = user?.usedItemNotification;
   const newsNotification = user?.newsNotification;
   const [chats, setChats] = useState();
   const [message, setMessage] = useState([]);
+
+  useEffect(() => {
+    const unSubscribe = () => {
+      subscription?.map(async (sub) => {
+        if (
+          new Date(subscription.subExpDate).getTime() >= new Date().getTime()
+        ) {
+          await fetch("/api/user/unsubscribe", {
+            method: "PUT",
+          });
+        }
+      });
+    };
+
+    unSubscribe();
+  }, [user]);
 
   const setUsedItemNotificationDefault = async (slug) => {
     if (usedItemNotification > 0) {
