@@ -28,7 +28,7 @@ export default function Home() {
     <>
       <Carousel carousel="/jane.jpg" />
       {status === "authenticated" &&
-        user.createdSuccessfully &&
+        user?.createdSuccessfully &&
         searchItems?.map((post) => <Posts post={post} key={post._id} />)}
     </>
   );

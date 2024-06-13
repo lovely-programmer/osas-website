@@ -24,9 +24,9 @@ export default function GoogleSignin({ next }) {
       setStatusLoading(true);
       return <Spinner />;
     }
-    if (user?.country == null && user.createdSuccessfully == false)
+    if (user?.country == null && user?.createdSuccessfully == false)
       router.push("/signup/welcome");
-    if (user.createdSuccessfully) router.push("/");
+    if (user?.createdSuccessfully) router.push("/");
   }
 
   const handleSubmit = () => {
