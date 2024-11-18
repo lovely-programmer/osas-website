@@ -1,0 +1,194 @@
+.container {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 700px;
+  margin-bottom: 20px;
+}
+
+.postContainer h1 {
+  margin-bottom: 20px;
+}
+
+.postContainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.postContainer form select {
+  outline: none;
+  border-radius: 5px;
+  width: 400px;
+  padding: 5px 10px;
+}
+
+.postContainer form button {
+  padding: 10px 20px;
+  background-color: #1877f2;
+  color: var(--softTextColor);
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.header {
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.listContainer {
+  background-color: var(--lightBg);
+  padding: 10px;
+}
+
+.questionList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.questionList li {
+  font-size: 15px;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.note ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.note ul li {
+  list-style: lower-roman;
+  font-size: 13px;
+  color: #e7600d;
+}
+
+.form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.previewImage {
+  position: relative;
+  background-color: var(--lightBg);
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.previewImage img {
+  width: 100%;
+  height: inherit;
+  position: absolute;
+  object-fit: cover;
+}
+
+.formgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+
+.formgroup input:last-child {
+  background-color: var(--lightBg);
+}
+
+.formgroup textarea:last-child {
+  background-color: var(--lightBg);
+}
+
+.formgroup input {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  flex: 1;
+  color: var(--textColor);
+}
+
+.formgroup textarea {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  flex: 1;
+  color: var(--textColor);
+  white-space: pre-wrap;
+}
+
+.button {
+  padding: 10px 20px;
+  cursor: pointer;
+  outline: none;
+  background-color: #1877f2;
+  border: none;
+  color: var(--softTextColor);
+  border-radius: 5px;
+}
+
+.note {
+  font-size: 14px;
+}
+
+.note .p2 {
+  color: var(--orangeColor);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  background-color: #1876f277;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .formgroup {
+    flex-direction: column;
+  }
+
+  .formgroup label {
+    width: 100%;
+  }
+
+  .formgroup input {
+    width: 100%;
+  }
+
+  .formgroup textarea {
+    width: 100%;
+  }
+
+  .postContainer form select {
+    width: 100%;
+  }
+
+  .postContainer h1 {
+    font-size: 26px;
+    font-weight: 600;
+  }
+}

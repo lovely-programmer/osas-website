@@ -1,0 +1,75 @@
+.posts {
+  margin-top: 50px;
+  border: 3px solid var(--lightBg);
+  border-radius: 5px;
+  background: var(--lightBg);
+  width: 500px;
+}
+
+.postProfile {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 10px;
+}
+
+.postProfileImg {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.postProfile div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.postProfile div svg {
+  fill: #DC3545;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.trade {
+  padding-top: 10px;
+  flex-direction: column !important;
+  justify-content: right !important;
+  align-items: flex-start !important;
+}
+
+.tradeImgContainer {
+  position: relative;
+  padding-top: 10px;
+  max-width: 500px;
+  height: 300px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.needs {
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.about {
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  display: block;
+}
+
+.deleteButton {
+  margin-right: 10px;
+  background-color: #DC3545;
+  color: var(--softTextColor);
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+@media screen and (max-width: 550px) {
+  .posts {
+    width: 100%;
+  }
+}

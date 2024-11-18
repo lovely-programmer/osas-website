@@ -1,0 +1,103 @@
+.footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 50px;
+  background-color: var(--lightBg);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.footerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 20px;
+}
+
+.footerContainer div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.footerContainer div a {
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.footerContainer div svg {
+  font-size: 25px;
+}
+
+.top {
+  height: 75px;
+}
+
+.ballDiv {
+  position: relative;
+}
+
+.ball {
+  position: absolute;
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: var(--softTextColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+.ballDiv .rent+.ball {
+  margin-left: 22px;
+  top: -4px;
+}
+
+.ballDiv img {
+  width: 25px;
+  height: 25px;
+}
+
+.ballDiv img svg {
+  fill: #fff;
+}
+
+.ballDiv .materials+.ball,
+.ballDiv:last-child .ball {
+  margin-left: 22px;
+  top: -4px;
+}
+
+@media screen and (max-width: 780px) {
+  .footerContainer {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 645px) {
+  .footerContainer {
+    font-size: 14px;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .footerContainer div a {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .footerContainer div a {
+    font-size: 9px;
+  }
+}

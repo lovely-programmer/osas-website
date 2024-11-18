@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  border: 1px solid #1b75d0;
+  padding: 7px 9px;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.container svg {
+  font-size: 20px;
+}
+
+.container input {
+  border: none;
+  outline: none;
+  background-color: var(--lightBg);
+  color: var(--textColor);
+  width: 100%;
+}
+
+@media screen and (max-width: 1280px) {
+  .container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 2px 5px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .container {
+    width: 53%;
+  }
+
+  .container input {
+    width: inherit;
+  }
+}

@@ -1,0 +1,111 @@
+:root {
+  /* --bg: #E4E6EB; */
+  /* --lightBg: white; */
+  /* --textColor: #050505; */
+  /* --softTextColor: #ddd; */
+
+  --softBg: #1f273a;
+  --blueColor: #1B75D0;
+  --orangeColor: #E7700D;
+
+  --bg: #0f172a;
+  --textColor: #ddd;
+  --lightBg: #1f273a;
+  --softTextColor: #ddd;
+}
+
+/* .dark {
+  --bg: #0f172a;
+  --textColor: #ddd;
+  --lightBg: #1f273a;
+  --softTextColor: #ddd;
+} */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI Adjusted",
+    "Segoe UI",
+    "Liberation Sans",
+    sans-serif;
+  ;
+  font-size: 18px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--textColor);
+}
+
+.wrapper {
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.hide {
+  display: none;
+}
+
+@media screen and (max-width: 1536px) {
+  .wrapper {
+    max-width: 1366px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .wrapper {
+    max-width: 1024px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    max-width: 768px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    max-width: 640px;
+  }
+
+  /* .smallChat {
+    height: calc(100vh - 155px) !important;
+  } */
+}
+
+@media screen and (max-width: 640px) {
+  .wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .wrapper {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

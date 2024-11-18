@@ -1,0 +1,162 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid()) @map("_id")
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid()) @map("_id")
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                    String              @id @default(cuid()) @map("_id")
+  name                  String?
+  email                 String              @unique
+  emailVerified         DateTime?
+  image                 String?
+  institution           String?
+  department            String?
+  skills                String?
+  dob                   String?
+  phoneNumber           String?
+  whatsappNumber        String?
+  age                   String?
+  country               String?
+  state                 String?
+  createdSuccessfully   Boolean             @default(false)
+  subscribed            Boolean             @default(false)
+  admin                 Boolean             @default(false)
+  subNotificationNumber Int?                @default(0)
+  accounts              Account[]
+  sessions              Session[]
+  Post                  Post[]
+  SkillPost             SkillPost[]
+  UsedItemPost          UsedItemPost[]
+  StudentMarketPost     StudentMarketPost[]
+  RentPost              RentPost[]
+  GiveawayPost          GiveawayPost[]
+  News                  News[]
+  postNotification      Int                 @default(0)
+  skillNotification     Int                 @default(0)
+  usedItemNotification  Int                 @default(0)
+  marketNotification    Int                 @default(0)
+  rentNotification      Int                 @default(0)
+  giveNotification      Int                 @default(0)
+  newsNotification      Int                 @default(0)
+  Subscription          Subscription[]
+}
+
+model VerificationToken {
+  identifier String   @id @map("_id")
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Post {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  image     String
+  myTrade   String
+  myNeed    String
+  userEmail String
+  user      User     @relation(fields: [userEmail], references: [email])
+}
+
+model SkillPost {
+  id         String   @id @default(cuid()) @map("_id")
+  createdAt  DateTime @default(now())
+  image      String
+  skill      String
+  location   String
+  aboutSkill String
+  userEmail  String
+  user       User     @relation(fields: [userEmail], references: [email])
+}
+
+model UsedItemPost {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  image     String
+  usedItem  String
+  aboutItem String
+  userEmail String
+  user      User     @relation(fields: [userEmail], references: [email])
+}
+
+model StudentMarketPost {
+  id          String   @id @default(cuid()) @map("_id")
+  createdAt   DateTime @default(now())
+  image       String
+  market      String
+  aboutMarket String
+  userEmail   String
+  user        User     @relation(fields: [userEmail], references: [email])
+}
+
+model RentPost {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  image     String
+  rentItem  String
+  aboutItem String
+  userEmail String
+  user      User     @relation(fields: [userEmail], references: [email])
+}
+
+model GiveawayPost {
+  id           String   @id @default(cuid()) @map("_id")
+  createdAt    DateTime @default(now())
+  image        String
+  giveawayItem String
+  aboutItem    String
+  userEmail    String
+  user         User     @relation(fields: [userEmail], references: [email])
+}
+
+model News {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  image     String?
+  text      String
+  userEmail String
+  user      User     @relation(fields: [userEmail], references: [email])
+}
+
+model Subscription {
+  id         String   @id @default(cuid()) @map("_id")
+  subDate    DateTime @default(now())
+  subExpDate String
+  userEmail  String
+  user       User     @relation(fields: [userEmail], references: [email])
+}

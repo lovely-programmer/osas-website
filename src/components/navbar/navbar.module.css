@@ -1,0 +1,163 @@
+.navbar {
+  background-color: var(--lightBg);
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.logo,
+.logo_1 {
+  display: flex;
+  font-size: 26px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.logo span:last-child,
+.logo_1 span:last-child {
+  font-weight: 700;
+}
+
+
+.links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1.5;
+}
+
+.login {
+  padding: 10px 15px;
+  background-color: var(--orangeColor);
+  color: var(--softTextColor);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.messageLink {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.messageLink svg {
+  position: relative;
+}
+
+.messageLink .ball,
+.messageLink .ballNews {
+  position: absolute;
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: var(--softTextColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+.messageLink:first-child .ball {
+  margin-left: 22px;
+  top: -4px;
+}
+
+.messageLink .ballNews {
+  margin-left: 22px;
+  top: -4px;
+}
+
+.messageLink:last-child .ball {
+  margin-left: 22px;
+  top: -4px;
+}
+
+.messageLink span,
+.giveLink {
+  font-size: 15px;
+}
+
+.messageLink svg,
+.giveaway svg {
+  font-size: 25px;
+}
+
+.giveaway {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+@media screen and (max-width: 1300px) {
+  .logo {
+    font-size: 26px;
+  }
+
+  .links {
+    font-size: 16px;
+    gap: 15px;
+  }
+
+}
+
+@media screen and (max-width: 1280px) {
+  .logo {
+    margin-right: 20px;
+  }
+
+  .links {
+    flex: none;
+  }
+}
+
+@media screen and (max-width: 1026px) {
+  .logo {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .logo {
+    flex: none;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 545px) {
+  .logo {
+    font-size: 15px;
+  }
+
+  .messageLink span,
+  .giveLink {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .logo {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  .messageLink span,
+  .giveLink {
+    font-size: 9px;
+  }
+}
