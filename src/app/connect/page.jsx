@@ -30,7 +30,7 @@ export default function Connect() {
     getAllUser();
   }, []);
 
-  const filterUser = allUser?.filter((u) => u._id !== user._id);
+  const filterUser = allUser?.filter((u) => u?._id !== user?._id);
 
   const handleSelect = async (messageUser) => {
     // check whether the group(chats in firestore) exits, if not create
