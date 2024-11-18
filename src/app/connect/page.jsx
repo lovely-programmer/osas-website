@@ -30,7 +30,7 @@ export default function Connect() {
     getAllUser();
   }, []);
 
-  const filterUser = allUser?.filter((u) => u.id !== user.id);
+  const filterUser = allUser?.filter((u) => u._id !== user._id);
 
   const handleSelect = async (messageUser) => {
     // check whether the group(chats in firestore) exits, if not create
@@ -76,7 +76,7 @@ export default function Connect() {
       <div className="wrapper">
         <div className={styles.container}>
           {filterUser?.map((users) => (
-            <div key={users.id} className={styles.postsContainer}>
+            <div key={users._id} className={styles.postsContainer}>
               <div className={styles.posts}>
                 <div className={styles.profile}>
                   <div>
