@@ -6,8 +6,10 @@ import Spinner from "../components/spinner/Spinner";
 import { getAUser, getPosts } from "../requests/requests";
 import { useContext, useMemo } from "react";
 import { SearchContext } from "../context/SearchContext";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   const { data, isLoading } = getPosts();
   const { status } = useSession();
   const { user } = getAUser();
