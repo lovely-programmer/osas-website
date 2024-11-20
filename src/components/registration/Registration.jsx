@@ -23,10 +23,10 @@ export default function Registration() {
   const router = useRouter();
 
   useEffect(() => {
-    if (user.country !== null) {
+    if (user?.country !== null) {
       router.push("/signup/post");
     }
-  }, [user.country]);
+  }, [user?.country]);
 
   const [isLoading, setIsLoading] = useState(false);
 
