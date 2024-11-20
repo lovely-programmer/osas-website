@@ -22,6 +22,10 @@ export default function Home() {
     [data, search]
   );
 
+  if (user?.country == null && user?.createdSuccessfully == false) {
+    router.push("/signup/welcome");
+  }
+
   if (isLoading) return <Spinner />;
 
   return (
