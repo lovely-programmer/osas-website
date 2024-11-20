@@ -22,11 +22,11 @@ export default function Registration() {
   const [state, setState] = useState("");
   const router = useRouter();
 
-  useEffect(() => {
-    if (user?.country !== null) {
-      router.push("/signup/post");
-    }
-  }, [user?.country]);
+  // useEffect(() => {
+  //   if (user?.country !== null) {
+  //     router.push("/signup/post");
+  //   }
+  // }, [user?.country]);
 
   const [isLoading, setIsLoading] = useState(false);
 
