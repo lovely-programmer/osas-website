@@ -72,7 +72,7 @@ export default function Post() {
               }),
             });
 
-            if (res.status == "201") {
+            if (res.ok) {
               router.push("/");
             } else {
               setIsLoading(false);
