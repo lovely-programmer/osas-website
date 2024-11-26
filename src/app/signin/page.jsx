@@ -8,9 +8,10 @@ export default function Signin() {
   const { status } = useSession();
   const router = useRouter();
 
-  if (status === "authenticated") {
-    router.push("/");
-  }
+  // if (status === "authenticated") {
+  //   router.push("/");
+  // }
+
   return (
     <div className={styles.container}>
       <GoogleSignin />

@@ -26,8 +26,6 @@ export default function Home() {
 
   if (user?.country == null && user?.createdSuccessfully == false) {
     router.push("/signup/welcome");
-  } else if (user?.createdSuccessfully == false) {
-    router.push("/signup/post");
   }
 
   if (isLoading) return <Spinner />;

@@ -13,7 +13,8 @@ export const GET = async (req, { params }) => {
     return new NextResponse(JSON.stringify(user), { status: 200 });
   } catch (err) {
     return new NextResponse(
-      JSON.stringify({ message: "Something went wrong" }, { status: 500 })
+      JSON.stringify({ message: "Something went wrong" }),
+      { status: 500 }
     );
   }
 };
@@ -24,9 +25,9 @@ export const PUT = async (req, { params }) => {
   const session = await getAuthSession();
 
   if (!session) {
-    return new NextResponse(
-      JSON.stringify({ message: "Not Authenticated!" }, { status: 401 })
-    );
+    return new NextResponse(JSON.stringify({ message: "Not Authenticated!" }), {
+      status: 401,
+    });
   }
 
   try {
@@ -65,7 +66,8 @@ export const PUT = async (req, { params }) => {
   } catch (err) {
     console.log(err);
     return new NextResponse(
-      JSON.stringify({ message: "Something went wrong" }, { status: 500 })
+      JSON.stringify({ message: "Something went wrong" }),
+      { status: 500 }
     );
   }
 };
